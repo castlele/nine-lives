@@ -1,6 +1,8 @@
-# Game template
+# Nine Lives
 
-Template for quick application development using [raylib](https://github.com/raysan5/raylib).
+This game was made during ["Unpolished" game jam](https://itch.io/jam/unpolished-jam).
+
+The theme was: "Go deep 🌊"
 
 ## How To Run
 
@@ -20,4 +22,3 @@ Run:
 ```bash
 make run
 ```
-
