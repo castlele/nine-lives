@@ -1,5 +1,7 @@
 # High Level Concept/Design
 
+[Concept document in Figma](https://www.figma.com/board/NUDOLczDf06cQ4UvNTrl6z/nine-lives-CONCEPT-DOC?node-id=4-98&t=FA3wUypeiXl4MnHF-0)
+
 **Working title**: Nine lives (9 lives)
 
 **Concept statement**: 9 lives is 2D game about cat rescuing his owner from afterworld. The player should talk to dead people, solve puzzles and go through *9 levels* (aka 9 doors to the deeper level).
