@@ -1,5 +1,5 @@
 # Support: PLATFORM_DESKTOP and PLATFORM_WEB
-APP_NAME ?= ENTER_HERE
+APP_NAME ?= NineLives
 PLATFORM ?= PLATFORM_DESKTOP
 PLATFORM_OS ?= Linux
 
@@ -15,8 +15,8 @@ BUILD_WEB_SHELL               ?= libs/minshell.html
 BUILD_WEB_HEAP_SIZE           ?= 128MB
 BUILD_WEB_STACK_SIZE          ?= 1MB
 BUILD_WEB_ASYNCIFY_STACK_SIZE ?= 1048576
-BUILD_WEB_RESOURCES           ?= FALSE
-BUILD_WEB_RESOURCES_PATH      ?= resources
+BUILD_WEB_RESOURCES           ?= TRUE
+BUILD_WEB_RESOURCES_PATH      ?= res
 
 UNAMEOS = $(shell uname)
 
@@ -98,12 +98,15 @@ OBJECTS=$(FILES:.c=.o)
 
 APP=./build/$(APP_NAME)$(EXT)
 
-.PHONY: run server build bear_build clean
+.PHONY: run server build bear_build copy_res clean
 
-run: clean bear_build
+run: clean bear_build copy_res
 	$(APP)
 
-serve: clean bear_build
+copy_res:
+	cp -r res ./build/
+
+serve: clean bear_build copy_res
 	open http://localhost:8080/ENTER_HERE.html
 	cd build && python3 -m http.server 8080
 

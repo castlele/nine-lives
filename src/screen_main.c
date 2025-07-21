@@ -20,6 +20,7 @@ typedef struct Particle {
 static PWorld *w;
 
 static void NavigateSettings();
+static void NavigatePoc();
 static BOOL MainCollisionRule(Collider *lhs, Collider *rhs);
 
 static Arena mainArena;
@@ -86,8 +87,9 @@ void DrawMainScreen() {
     }
 
     Vector2 buttonOrigin = Center(screenRect, buttonSize);
+
     DrawButton(buttonOrigin.x, buttonOrigin.y, buttonSize.x, buttonSize.y, BLUE,
-               "Settings", NavigateSettings);
+               "POC", NavigatePoc);
 }
 
 BOOL IsMainFinished() { return navigateTo != NONE; }
@@ -97,6 +99,8 @@ ScreenType MainNavigateToScreen() { return navigateTo; }
 // Private methods
 
 static void NavigateSettings() { navigateTo = SETTINGS; }
+
+static void NavigatePoc() { navigateTo = POC; }
 
 static BOOL MainCollisionRule(Collider *lhs, Collider *rhs) {
     if (strcmp(lhs->mask, rhs->mask) == 0) {

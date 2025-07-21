@@ -74,6 +74,9 @@ static void InitScreen(ScreenType screen) {
     case SETTINGS:
         InitSettingsScreen();
         break;
+    case POC:
+        InitPocScreen();
+        break;
     }
 }
 
@@ -86,6 +89,9 @@ static void DeinitScreen(ScreenType screen) {
         break;
     case SETTINGS:
         DeinitSettingsScreen();
+        break;
+    case POC:
+        DeinitPocScreen();
         break;
     }
 }
@@ -119,6 +125,15 @@ static void UpdateScreen(ScreenType screen, float dt) {
                              NavigationFinished);
         }
         break;
+    case POC:
+        UpdatePocScreen(dt);
+
+        if (IsPocFinished()) {
+            ScreenType to = PocNavigateToScreen();
+
+            NavigateToScreen(SETTINGS, to, FADEIN_FADEOUT, NavigationStarted,
+                             NavigationFinished);
+        }
     }
 }
 
@@ -131,6 +146,9 @@ static void DrawScreen(ScreenType screen) {
         break;
     case SETTINGS:
         DrawSettingsScreen();
+        break;
+    case POC:
+        DrawPocScreen();
         break;
     }
 

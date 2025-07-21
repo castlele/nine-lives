@@ -7,6 +7,7 @@ typedef enum ScreenType {
     NONE = -1,
     MAIN = 0,
     SETTINGS,
+    POC,
 } ScreenType;
 
 typedef enum NavigationType {
@@ -35,5 +36,12 @@ void UpdateSettingsScreen();
 void DrawSettingsScreen();
 BOOL IsSettingsFinished();
 ScreenType SettingsNavigateToScreen();
+
+void InitPocScreen();
+void DeinitPocScreen();
+void UpdatePocScreen(float dt);
+void DrawPocScreen();
+BOOL IsPocFinished();
+ScreenType PocNavigateToScreen();
 
 #endif
