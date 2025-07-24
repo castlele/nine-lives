@@ -1,5 +1,6 @@
 #include <raylib.h>
 #include <stdio.h>
+#include <string.h>
 
 #define CUTE_TILED_IMPLEMENTATION
 
@@ -8,7 +9,7 @@
 #include "screen.h"
 #include "player.h"
 
-#define MAP_TILE_JSON_PATH "./res/level_1.tmj"
+#define MAP_TILE_JSON_PATH "./res/map_level_1.json"
 #define MAP_TILES "./res/level_1.png"
 
 #if defined(PLATFORM_DESKTOP)
@@ -29,6 +30,7 @@ typedef struct Sprite {
 
 static cute_tiled_map_t *map;
 static Texture2D bgTexture;
+static Texture2D objTexture;
 static Sprite *sprites;
 static int count;
 static Player player;
@@ -37,6 +39,7 @@ static Camera2D camera = {0};
 
 void InitPocScreen() {
     bgTexture = LoadTexture(MAP_TILES);
+    objTexture = LoadTexture("./res/cross.png");
     map = cute_tiled_load_map_from_file(MAP_TILE_JSON_PATH, 0);
 
     GetMapTextures();
@@ -69,11 +72,11 @@ void UpdatePocScreen(float dt) {
 
 void DrawPocScreen() {
     BeginMode2D(camera);
-        // BeginShaderMode(postProcessingShader);
+        BeginShaderMode(postProcessingShader);
             DrawMap();
             // DrawTexture(bgTexture, 0, 0, WHITE);
             DrawPlayer(&player);
-        // EndShaderMode();
+        EndShaderMode();
     EndMode2D();
 }
 
@@ -114,11 +117,41 @@ void DrawMap() {
     cute_tiled_layer_t* layer = map->layers;
     cute_tiled_tileset_t* tileset = map->tilesets;
 
-    int tilesetTileWidth = tileset->imagewidth;
-    int tilesetTileHeight = tileset->imageheight;
+    int tilesetTileWidth = tileset->tilewidth;
+    int tilesetTileHeight = tileset->tileheight;
     int tilesPerRow = bgTexture.width / tilesetTileWidth;
 
     while (layer) {
+        if (strcmp(layer->type.ptr, "objectgroup") == 0) {
+            cute_tiled_object_t *object = layer->objects;
+
+            while (object) {
+                player.pos.x = object->x * 2 - 100;
+                player.pos.y = object->y * 2 - 64;
+
+                object = object->next;
+            }
+        }
+
+        if (strcmp(layer->type.ptr, "imagelayer") == 0) {
+            Rectangle src = {
+                0, 0,
+                bgTexture.width,
+                bgTexture.height,
+            };
+
+            Rectangle dest = src;
+            dest.width *= 2;
+            dest.height *= 2;
+
+            DrawTexturePro(bgTexture, src, dest, (Vector2){0, 0}, 0.0f, WHITE);
+        }
+
+        if (strcmp(layer->type.ptr, "tilelayer") != 0) {
+            layer = layer->next;
+            continue;
+        }
+
         for (int y = 0; y < layer->height; y++) {
             for (int x = 0; x < layer->width; x++) {
                 int index = y * layer->width + x;
@@ -138,17 +171,19 @@ void DrawMap() {
                     .height = (float)tilesetTileHeight
                 };
                 float scale = 2;
-                int drawTileWidth = 32;
-                int drawTileHeight = 32;
+                int drawTileWidth = tileset->tilewidth;
+                int drawTileHeight = tileset->tileheight;
 
                 Rectangle dest = {
-                    .x = x * drawTileWidth * scale,
-                    .y = y * drawTileHeight * scale,
+                    .x = x * 32 * 2,
+                    .y = (y * 32 * 2),
                     .width = drawTileWidth * scale,
                     .height = drawTileHeight * scale
                 };
 
-                DrawTexturePro(bgTexture, src, dest, (Vector2){0, 0}, 0.0f, WHITE);
+                printf("%d:%d %f:%f %f:%f\n", x, y, dest.x, dest.y, dest.width, dest.height);
+
+                DrawTexturePro(objTexture, src, dest, (Vector2){0, dest.height - 64}, 0.0f, WHITE);
             }
         }
 

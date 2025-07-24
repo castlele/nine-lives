@@ -7,17 +7,23 @@
     "expandedProjectPaths": [
     ],
     "fileStates": {
+        "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
     },
-    "last.exportedFilePath": "/home/castlelecs/dev/projects/nine-lives/res",
     "last.imagePath": "/home/castlelecs/dev/projects/nine-lives/res",
-    "map.height": 19,
-    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.height": 56,
     "map.lastUsedFormat": "json",
-    "map.width": 25,
+    "map.width": 37,
     "openFiles": [
     ],
     "project": "nine-lives.tiled-project",
     "recentFiles": [
     ],
-    "tileset.lastUsedFormat": "json"
+    "tileset.embedInMap": true,
+    "tileset.tileSize": {
+        "height": 128,
+        "width": 64
+    }
 }
