@@ -3,6 +3,8 @@
 #include "player.h"
 #include "types.h"
 
+extern BOOL isDebug;
+
 static unsigned int movingFrame = 0;
 static float time;
 
@@ -21,16 +23,29 @@ int StateGetColumn(PlayerState state) {
     case PlayerStateMovingBottom:
         return 3;
     }
+
+    return 0;
 }
 
 void InitPlayer(Player *player, Vector2 pos) {
-    player->texture = LoadTexture(PLAYER_TEXTURE_PATH);
+    Image img = LoadImage(PLAYER_TEXTURE_PATH);
+    ImageResize(&img, img.width * 2, img.height * 2);
+    player->texture = LoadTextureFromImage(img);
+    UnloadImage(img);
     player->pos = pos;
     player->state = PlayerStateStandingRight;
 }
 
 void DeinitPlayer(Player *player) {
     UnloadTexture(player->texture);
+}
+
+int PlayerGetWidth(Player *player) {
+    return player->texture.width / COLS;
+}
+
+int PlayerGetHeight(Player *player) {
+    return player->texture.height / ROWS;
 }
 
 void UpdatePlayer(Player *player, float dt) {
@@ -112,4 +127,8 @@ void DrawPlayer(Player *player) {
         player->pos,
         WHITE
     );
+
+    if (isDebug) {
+        DrawRectangleLines(player->pos.x, player->pos.y, width, height, WHITE);
+    }
 }

@@ -33,6 +33,9 @@ typedef struct Player {
 void InitPlayer(Player *player, Vector2 pos);
 void DeinitPlayer(Player *player);
 
+int PlayerGetWidth(Player *player);
+int PlayerGetHeight(Player *player);
+
 void UpdatePlayer(Player *player, float dt);
 void DrawPlayer(Player *player);
 

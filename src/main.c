@@ -1,5 +1,6 @@
-#include "screen.h"
 #include <raylib.h>
+
+#include "screen.h"
 
 #if defined(PLATFORM_WEB)
 #include <emscripten/emscripten.h>
@@ -9,6 +10,8 @@
 #define DEFAULT_WIN_H 600
 #define WIN_NAME "Template Project"
 
+BOOL isDebug = NO;
+
 static void UpdateDrawFrame();
 static void Update();
 static void Draw();
@@ -16,6 +19,7 @@ static void Draw();
 static void InitScreen(ScreenType);
 static void DeinitScreen(ScreenType);
 static void UpdateScreen(ScreenType, float dt);
+static void ListenCommonEvents();
 static void DrawScreen(ScreenType);
 
 static void NavigationStarted(ScreenType from, ScreenType to);
@@ -60,7 +64,7 @@ static void Draw() {
     ClearBackground(RAYWHITE);
 
     BeginDrawing();
-    DrawScreen(currentScreen);
+        DrawScreen(currentScreen);
     EndDrawing();
 }
 
@@ -97,6 +101,8 @@ static void DeinitScreen(ScreenType screen) {
 }
 
 static void UpdateScreen(ScreenType screen, float dt) {
+    ListenCommonEvents();
+
     if (IsInTransition()) {
         UpdateTransition();
         return;
@@ -135,6 +141,14 @@ static void UpdateScreen(ScreenType screen, float dt) {
                              NavigationFinished);
         }
     }
+}
+
+static void ListenCommonEvents() {
+#if defined (DEBUG)
+    if (IsKeyPressed(KEY_B)) {
+        isDebug = !isDebug;
+    }
+#endif
 }
 
 static void DrawScreen(ScreenType screen) {

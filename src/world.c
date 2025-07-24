@@ -1,8 +1,11 @@
 #include <stdlib.h>
 
 #include "arena.h"
+#include "raylib.h"
 #include "utils.h"
 #include "physics.h"
+
+extern BOOL isDebug;
 
 static void SetProperties(PWorld *w, Vector2 gravity);
 
@@ -100,7 +103,15 @@ void SetCollisionRule(PWorld *w, CollisionRule *rule) {
     w->rules[w->topRule++] = rule;
 }
 
-void DrawPWorld(PWorld *w) {}
+void DrawPWorld(PWorld *w) {
+    if (!isDebug) return;
+
+    for (int i = 0; i < w->topCollider; i++) {
+        Collider *c = w->colliders[i];
+
+        DrawRectangleLines(c->pos.x, c->pos.y, c->width, c->height, RED);
+    }
+}
 
 void DeinitPWorld(PWorld *w) {
     DeinitArena(w->arena);

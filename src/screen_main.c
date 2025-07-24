@@ -90,6 +90,8 @@ void DrawMainScreen() {
 
     DrawButton(buttonOrigin.x, buttonOrigin.y, buttonSize.x, buttonSize.y, BLUE,
                "POC", NavigatePoc);
+
+    DrawPWorld(w);
 }
 
 BOOL IsMainFinished() { return navigateTo != NONE; }

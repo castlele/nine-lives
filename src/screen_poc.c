@@ -126,8 +126,8 @@ void DrawMap() {
             cute_tiled_object_t *object = layer->objects;
 
             while (object) {
-                player.pos.x = object->x * 2 - 100;
-                player.pos.y = object->y * 2 - 64;
+                player.pos.x = object->x * 2 - PlayerGetWidth(&player);
+                player.pos.y = object->y * 2 - PlayerGetHeight(&player);
 
                 object = object->next;
             }

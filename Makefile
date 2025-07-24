@@ -2,6 +2,8 @@
 APP_NAME ?= NineLives
 PLATFORM ?= PLATFORM_DESKTOP
 PLATFORM_OS ?= Linux
+# Support: DEBUG and RELEASE
+BUILD_TYPE ?= DEBUG
 
 EMSDK_PATH         ?= ~/dev/open_source/emsdk
 EMSCRIPTEN_PATH    ?= $(EMSDK_PATH)/upstream/emscripten
@@ -47,6 +49,12 @@ endif
 
 CC=gcc
 CFLAGS=-Wall -std=c99 -D_DEFAULT_SOURCE
+
+ifeq ($(BUILD_TYPE),DEBUG)
+	CFLAGS += -DDEBUG
+else
+	CFLAGS += -DRELEASE
+endif
 
 ifeq ($(PLATFORM),PLATFORM_WEB)
 	CC=emcc
@@ -126,5 +134,5 @@ $(SRC)/%.o: $(SRC)/%.c
 clean:
 	-rm $(SRC)/*.o
 	-rm $(SRC)/*.d
-	-rm build/*
+	-rm -rf build/*
 
