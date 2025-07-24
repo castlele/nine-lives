@@ -27,13 +27,16 @@ int StateGetColumn(PlayerState state) {
     return 0;
 }
 
-void InitPlayer(Player *player, Vector2 pos) {
+void InitPlayer(Player *player, Vector2 pos, float scale) {
     Image img = LoadImage(PLAYER_TEXTURE_PATH);
-    ImageResize(&img, img.width * 2, img.height * 2);
+    ImageResize(&img, img.width * scale, img.height * scale);
+
     player->texture = LoadTextureFromImage(img);
+
     UnloadImage(img);
-    player->pos = pos;
+
     player->state = PlayerStateStandingRight;
+    player->pos = pos;
 }
 
 void DeinitPlayer(Player *player) {
@@ -48,12 +51,18 @@ int PlayerGetHeight(Player *player) {
     return player->texture.height / ROWS;
 }
 
+void AttachCameraToPlayer(Player *player, Camera2D *camera) {
+    player->camera = camera;
+}
+
 void UpdatePlayer(Player *player, float dt) {
     BOOL isMoving = NO;
     PlayerState state;
+    Collider *collider = player->collider;
 
     if (IsKeyDown(KEY_D)) {
         player->pos.x += PLAYER_SPEED * dt;
+
         isMoving = YES;
         state = PlayerStateMovingRight;
     }
@@ -65,14 +74,14 @@ void UpdatePlayer(Player *player, float dt) {
     }
 
     if (IsKeyDown(KEY_W)) {
-        isMoving = YES;
         player->pos.y -= PLAYER_SPEED * dt;
+        isMoving = YES;
         state = PlayerStateMovingTop;
     }
 
     if (IsKeyDown(KEY_S)) {
-        isMoving = YES;
         player->pos.y += PLAYER_SPEED * dt;
+        isMoving = YES;
         state = PlayerStateMovingBottom;
     }
 
@@ -111,6 +120,18 @@ void UpdatePlayer(Player *player, float dt) {
             player->state = PlayerStateStandingBottom;
             break;
         }
+    }
+
+    if (player->camera) {
+        player->camera->target = (Vector2){
+            player->pos.x,
+            player->pos.y,
+        };
+        player->camera->offset = (Vector2){ GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f };
+    }
+
+    if (collider) {
+        collider->pos = player->pos;
     }
 }
 

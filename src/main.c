@@ -70,33 +70,43 @@ static void Draw() {
 
 static void InitScreen(ScreenType screen) {
     switch (screen) {
-    case NONE:
-        break;
-    case MAIN:
-        InitMainScreen();
-        break;
-    case SETTINGS:
-        InitSettingsScreen();
-        break;
-    case POC:
-        InitPocScreen();
-        break;
+        case NONE:
+            break;
+        case MAIN:
+            InitMainScreen();
+            break;
+        case SETTINGS:
+            InitSettingsScreen();
+            break;
+        case GAME:
+            InitGameScreen();
+            break;
+#if defined (DEBUG)
+        case POC:
+            InitPocScreen();
+            break;
+#endif
     }
 }
 
 static void DeinitScreen(ScreenType screen) {
     switch (screen) {
-    case NONE:
-        break;
-    case MAIN:
-        DeinitMainScreen();
-        break;
-    case SETTINGS:
-        DeinitSettingsScreen();
-        break;
-    case POC:
-        DeinitPocScreen();
-        break;
+        case NONE:
+            break;
+        case MAIN:
+            DeinitMainScreen();
+            break;
+        case SETTINGS:
+            DeinitSettingsScreen();
+            break;
+        case GAME:
+            DeinitGameScreen();
+            break;
+#if defined (DEBUG)
+        case POC:
+            DeinitPocScreen();
+            break;
+#endif
     }
 }
 
@@ -109,37 +119,53 @@ static void UpdateScreen(ScreenType screen, float dt) {
     }
 
     switch (screen) {
-    case NONE:
-        break;
-    case MAIN:
-        UpdateMainScreen(dt);
+        case NONE:
+            break;
+        case MAIN:
+            UpdateMainScreen(dt);
 
-        if (IsMainFinished()) {
-            ScreenType to = MainNavigateToScreen();
+            if (IsMainFinished()) {
+                ScreenType to = MainNavigateToScreen();
 
-            NavigateToScreen(MAIN, to, FADEIN_FADEOUT, NavigationStarted,
-                             NavigationFinished);
-        }
-        break;
-    case SETTINGS:
-        UpdateSettingsScreen();
+                NavigateToScreen(MAIN, to, FADEIN_FADEOUT, NavigationStarted,
+                                 NavigationFinished);
+            }
+            break;
+        case SETTINGS:
+            UpdateSettingsScreen();
 
-        if (IsSettingsFinished()) {
-            ScreenType to = SettingsNavigateToScreen();
+            if (IsSettingsFinished()) {
+                ScreenType to = SettingsNavigateToScreen();
 
-            NavigateToScreen(SETTINGS, to, FADEIN_FADEOUT, NavigationStarted,
-                             NavigationFinished);
-        }
-        break;
-    case POC:
-        UpdatePocScreen(dt);
+                NavigateToScreen(SETTINGS, to, FADEIN_FADEOUT, NavigationStarted,
+                                 NavigationFinished);
+            }
+            break;
+        case GAME:
+            UpdateGameScreen(dt);
 
-        if (IsPocFinished()) {
-            ScreenType to = PocNavigateToScreen();
+            if (IsGameFinished()) {
+                ScreenType to = PocNavigateToScreen();
 
-            NavigateToScreen(SETTINGS, to, FADEIN_FADEOUT, NavigationStarted,
-                             NavigationFinished);
-        }
+                NavigateToScreen(
+                    GAME,
+                    to,
+                    FADEIN_FADEOUT,
+                    NavigationStarted,
+                    NavigationFinished
+                );
+            }
+#if defined (DEBUG)
+        case POC:
+            UpdatePocScreen(dt);
+
+            if (IsPocFinished()) {
+                ScreenType to = PocNavigateToScreen();
+
+                NavigateToScreen(POC, to, FADEIN_FADEOUT, NavigationStarted,
+                                 NavigationFinished);
+            }
+#endif
     }
 }
 
@@ -153,17 +179,22 @@ static void ListenCommonEvents() {
 
 static void DrawScreen(ScreenType screen) {
     switch (screen) {
-    case NONE:
-        break;
-    case MAIN:
-        DrawMainScreen();
-        break;
-    case SETTINGS:
-        DrawSettingsScreen();
-        break;
-    case POC:
-        DrawPocScreen();
-        break;
+        case NONE:
+            break;
+        case MAIN:
+            DrawMainScreen();
+            break;
+        case SETTINGS:
+            DrawSettingsScreen();
+            break;
+        case GAME:
+            DrawGameScreen();
+            break;
+#if defined (DEBUG)
+        case POC:
+            DrawPocScreen();
+            break;
+#endif
     }
 
     if (IsInTransition()) {

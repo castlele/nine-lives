@@ -22,13 +22,68 @@
                 {
                  "height":31.75,
                  "id":5,
-                 "name":"",
+                 "name":"spawn",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":31.5,
                  "x":576.25,
                  "y":512.25
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":5,
+         "name":"colliders",
+         "objects":[
+                {
+                 "height":31.3333333333333,
+                 "id":7,
+                 "name":"collider",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":440,
+                 "y":480
+                }, 
+                {
+                 "height":31,
+                 "id":8,
+                 "name":"collider",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":15.5,
+                 "x":664.5,
+                 "y":416.5
+                }, 
+                {
+                 "height":31.5,
+                 "id":9,
+                 "name":"collider",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16.25,
+                 "x":504,
+                 "y":672.25
+                }, 
+                {
+                 "height":31.375,
+                 "id":10,
+                 "name":"collider",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":15.5,
+                 "x":728.25,
+                 "y":672.25
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -103,8 +158,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":5,
- "nextobjectid":7,
+ "nextlayerid":6,
+ "nextobjectid":11,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

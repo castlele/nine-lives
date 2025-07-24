@@ -10,6 +10,7 @@
 #define MAX_COLLIDES 1000
 #define COLLIDER_MASK_SIZE 16
 #define MAX_RULES 32
+#define MAX_ACTIONS 16
 
 typedef enum ColliderType {
     ColliderTypeStatic,
@@ -40,15 +41,18 @@ BOOL CheckCollision(Collider *lhs, Collider *rhs);
 CollisionSide GetCollisionSide(bool isCollided, Collider *lhs, Collider *rhs);
 
 typedef BOOL(CollisionRule)(Collider *lhs, Collider *rhs);
+typedef void(CollisionAction)(Collider *lhs, Collider *rhs, CollisionSide side);
 
 typedef struct PWorld {
     Vector2 gravity;
     Collider **colliders;
     CollisionRule *rules[MAX_RULES];
+    CollisionAction *actions[MAX_ACTIONS];
     Arena *arena;
     int topCollider;
     int maxCollidersCapacity;
     int topRule;
+    int topAction;
 } PWorld;
 
 PWorld *InitPWorld(Vector2 gravity);
@@ -58,6 +62,7 @@ Collider *InitColliderInWorld(PWorld *w, Vector2 pos, float width, float height,
                               ColliderType type, float mass);
 
 void SetCollisionRule(PWorld *w, CollisionRule *rule);
+void SetCollisionAction(PWorld *w, CollisionAction *action);
 
 void UpdatePWorld(PWorld *w, float dt);
 void DrawPWorld(PWorld *w);

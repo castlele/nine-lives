@@ -2,8 +2,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#define CUTE_TILED_IMPLEMENTATION
-
 #include "cute_tiled.h"
 
 #include "screen.h"
@@ -18,21 +16,11 @@
 #define POST_PROCCESSOR_SHADER_PATH "res/shaders/glsl100/post_processing.fs"
 #endif
 
-static void GetMapTextures();
 static void DrawMap();
-
-typedef struct Sprite {
-    int x;
-    int y;
-    int w;
-    int h;
-} Sprite;
 
 static cute_tiled_map_t *map;
 static Texture2D bgTexture;
 static Texture2D objTexture;
-static Sprite *sprites;
-static int count;
 static Player player;
 static Shader postProcessingShader;
 static Camera2D camera = {0};
@@ -42,15 +30,13 @@ void InitPocScreen() {
     objTexture = LoadTexture("./res/cross.png");
     map = cute_tiled_load_map_from_file(MAP_TILE_JSON_PATH, 0);
 
-    GetMapTextures();
-
     postProcessingShader = LoadShader(NULL, POST_PROCCESSOR_SHADER_PATH);
 
     Vector2 initialPos = {
         .x = (GetScreenWidth() - player.texture.width) / 2.0f,
         .y = GetScreenHeight() - player.texture.height,
     };
-    InitPlayer(&player, initialPos);
+    InitPlayer(&player, initialPos, 2.0f);
 
     camera.rotation = 0.0f;
     camera.zoom = 1.3f;
@@ -89,29 +75,6 @@ ScreenType PocNavigateToScreen() {
 }
 
 // Private methods
-
-void GetMapTextures() {
-    int w = map->width;
-    int h = map->height;
-
-    cute_tiled_layer_t *layer = map->layers;
-
-    sprites = malloc(sizeof(Sprite) * w * h);
-    count = layer->data_count;
-
-    while (layer) {
-        for (int i = 0; i < layer->data_count; i++) {
-            sprites[i] = (Sprite) {
-                .x = (i % w),
-                .y = (h - i / w),
-                .w = 32,
-                .h = 32,
-            };
-        }
-
-        layer = layer->next;
-    }
-}
 
 void DrawMap() {
     cute_tiled_layer_t* layer = map->layers;
@@ -157,7 +120,7 @@ void DrawMap() {
                 int index = y * layer->width + x;
                 int gid = layer->data[index];
 
-                if (gid == 0) continue; // Empty tile
+                if (gid == 0) continue;
 
                 int localID = gid - tileset->firstgid;
 

@@ -72,15 +72,24 @@ void UpdatePWorld(PWorld *w, float dt) {
             CollisionSide side = GetCollisionSide(collided, lhs, rhs);
 
             switch (side) {
-            case CollisionSideBottom:
-                if (lhs->vel.y > 0) {
-                    lhs->vel.y = -200;
-                }
-                break;
-            case CollisionSideTop:
-            case CollisionSideLeft:
-            case CollisionSideRight:
-                break;
+                case CollisionSideBottom:
+                    INFO("Got bottom collision");
+                    break;
+                case CollisionSideTop:
+                    INFO("Got top collision");
+                    break;
+                case CollisionSideLeft:
+                    INFO("Got left collision");
+                    break;
+                case CollisionSideRight:
+                    INFO("Got right collision");
+                    break;
+            }
+
+            for (int actionIndex = 0; actionIndex < w->topAction; actionIndex++) {
+                CollisionAction *action = w->actions[actionIndex];
+
+                action(lhs, rhs, side);
             }
         }
 
@@ -94,6 +103,7 @@ void UpdatePWorld(PWorld *w, float dt) {
 
         lhs->vel = Vector2Add(lhs->vel, Vector2Scale(a, dt));
         lhs->pos = Vector2Add(lhs->pos, Vector2Scale(lhs->vel, dt));
+
         lhs->force.x = 0;
         lhs->force.y = 0;
     }
@@ -101,6 +111,10 @@ void UpdatePWorld(PWorld *w, float dt) {
 
 void SetCollisionRule(PWorld *w, CollisionRule *rule) {
     w->rules[w->topRule++] = rule;
+}
+
+void SetCollisionAction(PWorld *w, CollisionAction *action) {
+    w->actions[w->topAction++] = action;
 }
 
 void DrawPWorld(PWorld *w) {
@@ -128,6 +142,7 @@ static void SetProperties(PWorld *w, Vector2 gravity) {
     w->gravity = gravity;
     w->topCollider = 0;
     w->topRule = 0;
+    w->topAction = 0;
     w->maxCollidersCapacity = 50;
     w->arena = malloc(sizeof(Arena));
 
