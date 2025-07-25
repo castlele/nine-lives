@@ -6,8 +6,8 @@
 #include "physics.h"
 #include "utils.h"
 
-#define FIRST_LEVEL_MAP_PATH "./res/map_level_1.json"
-#define RES_PATH "./res"
+#define FIRST_LEVEL_MAP_PATH "./res/level_1/map_level_1.json"
+#define RES_PATH "./res/level_1"
 #define LEVEL_SCALE 1.0f
 
 extern BOOL isDebug;

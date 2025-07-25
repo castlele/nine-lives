@@ -17,6 +17,7 @@ static void ParseInternalMap(TiledMap *map);
 static TiledLayerType GetLayerType(cute_tiled_layer_t *layer);
 static void ParseObjects(TiledMap *map, cute_tiled_object_t *objects);
 static void ParseImage(TiledMap *map, cute_tiled_layer_t *layer);
+static void ParseTile(TiledMap *map, cute_tiled_layer_t *layer);
 
 static char *resDir;
 
@@ -85,55 +86,7 @@ static void ParseInternalMap(TiledMap *map) {
                 ParseImage(map, layer);
                 break;
             case TILE_LAYER:
-                cute_tiled_tileset_t *tileset = map->internal->tilesets;
-                int tilesetTileWidth = tileset->tilewidth;
-                int tilesetTileHeight = tileset->tileheight;
-                int tilesPerRow = map->internal->width; // * map->internal->tilewidth / tilesetTileWidth;
-
-                for (int y = 0; y < layer->height; y++) {
-                    for (int x = 0; x < layer->width; x++) {
-                        int index = y * layer->width + x;
-                        int gid = layer->data[index];
-
-                        if (gid == 0) continue; // Empty tile
-
-                        int localID = gid - tileset->firstgid;
-                        int srcX = (localID % tilesPerRow) * tilesetTileWidth;
-                        int srcY = (localID / tilesPerRow) * tilesetTileHeight;
-
-                        Rectangle src = {
-                            .x = srcX,
-                            .y = srcY,
-                            .width = tilesetTileWidth,
-                            .height = tilesetTileHeight
-                        };
-
-                        Image image = LoadImage(TextFormat("%s/%s", resDir, tileset->image.ptr));
-
-                        ImageCrop(&image, src);
-                        ImageResize(&image, tilesetTileWidth * map->scale, tilesetTileHeight * map->scale);
-
-                        Texture2D texture = LoadTextureFromImage(image);
-
-                        Sprite sprite = {
-                            .texture = texture,
-                            .origin = (Vector2) {
-                                .x = 0,
-                                .y = texture.height - map->internal->tileheight * map->scale,
-                            },
-                            .pos = (Vector2) {
-                                .x = x * map->internal->tilewidth * map->scale,
-                                .y = y * map->internal->tileheight * map->scale,
-                            },
-                        };
-
-
-                        map->sprites[map->headSprite++] = sprite;
-
-                        UnloadImage(image);
-                    }
-                }
-
+                ParseTile(map, layer);
                 break;
             case UNKNOWN:
                 INFO("Got unknown layer type");
@@ -207,8 +160,8 @@ static void ParseImage(TiledMap *map, cute_tiled_layer_t *layer) {
         .texture = texture,
         .origin = (Vector2) { 0 , 0 },
         .pos = (Vector2) {
-            .x = layer->x * map->scale,
-            .y = layer->y * map->scale,
+            .x = (layer->x + layer->offsetx) * map->scale,
+            .y = (layer->y + layer->offsety) * map->scale,
         },
     };
 
@@ -218,3 +171,71 @@ static void ParseImage(TiledMap *map, cute_tiled_layer_t *layer) {
 
     INFO("FINISHED parsing image layer");
 }
+
+cute_tiled_tileset_t* FindTilesetForGID(cute_tiled_map_t* map, int gid) {
+    cute_tiled_tileset_t* ts = map->tilesets;
+    cute_tiled_tileset_t* next = ts ? ts->next : NULL;
+
+    while (ts) {
+        if (!next || gid < next->firstgid) {
+            return ts;
+        }
+        ts = next;
+        next = ts ? ts->next : NULL;
+    }
+
+    return NULL; // Should never happen if gid is valid
+}
+
+static void ParseTile(TiledMap *map, cute_tiled_layer_t *layer) {
+    int tilesPerRow = map->internal->width; // * map->internal->tilewidth / tilesetTileWidth;
+
+    for (int y = 0; y < layer->height; y++) {
+        for (int x = 0; x < layer->width; x++) {
+            int index = y * layer->width + x;
+            int gid = layer->data[index];
+
+            if (gid == 0) continue; // Empty tile
+
+            cute_tiled_tileset_t *tileset = FindTilesetForGID(map->internal, gid);
+            int tilesetTileWidth = tileset->tilewidth;
+            int tilesetTileHeight = tileset->tileheight;
+
+            int localID = gid - tileset->firstgid;
+            int srcX = (localID % tilesPerRow) * tilesetTileWidth;
+            int srcY = (localID / tilesPerRow) * tilesetTileHeight;
+
+            Rectangle src = {
+                .x = srcX,
+                .y = srcY,
+                .width = tilesetTileWidth,
+                .height = tilesetTileHeight
+            };
+
+            Image image = LoadImage(TextFormat("%s/%s", resDir, tileset->image.ptr));
+
+            ImageCrop(&image, src);
+            ImageResize(&image, tilesetTileWidth * map->scale, tilesetTileHeight * map->scale);
+
+            Texture2D texture = LoadTextureFromImage(image);
+
+            Sprite sprite = {
+                .texture = texture,
+                .origin = (Vector2) {
+                    .x = 0,
+                    .y = texture.height - map->internal->tileheight * map->scale,
+                },
+                .pos = (Vector2) {
+                    .x = x * map->internal->tilewidth * map->scale,
+                    .y = y * map->internal->tileheight * map->scale,
+                },
+            };
+
+
+            map->sprites[map->headSprite++] = sprite;
+
+            UnloadImage(image);
+        }
+    }
+}
+

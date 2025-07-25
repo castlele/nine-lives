@@ -3,27 +3,63 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "level_1/map_level_1.json",
     "expandedProjectPaths": [
+        ".",
+        "level_1"
     ],
     "fileStates": {
         "": {
             "scaleInDock": 1,
             "scaleInEditor": 1
+        },
+        "level_1/map_level_1.json": {
+            "scale": 16,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 1042.4375,
+                "y": 1581.125
+            }
+        },
+        "level_1/map_level_1.json#cross": {
+            "scaleInDock": 1
+        },
+        "level_1/map_level_1.json#tomb": {
+            "scaleInDock": 1
+        },
+        "level_1/map_level_1.json#trees": {
+            "scaleInDock": 0.33
+        },
+        "map_level_1.json": {
+            "expandedObjectLayers": [
+                4
+            ],
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 633,
+                "y": 1652
+            }
+        },
+        "map_level_1.json#cross": {
+            "scaleInDock": 1
         }
     },
-    "last.imagePath": "/home/castlelecs/dev/projects/nine-lives/res",
+    "last.imagePath": "/home/castlelecs/dev/projects/nine-lives/res/level_1",
     "map.height": 56,
     "map.lastUsedFormat": "json",
     "map.width": 37,
     "openFiles": [
+        "level_1/map_level_1.json"
     ],
     "project": "nine-lives.tiled-project",
     "recentFiles": [
+        "level_1/map_level_1.json",
+        "map_level_1.json"
     ],
     "tileset.embedInMap": true,
     "tileset.tileSize": {
-        "height": 128,
+        "height": 96,
         "width": 64
     }
 }

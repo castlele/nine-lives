@@ -1,6 +1,7 @@
 #include <raylib.h>
 
 #include "player.h"
+#include "raymath.h"
 #include "types.h"
 
 extern BOOL isDebug;
@@ -131,7 +132,24 @@ void UpdatePlayer(Player *player, float dt) {
     }
 
     if (collider) {
-        collider->pos = player->pos;
+        collider->pos = Vector2AddValue(player->pos, 10);
+        collider->width = PlayerGetWidth(player) - 20;
+        collider->height = PlayerGetHeight(player) - 20;
+
+        switch (player->state) {
+            case PlayerStateStandingLeft:
+            case PlayerStateMovingLeft:
+            case PlayerStateStandingRight:
+            case PlayerStateMovingRight:
+                break;
+            case PlayerStateStandingTop:
+            case PlayerStateMovingTop:
+            case PlayerStateStandingBottom:
+            case PlayerStateMovingBottom:
+                collider->pos.x = player->pos.x + (PlayerGetWidth(player) / 3.0f);
+                collider->width = PlayerGetWidth(player) / 3.0f;
+                break;
+        }
     }
 }
 
