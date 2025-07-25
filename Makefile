@@ -115,7 +115,7 @@ copy_res:
 	cp -r res ./build/
 
 serve: clean bear_build copy_res
-	open http://localhost:8080/ENTER_HERE.html
+	open http://localhost:8080/$(APP_NAME)$(EXT)
 	cd build && python3 -m http.server 8080
 
 bear_build:
