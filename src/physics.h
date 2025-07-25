@@ -38,7 +38,7 @@ typedef struct Collider {
 
 void SetColliderMask(Collider *c, char *mask);
 BOOL CheckCollision(Collider *lhs, Collider *rhs);
-CollisionSide GetCollisionSide(bool isCollided, Collider *lhs, Collider *rhs);
+CollisionSide GetCollisionSide(BOOL isCollided, Collider *lhs, Collider *rhs);
 
 typedef BOOL(CollisionRule)(Collider *lhs, Collider *rhs);
 typedef void(CollisionAction)(Collider *lhs, Collider *rhs, CollisionSide side);
@@ -48,7 +48,6 @@ typedef struct PWorld {
     Collider **colliders;
     CollisionRule *rules[MAX_RULES];
     CollisionAction *actions[MAX_ACTIONS];
-    Arena *arena;
     int topCollider;
     int maxCollidersCapacity;
     int topRule;
@@ -68,6 +67,5 @@ void UpdatePWorld(PWorld *w, float dt);
 void DrawPWorld(PWorld *w);
 
 void DeinitPWorld(PWorld *w);
-void DeinitPWorldOnArena(PWorld *w);
 
 #endif // PHYSICS_H_

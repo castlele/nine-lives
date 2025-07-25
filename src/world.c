@@ -31,12 +31,13 @@ Collider *InitColliderInWorld(PWorld *w, Vector2 pos, float width, float height,
         TODO("PWorld CAN'T EXPAND OR REUSE ITS SPACE, THIS FEATURE NOT YET IMPLEMENTED!");
     }
 
-    Collider *c = ArenaAlloc(w->arena, sizeof(Collider));
+    Collider *c = malloc(sizeof(Collider));
     c->pos = pos;
     c->width = width;
     c->height = height;
     c->type = type;
     c->mass = mass;
+    c->active = YES;
 
     w->colliders[w->topCollider++] = c;
 
@@ -44,8 +45,19 @@ Collider *InitColliderInWorld(PWorld *w, Vector2 pos, float width, float height,
 }
 
 void UpdatePWorld(PWorld *w, float dt) {
+    INFO("Updating World");
+
     for (int i = 0; i < w->topCollider; i++) {
         Collider *lhs = w->colliders[i];
+
+        INFO(
+            "Getting collider %s %f:%f %f%f",
+            lhs->mask,
+            lhs->pos.x,
+            lhs->pos.y,
+            lhs->width,
+            lhs->height
+        );
 
         if (lhs->type == ColliderTypeStatic)
             continue;
@@ -64,7 +76,18 @@ void UpdatePWorld(PWorld *w, float dt) {
                 pass = !rule(lhs, rhs);
             }
 
+            INFO(
+                "Checking collision with: %s %f:%f %f:%f",
+                rhs->mask,
+                rhs->pos.x,
+                rhs->pos.y,
+                rhs->width,
+                rhs->height
+            );
+
             BOOL collided = CheckCollision(lhs, rhs);
+
+            INFO("Collision: %d; should pass: %d", collided, pass);
 
             if (!collided || pass)
                 continue;
@@ -128,12 +151,7 @@ void DrawPWorld(PWorld *w) {
 }
 
 void DeinitPWorld(PWorld *w) {
-    DeinitArena(w->arena);
     free(w);
-}
-
-void DeinitPWorldOnArena(PWorld *w) {
-    DeinitArena(w->arena);
 }
 
 // Private methods
@@ -144,10 +162,6 @@ static void SetProperties(PWorld *w, Vector2 gravity) {
     w->topRule = 0;
     w->topAction = 0;
     w->maxCollidersCapacity = 50;
-    w->arena = malloc(sizeof(Arena));
 
-    InitArena(w->arena);
-
-    w->colliders =
-        ArenaAlloc(w->arena, sizeof(Collider *) * w->maxCollidersCapacity);
+    w->colliders = malloc(sizeof(Collider *) * w->maxCollidersCapacity);
 }

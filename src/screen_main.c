@@ -69,7 +69,7 @@ void InitMainScreen() {
 
 void DeinitMainScreen() {
     navigateTo = NONE;
-    DeinitPWorldOnArena(w);
+    DeinitPWorld(w);
     DeinitArena(&mainArena);
     particles = 0;
     w = NULL;

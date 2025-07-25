@@ -9,7 +9,7 @@ void SetColliderMask(Collider *c, char *mask) {
 
 BOOL CheckCollision(Collider *lhs, Collider *rhs) {
     if (!lhs->active || !rhs->active) {
-        return false;
+        return NO;
     }
 
     float pmaxX = fmax(lhs->pos.x, rhs->pos.x);
@@ -20,7 +20,7 @@ BOOL CheckCollision(Collider *lhs, Collider *rhs) {
     return pminX - pmaxX >= 0 && pminY - pmaxY >= 0;
 }
 
-CollisionSide GetCollisionSide(bool isCollided, Collider *lhs, Collider *rhs) {
+CollisionSide GetCollisionSide(BOOL isCollided, Collider *lhs, Collider *rhs) {
     assert(isCollided);
 
     float right = (lhs->pos.x + lhs->width) - rhs->pos.x;

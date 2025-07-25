@@ -49,6 +49,7 @@ void DeinitFirstLevel() {
     DeinitMap(&map);
     DeinitPlayer(&player);
     DeinitPWorld(world);
+    world = NULL;
 }
 
 void UpdateFirstLevel(float dt) {
