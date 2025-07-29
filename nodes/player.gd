@@ -56,8 +56,8 @@ func updatePlayerAnimationState():
 func updatePlayerCollider():
 	match _currentDirection:
 		Direction.LEFT, Direction.RIGHT:
-			horizontalCollider.show()
-			verticalCollider.hide()
+			horizontalCollider.disabled = false
+			verticalCollider.disabled = true
 		Direction.TOP, Direction.BOTTOM:
-			horizontalCollider.hide()
-			verticalCollider.show()
+			horizontalCollider.disabled = true
+			verticalCollider.disabled = false

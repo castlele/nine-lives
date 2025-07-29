@@ -1,5 +1,4 @@
+res://scenes/levels/ghosts.gd
 res://scenes/levels/level_1.tscn
-res://scenes/levels/player.gd
 res://nodes/player.tscn
-res://nodes/camera.gd
 res://nodes/camera.tscn
