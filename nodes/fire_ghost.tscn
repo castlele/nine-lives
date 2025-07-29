@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwa7bl60aw2mn"]
+
+[ext_resource type="Texture2D" uid="uid://tdw1u2x6aqg0" path="res://res/grave_level/fire_ghost.png" id="1_j5ghm"]
+[ext_resource type="Script" uid="uid://b2conpjwswi45" path="res://nodes/fire_ghost.gd" id="2_yoikm"]
+
+[sub_resource type="Gradient" id="Gradient_qxy0u"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j5ghm"]
+gradient = SubResource("Gradient_qxy0u")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.132479, 0.175214)
+
+[node name="fire_ghost" type="Sprite2D"]
+texture = ExtResource("1_j5ghm")
+script = ExtResource("2_yoikm")
+
+[node name="opacity_timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="fire_ghost_light" type="PointLight2D" parent="."]
+position = Vector2(-0.999939, -2)
+scale = Vector2(1.56641, 1.56641)
+color = Color(0.0980392, 0.498039, 0.819608, 1)
+energy = 2.18
+texture = SubResource("GradientTexture2D_j5ghm")
+texture_scale = 1.25
+
+[connection signal="timeout" from="opacity_timer" to="." method="_on_opacity_timer_timeout"]

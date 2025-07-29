@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1ry4237ui1i0"
-path="res://.godot/imported/crosses.png-ee588c4ce7fdc82afad8a06de7eb2201.ctex"
+uid="uid://dam33gwx7ybxg"
+path="res://.godot/imported/trees.png-e3550870250fac0c501788fa86f9566a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://res/level_1/crosses.png"
-dest_files=["res://.godot/imported/crosses.png-ee588c4ce7fdc82afad8a06de7eb2201.ctex"]
+source_file="res://res/grave_level/trees.png"
+dest_files=["res://.godot/imported/trees.png-e3550870250fac0c501788fa86f9566a.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ds1prft0icy2q"
-path="res://.godot/imported/level_1.png-2b1addc1c5460984ea238565e26c2d39.ctex"
+uid="uid://bd0w6budspdy4"
+path="res://.godot/imported/tomb.png-52aedea0391b03abd2f4a4d88a4721ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://res/level_1/level_1.png"
-dest_files=["res://.godot/imported/level_1.png-2b1addc1c5460984ea238565e26c2d39.ctex"]
+source_file="res://res/grave_level/tomb.png"
+dest_files=["res://.godot/imported/tomb.png-52aedea0391b03abd2f4a4d88a4721ce.ctex"]
 
 [params]
 

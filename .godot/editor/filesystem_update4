@@ -2,3 +2,7 @@ res://scenes/levels/ghosts.gd
 res://scenes/levels/level_1.tscn
 res://nodes/player.tscn
 res://nodes/camera.tscn
+res://scenes/grave_levels/level_1.tscn
+res://scenes/grave_level/grave.tscn
+res://nodes/fire_ghost.tscn
+res://nodes/fire_ghost.gd
