@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://7us30kguw5pb"]
+
+[ext_resource type="Texture2D" uid="uid://bd0w6budspdy4" path="res://res/grave_level/tomb.png" id="1_2kp48"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2kp48"]
+size = Vector2(166, 133)
+
+[node name="tomb" type="StaticBody2D"]
+
+[node name="tomb_sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_2kp48")
+
+[node name="tomb_collider" type="CollisionShape2D" parent="."]
+position = Vector2(0, 74.5)
+shape = SubResource("RectangleShape2D_2kp48")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cwa7bl60aw2mn"]
 
 [ext_resource type="Texture2D" uid="uid://tdw1u2x6aqg0" path="res://res/grave_level/fire_ghost.png" id="1_j5ghm"]
-[ext_resource type="Script" uid="uid://b2conpjwswi45" path="res://nodes/fire_ghost.gd" id="2_yoikm"]
+[ext_resource type="Script" uid="uid://b2conpjwswi45" path="res://nodes/grave/fire_ghost.gd" id="2_yoikm"]
 
 [sub_resource type="Gradient" id="Gradient_qxy0u"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
