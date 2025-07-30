@@ -29,12 +29,12 @@ position = Vector2(-1, -50)
 script = ExtResource("1_4hjaj")
 
 [node name="ghost_sprite" type="Sprite2D" parent="ghost"]
-position = Vector2(19, -35)
+position = Vector2(19, -39)
 texture = ExtResource("1_oqi4p")
 script = ExtResource("3_3qree")
 
 [node name="ghost_light" type="PointLight2D" parent="ghost/ghost_sprite"]
-position = Vector2(1, -5)
+position = Vector2(1, -7)
 color = Color(0.529412, 0.756863, 0.905882, 1)
 texture = SubResource("GradientTexture2D_3qree")
 
@@ -44,7 +44,7 @@ shape = SubResource("CircleShape2D_3qree")
 [node name="grave_sprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
 texture = ExtResource("2_4hjaj")
-offset = Vector2(0, -52)
+offset = Vector2(0, -45.355)
 region_enabled = true
 region_rect = Rect2(0, 208, 86, 104)
 

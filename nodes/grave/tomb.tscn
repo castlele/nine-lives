@@ -1,15 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://7us30kguw5pb"]
+[gd_scene load_steps=5 format=3 uid="uid://7us30kguw5pb"]
 
 [ext_resource type="Texture2D" uid="uid://bd0w6budspdy4" path="res://res/grave_level/tomb.png" id="1_2kp48"]
+[ext_resource type="Texture2D" uid="uid://p4j7nbmqj4s3" path="res://res/grave_level/bush.png" id="2_biadf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2kp48"]
 size = Vector2(166, 133)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kch7u"]
 
 [node name="tomb" type="StaticBody2D"]
 
 [node name="tomb_sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_2kp48")
+offset = Vector2(0, -140)
 
 [node name="tomb_collider" type="CollisionShape2D" parent="."]
-position = Vector2(0, 74.5)
+visible = false
+position = Vector2(-1, -67)
 shape = SubResource("RectangleShape2D_2kp48")
+
+[node name="BushLeft" type="StaticBody2D" parent="."]
+position = Vector2(-78, 35)
+
+[node name="Sprite2D" type="Sprite2D" parent="BushLeft"]
+texture = ExtResource("2_biadf")
+offset = Vector2(0, -47)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BushLeft"]
+position = Vector2(-9, -8)
+shape = SubResource("CircleShape2D_kch7u")
+
+[node name="BushRight" type="StaticBody2D" parent="."]
+position = Vector2(84, 27)
+
+[node name="Sprite2D" type="Sprite2D" parent="BushRight"]
+texture = ExtResource("2_biadf")
+offset = Vector2(0, -47)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BushRight"]
+position = Vector2(-9, -8)
+shape = SubResource("CircleShape2D_kch7u")

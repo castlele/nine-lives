@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://cyhrkdl02efed"]
+[gd_scene load_steps=29 format=4 uid="uid://cyhrkdl02efed"]
 
 [ext_resource type="Texture2D" uid="uid://ds1prft0icy2q" path="res://res/grave_level/level_1.png" id="1_sqdge"]
 [ext_resource type="Texture2D" uid="uid://bpqrw7f4phnso" path="res://res/grave_level/water.png" id="2_tsp4h"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cwa7bl60aw2mn" path="res://nodes/grave/fire_ghost.tscn" id="8_pu05h"]
 [ext_resource type="PackedScene" uid="uid://cky4kemafddga" path="res://nodes/grave/pica_boo_ghost.tscn" id="9_wbhjj"]
 [ext_resource type="Texture2D" uid="uid://dam33gwx7ybxg" path="res://res/grave_level/trees.png" id="10_hw23b"]
+[ext_resource type="Texture2D" uid="uid://dctgopfwlq56u" path="res://res/grave_level/rocks.png" id="10_tsp4h"]
 [ext_resource type="Texture2D" uid="uid://p4j7nbmqj4s3" path="res://res/grave_level/bush.png" id="11_l32oj"]
 [ext_resource type="PackedScene" uid="uid://7us30kguw5pb" path="res://nodes/grave/tomb.tscn" id="12_i47d0"]
 
@@ -37,6 +38,7 @@ sources/1 = SubResource("TileSetAtlasSource_0v4m6")
 texture = ExtResource("3_smeyj")
 texture_region_size = Vector2i(1114, 794)
 0:0/0 = 0
+0:0/0/y_sort_origin = -328
 
 [sub_resource type="TileSet" id="TileSet_sk5k4"]
 sources/0 = SubResource("TileSetAtlasSource_6761a")
@@ -47,16 +49,23 @@ sources/0 = SubResource("TileSetAtlasSource_6761a")
 texture = ExtResource("6_7mn47")
 texture_region_size = Vector2i(86, 104)
 0:0/0 = 0
+0:0/0/y_sort_origin = 38
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-25.9545, 41.6638, -22.0145, 19.1921, 25.9545, 19.8074, 30.4816, 41.2066)
 0:1/0 = 0
+0:1/0/y_sort_origin = 38
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-29.1833, 47.19, -29.25, 17.9605, 30.7356, 17.7583, 31.8158, 47.7237)
 0:2/0 = 0
-0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-27.7105, 52.8553, 31.8158, 52.8553, 31.6105, 28.2237, -27.6592, 28.2237)
+0:2/0/y_sort_origin = 45
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-29.1567, 44.7847, 32.4223, 44.3182, 31.4892, 20.9928, -29.6232, 20.9928)
+0:3/0 = 0
+0:3/0/y_sort_origin = 47
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-27.8643, 29.4415, 28.2519, 29.8042, 27.631, 6.83013, -28.2148, 7.00988)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qxy0u"]
 texture = ExtResource("7_gn66a")
 texture_region_size = Vector2i(64, 128)
 0:0/0 = 0
+0:0/0/y_sort_origin = 63
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8.06136, 64.1404, 8.06136, 64.1404, 8.41185, 25.5861, -7.91378, 25.5399)
 
 [sub_resource type="TileSet" id="TileSet_qxy0u"]
@@ -77,26 +86,39 @@ fill_to = Vector2(0.679487, 0.217949)
 texture = ExtResource("10_hw23b")
 texture_region_size = Vector2i(192, 224)
 0:0/0 = 0
+0:0/0/y_sort_origin = 111
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16.8297, 109.845, -15.9932, 73.8765, 12.4466, 74.713, 10.7737, 111.517)
 1:0/0 = 0
+1:0/0/y_sort_origin = 111
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16.7585, 112.097, -14.6011, 81.0312, 6.54117, 78.0108, 8.26707, 112.097)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s8va5"]
 texture = ExtResource("11_l32oj")
 texture_region_size = Vector2i(160, 96)
 0:0/0 = 0
+0:0/0/y_sort_origin = 47
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16.6289, 48.1533, -2.64435, 48.0474, 7.50177, 33.4543, -25.0952, 31.2216)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_smeyj"]
+texture = ExtResource("10_tsp4h")
+texture_region_size = Vector2i(81, 54)
+0:0/0 = 0
+0:0/0/y_sort_origin = -3
+0:1/0 = 0
+0:1/0/y_sort_origin = 10
 
 [sub_resource type="TileSet" id="TileSet_dga24"]
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_oc4kc")
 sources/1 = SubResource("TileSetAtlasSource_s8va5")
+sources/2 = SubResource("TileSetAtlasSource_smeyj")
 
 [node name="grave_yard" type="Node2D"]
 y_sort_enabled = true
 
 [node name="terrain" type="TileMapLayer" parent="."]
+y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAkAPH/AAAAAAAAAAAkABEAAwAAAAAAAAAkAMj/AQAAAAAAAAA=")
 tile_set = SubResource("TileSet_6761a")
 
@@ -119,7 +141,8 @@ polygon = PackedVector2Array(32, 648, 32, -74, 539, -74, 539, -46, 41, -46, 41, 
 
 [node name="graves" type="TileMapLayer" parent="."]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAWAAMAAwAAAAAAAAARAA0AAwAAAAAAAAAWACIAAwAAAAAAAAA1AAIAAwAAAAAAAAA3AA0AAAAAAAQAAAAqACMAAAAAAAIAAAA2ACMAAAAAAAIAAAAzABsAAAAAAAMAAAAPABoAAAAAAAAAAAANAAQAAAAAAAEAAAA=")
+position = Vector2(-1, 0)
+tile_map_data = PackedByteArray("AAAWAAMAAwAAAAAAAAARAA0AAwAAAAAAAAAWACIAAwAAAAAAAAA1AAIAAwAAAAAAAAAqACMAAAAAAAIAAAA2ACMAAAAAAAIAAAAPABoAAAAAAAAAAAANAAQAAAAAAAEAAAAcABsAAAAAAAMAAAA=")
 tile_set = SubResource("TileSet_qxy0u")
 
 [node name="fire_ghost" parent="graves" instance=ExtResource("8_pu05h")]
@@ -142,17 +165,12 @@ position = Vector2(888, 224)
 
 [node name="plants" type="TileMapLayer" parent="."]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAwAP//AAABAAAAAABBAAEAAAABAAAAAABBABcAAAABAAAAAAALACcAAAABAAAAAAAIABUAAAAAAAAAAAA4ACIAAAAAAAAAAAAJAPH/AAAAAAAAAAArAPH/AAAAAAAAAABCAOz/AAAAAAAAAAA3ANz/AAABAAAAAAAWAOL/AAAAAAAAAAAGAOD/AAABAAAAAAAHAOD/AAABAAAAAAANANL/AAABAAAAAAApAN7/AQAAAAAAAAA6AOX/AQAAAAAAAAA4APP/AQAAAAAAAAAaAPX/AQAAAAAAAAARAOH/AQAAAAAAAAAOABAAAQAAAAAAAAAfACIAAQAAAAAAAAAfACMAAQAAAAAAAAAQAPr/AAAAAAAAAAAfAA8AAgAAAAAAAAAoAA8AAgAAAAAAAAAdAAsAAQAAAAAAAAAqAAsAAQAAAAAAAAAoAAcAAQAAAAAAAAAgAAcAAQAAAAAAAAAxABQAAQAAAAAAAAAHAAEAAQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAwAP//AAABAAAAAABBAAEAAAABAAAAAABBABcAAAABAAAAAAALACcAAAABAAAAAAAIABUAAAAAAAAAAAAJAPH/AAAAAAAAAAArAPH/AAAAAAAAAABCAOz/AAAAAAAAAAA3ANz/AAABAAAAAAAWAOL/AAAAAAAAAAAGAOD/AAABAAAAAAAHAOD/AAABAAAAAAANANL/AAABAAAAAAApAN7/AQAAAAAAAAA6AOX/AQAAAAAAAAA4APP/AQAAAAAAAAAaAPX/AQAAAAAAAAARAOH/AQAAAAAAAAAOABAAAQAAAAAAAAAfACIAAQAAAAAAAAAfACMAAQAAAAAAAAAQAPr/AAAAAAAAAAAoAA8AAgAAAAAAAAAdAAsAAQAAAAAAAAAqAAsAAQAAAAAAAAAoAAcAAQAAAAAAAAAgAAcAAQAAAAAAAAAxABQAAQAAAAAAAAAHAAEAAQAAAAAAAAA7ACIAAAAAAAAAAAAfAA8AAgAAAAAAAAATABYAAgAAAAAAAAA0ACgAAgAAAAAAAAA7APf/AgAAAAAAAAAwAOv/AgAAAAAAAAAfAPD/AgAAAAAAAAAdAN3/AgAAAAEAAAALAOT/AgAAAAEAAAA9AAEAAgAAAAAAAAASAAEAAgAAAAEAAAAXACYAAgAAAAEAAAA6AA4AAgAAAAEAAAA=")
 tile_set = SubResource("TileSet_dga24")
 
 [node name="tomb" parent="." instance=ExtResource("12_i47d0")]
 y_sort_enabled = true
-position = Vector2(580, 120)
-
-[node name="plants" type="TileMapLayer" parent="tomb"]
-position = Vector2(-580, -120)
-tile_map_data = PackedByteArray("AAAfAA8AAQAAAAAAAAApAA8AAQAAAAAAAAA=")
-tile_set = SubResource("TileSet_dga24")
+position = Vector2(584, 255)
 
 [node name="camera" parent="." instance=ExtResource("4_2bsxj")]
 position = Vector2(545, 576)
