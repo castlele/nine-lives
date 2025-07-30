@@ -151,23 +151,27 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bahl2"]
-size = Vector2(91, 55)
+size = Vector2(49, 36.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6iamk"]
-size = Vector2(20, 55)
+size = Vector2(19, 34)
 
 [node name="player" type="CharacterBody2D"]
+y_sort_enabled = true
 script = ExtResource("1_bms3g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 position = Vector2(54, 36)
 sprite_frames = SubResource("SpriteFrames_iwr0g")
-animation = &"move_left"
+animation = &"move_right"
+offset = Vector2(0, -25)
 
 [node name="HorizontalCollider" type="CollisionShape2D" parent="."]
-position = Vector2(50.5, 35.5)
+position = Vector2(45, 20)
 shape = SubResource("RectangleShape2D_bahl2")
 
 [node name="VerticalCollider" type="CollisionShape2D" parent="."]
-position = Vector2(58, 35.5)
+y_sort_enabled = true
+position = Vector2(59, 18)
 shape = SubResource("RectangleShape2D_6iamk")

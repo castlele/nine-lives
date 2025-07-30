@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://cky4kemafddga"]
+
+[ext_resource type="Script" uid="uid://cxlcnglb4dp0n" path="res://nodes/grave/pica_boo_ghost_area.gd" id="1_4hjaj"]
+[ext_resource type="Texture2D" uid="uid://cf7qgidcqlvgt" path="res://res/grave_level/pica_boo_ghost.png" id="1_oqi4p"]
+[ext_resource type="Texture2D" uid="uid://ddu1ocno7o6hi" path="res://res/grave_level/graves.png" id="2_4hjaj"]
+[ext_resource type="Script" uid="uid://bp21culjiio8p" path="res://nodes/grave/pica_boo_ghost_sprite.gd" id="3_3qree"]
+
+[sub_resource type="Gradient" id="Gradient_4hjaj"]
+offsets = PackedFloat32Array(0, 0.25, 0.996575)
+colors = PackedColorArray(0.938356, 0.938356, 0.938356, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3qree"]
+gradient = SubResource("Gradient_4hjaj")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.782051, 0.226496)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3qree"]
+radius = 218.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0bm68"]
+size = Vector2(59, 26)
+
+[node name="PicaBooGhost" type="StaticBody2D"]
+y_sort_enabled = true
+
+[node name="ghost" type="Area2D" parent="."]
+position = Vector2(-1, -50)
+script = ExtResource("1_4hjaj")
+
+[node name="ghost_sprite" type="Sprite2D" parent="ghost"]
+position = Vector2(19, -35)
+texture = ExtResource("1_oqi4p")
+script = ExtResource("3_3qree")
+
+[node name="ghost_light" type="PointLight2D" parent="ghost/ghost_sprite"]
+position = Vector2(1, -5)
+color = Color(0.529412, 0.756863, 0.905882, 1)
+texture = SubResource("GradientTexture2D_3qree")
+
+[node name="ghost_collider" type="CollisionShape2D" parent="ghost"]
+shape = SubResource("CircleShape2D_3qree")
+
+[node name="grave_sprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture = ExtResource("2_4hjaj")
+offset = Vector2(0, -52)
+region_enabled = true
+region_rect = Rect2(0, 208, 86, 104)
+
+[node name="grave_collider" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(1.5, -13)
+shape = SubResource("RectangleShape2D_0bm68")
+
+[connection signal="body_entered" from="ghost" to="ghost" method="_on_body_entered"]
+[connection signal="body_exited" from="ghost" to="ghost" method="_on_body_exited"]

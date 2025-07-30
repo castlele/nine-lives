@@ -17,6 +17,7 @@ enum Direction {
 var _currentState = State.STAND
 var _currentDirection = Direction.RIGHT
 
+@warning_ignore("unused_parameter")
 func _physics_process(delta: float):
 	get_input()
 	move_and_slide()
@@ -48,12 +49,25 @@ func updatePlayerState():
 
 func updatePlayerAnimationState():
 	var action = State.keys()[_currentState].to_lower()
-	var direction = Direction.keys()[_currentDirection].to_lower()
-	var animationName = action + "_" + direction
+	var direction: String
 
+	if _currentDirection == Direction.LEFT:
+		direction = Direction.keys()[Direction.RIGHT].to_lower()
+		animatedSprite.flip_h = true
+	else:
+		direction = Direction.keys()[_currentDirection].to_lower()
+		animatedSprite.flip_h = false
+
+	var animationName = action + "_" + direction
 	animatedSprite.play(animationName)
 
 func updatePlayerCollider():
+	if _currentDirection == Direction.RIGHT:
+		horizontalCollider.position.x = 64
+
+	if _currentDirection == Direction.LEFT:
+		horizontalCollider.position.x = 45
+
 	match _currentDirection:
 		Direction.LEFT, Direction.RIGHT:
 			horizontalCollider.disabled = false

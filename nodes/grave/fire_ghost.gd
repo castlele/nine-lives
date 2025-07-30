@@ -30,5 +30,6 @@ func _process(delta: float) -> void:
 		isOpacityPaused = true
 		opacityTimer.start()
 
+
 func _on_opacity_timer_timeout() -> void:
 	isOpacityPaused = false
