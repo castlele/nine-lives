@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cilk6rb8xl3uw"]
+
+[ext_resource type="PackedScene" uid="uid://cyhrkdl02efed" path="res://scenes/grave_yard/grave_yard.tscn" id="1_o5qli"]
+
+[node name="Main" type="Node2D"]
+
+[node name="grave_yard" parent="." instance=ExtResource("1_o5qli")]

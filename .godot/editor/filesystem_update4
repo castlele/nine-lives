@@ -13,3 +13,5 @@ res://nodes/grave/pica_boo_ghost_area.gd
 res://nodes/player.gd
 res://scripts/animator.gd
 res://nodes/grave/tomb.gd
+res://res/shaders/grave_yard.gdshader
+res://scenes/main.tscn
