@@ -5,6 +5,7 @@ extends StaticBody2D
 @onready var open_door_area = $OpenDoor
 @onready var open_door_sprite = $OpenDoor/Sprite
 
+@warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	update_door_state()
 
