@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=4 uid="uid://bfi8cwc1bxmy5"]
+[gd_scene load_steps=12 format=4 uid="uid://bfi8cwc1bxmy5"]
 
 [ext_resource type="Texture2D" uid="uid://rw76kp0l1csd" path="res://res/crypt_level/floor.png" id="1_febxp"]
 [ext_resource type="Texture2D" uid="uid://buvmuv5onfyj0" path="res://res/crypt_level/wall.png" id="2_sjwtx"]
 [ext_resource type="Texture2D" uid="uid://b84hvo2m2qdp" path="res://res/crypt_level/column.png" id="3_4oj2b"]
 [ext_resource type="PackedScene" uid="uid://drj6jlpknjh0s" path="res://nodes/camera.tscn" id="3_c2wqy"]
 [ext_resource type="PackedScene" uid="uid://ddvlhivvfu47e" path="res://nodes/player.tscn" id="3_sjwtx"]
+[ext_resource type="PackedScene" uid="uid://chdw61qr16oqi" path="res://nodes/crypt/torch.tscn" id="6_nq3ho"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c2wqy"]
 texture = ExtResource("1_febxp")
@@ -75,6 +76,13 @@ tile_set = SubResource("TileSet_nq3ho")
 tile_map_data = PackedByteArray("AAAIAO//AAAAAAAAAAAIAPP/AAAAAAEAAAAIAPf/AAAAAAIAAAAIAP3/AAAAAAMAAAAIAPn/AAAAAAIAAAAIAPX/AAAAAAEAAAAcAO//AAAAAAAAAAAcAPP/AAAAAAEAAAAcAPX/AAAAAAEAAAAcAPf/AAAAAAIAAAAcAPn/AAAAAAIAAAAcAP3/AAAAAAMAAAA=")
 tile_set = SubResource("TileSet_liaio")
 
+[node name="TorchLeft" parent="WallObjects" instance=ExtResource("6_nq3ho")]
+position = Vector2(135.256, -115.218)
+frame_progress = 0.0
+
+[node name="TorchRight" parent="WallObjects" instance=ExtResource("6_nq3ho")]
+position = Vector2(457.403, -115.218)
+
 [node name="camera" parent="." instance=ExtResource("3_c2wqy")]
 position = Vector2(252.046, 456.834)
 scale = Vector2(0.980101, 1.16574)
@@ -87,3 +95,9 @@ editor_draw_limits = true
 
 [node name="player" parent="." instance=ExtResource("3_sjwtx")]
 position = Vector2(252.047, 456.834)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+position = Vector2(297.047, 157.628)
+color = Color(0.238986, 0.315995, 0.419457, 1)
+energy = 0.65
+blend_mode = 2

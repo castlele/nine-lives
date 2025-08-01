@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://chdw61qr16oqi"]
+
+[ext_resource type="Texture2D" uid="uid://cuotc442pvwrv" path="res://res/crypt_level/misc.png" id="1_urd36"]
+[ext_resource type="Script" uid="uid://b4i7u1dbrlk0m" path="res://scripts/fire.gd" id="2_0magp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0magp"]
+atlas = ExtResource("1_urd36")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6t62"]
+atlas = ExtResource("1_urd36")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ljixl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0magp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6t62")
+}],
+"loop": true,
+"name": &"burn",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_pjvui"]
+offsets = PackedFloat32Array(0, 0.180995, 0.452489, 1)
+colors = PackedColorArray(0.909502, 0.909502, 0.909502, 1, 0.996078, 0.996078, 0.254902, 1, 0.988235, 0.682353, 0.117647, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1mne8"]
+gradient = SubResource("Gradient_pjvui")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.9, 0.2)
+metadata/_snap_enabled = true
+metadata/_snap_count = 18
+
+[node name="Torch" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ljixl")
+animation = &"burn"
+autoplay = "burn"
+frame_progress = 0.61632
+
+[node name="Light" type="PointLight2D" parent="."]
+position = Vector2(0, -9)
+scale = Vector2(3.96875, 3.96875)
+texture = SubResource("GradientTexture2D_1mne8")
+texture_scale = 0.9
+script = ExtResource("2_0magp")

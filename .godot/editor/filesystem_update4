@@ -17,3 +17,5 @@ res://res/shaders/grave_yard.gdshader
 res://scenes/main.tscn
 res://scenes/crypt/crypt.tscn
 res://scenes/grave_yard/grave_yard.gd
+res://nodes/crypt/torch.tscn
+res://scripts/fire.gd
