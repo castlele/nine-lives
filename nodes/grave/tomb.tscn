@@ -1,20 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://7us30kguw5pb"]
+[gd_scene load_steps=8 format=3 uid="uid://7us30kguw5pb"]
 
 [ext_resource type="Texture2D" uid="uid://bd0w6budspdy4" path="res://res/grave_level/tomb.png" id="1_2kp48"]
+[ext_resource type="Script" uid="uid://7k8qcmta1wl2" path="res://nodes/grave/tomb.gd" id="1_vy2fw"]
 [ext_resource type="Texture2D" uid="uid://p4j7nbmqj4s3" path="res://res/grave_level/bush.png" id="2_biadf"]
+[ext_resource type="Texture2D" uid="uid://krg22vadlcc2" path="res://res/grave_level/open_door.png" id="3_kch7u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2kp48"]
 size = Vector2(166, 133)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kch7u"]
 
-[node name="tomb" type="StaticBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vy2fw"]
+size = Vector2(35, 94)
 
-[node name="tomb_sprite" type="Sprite2D" parent="."]
+[node name="Tomb" type="StaticBody2D"]
+script = ExtResource("1_vy2fw")
+
+[node name="TombSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_2kp48")
 offset = Vector2(0, -140)
 
-[node name="tomb_collider" type="CollisionShape2D" parent="."]
+[node name="TombCollider" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(-1, -67)
 shape = SubResource("RectangleShape2D_2kp48")
@@ -40,3 +46,14 @@ offset = Vector2(0, -47)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BushRight"]
 position = Vector2(-9, -8)
 shape = SubResource("CircleShape2D_kch7u")
+
+[node name="OpenDoor" type="Area2D" parent="."]
+position = Vector2(-6, 1)
+
+[node name="Sprite" type="Sprite2D" parent="OpenDoor"]
+texture = ExtResource("3_kch7u")
+offset = Vector2(0, -48)
+
+[node name="Collider" type="CollisionShape2D" parent="OpenDoor"]
+position = Vector2(2, -47)
+shape = SubResource("RectangleShape2D_vy2fw")

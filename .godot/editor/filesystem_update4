@@ -12,3 +12,4 @@ res://nodes/grave/pica_boo_ghost_sprite.gd
 res://nodes/grave/pica_boo_ghost_area.gd
 res://nodes/player.gd
 res://scripts/animator.gd
+res://nodes/grave/tomb.gd
