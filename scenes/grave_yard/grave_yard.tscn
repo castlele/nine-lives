@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://cyhrkdl02efed"]
+[gd_scene load_steps=32 format=4 uid="uid://cyhrkdl02efed"]
 
 [ext_resource type="Texture2D" uid="uid://ds1prft0icy2q" path="res://res/grave_level/level_1.png" id="1_sqdge"]
 [ext_resource type="Texture2D" uid="uid://bpqrw7f4phnso" path="res://res/grave_level/water.png" id="2_tsp4h"]
@@ -44,6 +44,12 @@ texture_region_size = Vector2i(1114, 794)
 sources/0 = SubResource("TileSetAtlasSource_6761a")
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_s8va5"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tsp4h"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_smeyj"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2bsxj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hcevp"]
 texture = ExtResource("6_7mn47")
@@ -139,6 +145,26 @@ polygon = PackedVector2Array(1107.7, 79.8445, 1097.7, 79.8445, 1097.7, -613.155,
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="terrain/fence/fence_left"]
 polygon = PackedVector2Array(32, 648, 32, -74, 539, -74, 539, -46, 41, -46, 41, 648)
 
+[node name="LevelBorder" type="StaticBody2D" parent="terrain"]
+
+[node name="ColliderBottom" type="CollisionShape2D" parent="terrain/LevelBorder"]
+position = Vector2(0, 650)
+shape = SubResource("WorldBoundaryShape2D_tsp4h")
+
+[node name="ColliderTop" type="CollisionShape2D" parent="terrain/LevelBorder"]
+position = Vector2(0, -1140)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_smeyj")
+
+[node name="ColliderLeft" type="CollisionShape2D" parent="terrain/LevelBorder"]
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_2bsxj")
+
+[node name="ColliderRight" type="CollisionShape2D" parent="terrain/LevelBorder"]
+position = Vector2(1180, 0)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_2bsxj")
+
 [node name="graves" type="TileMapLayer" parent="."]
 y_sort_enabled = true
 position = Vector2(-1, 0)
@@ -174,6 +200,12 @@ position = Vector2(584, 255)
 
 [node name="camera" parent="." instance=ExtResource("4_2bsxj")]
 position = Vector2(545, 576)
+zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = -1140
+limit_right = 1180
+limit_bottom = 650
+editor_draw_limits = true
 
 [node name="player" parent="." instance=ExtResource("5_3ty12")]
 position = Vector2(541, 575)
