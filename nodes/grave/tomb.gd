@@ -2,6 +2,8 @@ extends StaticBody2D
 
 @export var is_door_opened = false
 
+signal enter_tomb
+
 @onready var open_door_area = $OpenDoor
 @onready var open_door_sprite = $OpenDoor/Sprite
 
@@ -18,6 +20,14 @@ func _input(event: InputEvent) -> void:
 			var rect = open_door_sprite.get_rect()
 
 			is_door_opened = rect.has_point(localPos)
+
+
+func _on_open_door_body_entered(body: Node2D) -> void:
+	if not is_door_opened:
+		return
+
+	if body is Player:
+		enter_tomb.emit()
 
 
 func open_door() -> void:

@@ -72,10 +72,11 @@ tile_map_data = PackedByteArray("AAAAAAAAAAABAAEAAAAEAAAAAAABAAEAAAAEAAIAAAABAAE
 tile_set = SubResource("TileSet_nq3ho")
 
 [node name="WallObjects" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAIAPv/AAAAAAMAAAAIAO//AAAAAAAAAAAIAPP/AAAAAAEAAAAIAPf/AAAAAAIAAAAcAO//AAAAAAAAAAAcAPP/AAAAAAEAAAAcAPf/AAAAAAIAAAAcAPv/AAAAAAMAAAA=")
+tile_map_data = PackedByteArray("AAAIAO//AAAAAAAAAAAIAPP/AAAAAAEAAAAIAPf/AAAAAAIAAAAIAP3/AAAAAAMAAAAIAPn/AAAAAAIAAAAIAPX/AAAAAAEAAAAcAO//AAAAAAAAAAAcAPP/AAAAAAEAAAAcAPX/AAAAAAEAAAAcAPf/AAAAAAIAAAAcAPn/AAAAAAIAAAAcAP3/AAAAAAMAAAA=")
 tile_set = SubResource("TileSet_liaio")
 
 [node name="camera" parent="." instance=ExtResource("3_c2wqy")]
+position = Vector2(252.046, 456.834)
 scale = Vector2(0.980101, 1.16574)
 zoom = Vector2(1.5, 1.5)
 limit_left = -88
@@ -85,3 +86,4 @@ limit_bottom = 503
 editor_draw_limits = true
 
 [node name="player" parent="." instance=ExtResource("3_sjwtx")]
+position = Vector2(252.047, 456.834)

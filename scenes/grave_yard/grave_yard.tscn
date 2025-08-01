@@ -1,5 +1,6 @@
-[gd_scene load_steps=34 format=4 uid="uid://cyhrkdl02efed"]
+[gd_scene load_steps=35 format=4 uid="uid://cyhrkdl02efed"]
 
+[ext_resource type="Script" uid="uid://ds5nm7xjrc8e3" path="res://scenes/grave_yard/grave_yard.gd" id="1_2bsxj"]
 [ext_resource type="Texture2D" uid="uid://ds1prft0icy2q" path="res://res/grave_level/level_1.png" id="1_sqdge"]
 [ext_resource type="Texture2D" uid="uid://bpqrw7f4phnso" path="res://res/grave_level/water.png" id="2_tsp4h"]
 [ext_resource type="Texture2D" uid="uid://ble84ts2un6eg" path="res://res/grave_level/fence.png" id="3_smeyj"]
@@ -126,6 +127,7 @@ shader = ExtResource("14_smeyj")
 
 [node name="grave_yard" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_2bsxj")
 
 [node name="terrain" type="TileMapLayer" parent="."]
 y_sort_enabled = true

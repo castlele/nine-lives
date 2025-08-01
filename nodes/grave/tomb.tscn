@@ -57,3 +57,5 @@ offset = Vector2(0, -48)
 [node name="Collider" type="CollisionShape2D" parent="OpenDoor"]
 position = Vector2(2, -47)
 shape = SubResource("RectangleShape2D_vy2fw")
+
+[connection signal="body_entered" from="OpenDoor" to="." method="_on_open_door_body_entered"]
