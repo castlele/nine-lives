@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb8on06sqpfl8"]
+
+[ext_resource type="Texture2D" uid="uid://dv0sao131t3jq" path="res://res/grave_level/owners_grave_stone.png" id="1_nnt8h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b5loh"]
+size = Vector2(59, 26)
+
+[node name="OwnersGraveStone" type="StaticBody2D"]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture = ExtResource("1_nnt8h")
+offset = Vector2(0, -27)
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -13)
+shape = SubResource("RectangleShape2D_b5loh")

@@ -22,3 +22,4 @@ res://scripts/fire.gd
 res://scenes/crypt/crypt.gd
 res://nodes/crypt/candle.gd
 res://nodes/crypt/candle.tscn
+res://scenes/grave_yard/owners_grave_stone.tscn

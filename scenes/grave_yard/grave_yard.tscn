@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://cyhrkdl02efed"]
+[gd_scene load_steps=37 format=4 uid="uid://cyhrkdl02efed"]
 
 [ext_resource type="Script" uid="uid://ds5nm7xjrc8e3" path="res://scenes/grave_yard/grave_yard.gd" id="1_2bsxj"]
 [ext_resource type="Texture2D" uid="uid://ds1prft0icy2q" path="res://res/grave_level/level_1.png" id="1_sqdge"]
@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://ddvlhivvfu47e" path="res://nodes/player.tscn" id="5_3ty12"]
 [ext_resource type="Texture2D" uid="uid://ddu1ocno7o6hi" path="res://res/grave_level/graves.png" id="6_7mn47"]
 [ext_resource type="Texture2D" uid="uid://noo74276m4qe" path="res://res/grave_level/cross.png" id="7_gn66a"]
+[ext_resource type="Script" uid="uid://b4i7u1dbrlk0m" path="res://scripts/fire.gd" id="8_7mn47"]
 [ext_resource type="PackedScene" uid="uid://cwa7bl60aw2mn" path="res://nodes/grave/fire_ghost.tscn" id="8_pu05h"]
+[ext_resource type="PackedScene" uid="uid://cb8on06sqpfl8" path="res://scenes/grave_yard/owners_grave_stone.tscn" id="9_3ty12"]
 [ext_resource type="PackedScene" uid="uid://cky4kemafddga" path="res://nodes/grave/pica_boo_ghost.tscn" id="9_wbhjj"]
 [ext_resource type="Texture2D" uid="uid://dam33gwx7ybxg" path="res://res/grave_level/trees.png" id="10_hw23b"]
 [ext_resource type="Texture2D" uid="uid://dctgopfwlq56u" path="res://res/grave_level/rocks.png" id="10_tsp4h"]
@@ -185,15 +187,20 @@ position = Vector2(192, 107)
 color = Color(0.678431, 0.654902, 0.427451, 1)
 energy = 0.63
 texture = SubResource("GradientTexture2D_hcevp")
+script = ExtResource("8_7mn47")
 
 [node name="right_light" type="PointLight2D" parent="graves"]
 position = Vector2(243, 112)
 color = Color(0.678431, 0.654902, 0.427451, 1)
 energy = 0.63
 texture = SubResource("GradientTexture2D_hcevp")
+script = ExtResource("8_7mn47")
 
 [node name="pica_boo_ghost" parent="graves" instance=ExtResource("9_wbhjj")]
 position = Vector2(888, 224)
+
+[node name="OwnersGraveStone" parent="graves" instance=ExtResource("9_3ty12")]
+position = Vector2(837, 464)
 
 [node name="plants" type="TileMapLayer" parent="."]
 y_sort_enabled = true
@@ -228,7 +235,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="DarknessLighting" type="DirectionalLight2D" parent="."]
-position = Vector2(588, 106)
+position = Vector2(581, 104)
 color = Color(0.238986, 0.315995, 0.419457, 1)
-energy = 0.65
+energy = 0.6
 blend_mode = 2
