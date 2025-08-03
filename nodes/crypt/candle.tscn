@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://8mrbkspwqtjb"]
+
+[ext_resource type="Script" uid="uid://35rjuyhd00s3" path="res://nodes/crypt/candle.gd" id="1_0f84o"]
+[ext_resource type="Texture2D" uid="uid://cuotc442pvwrv" path="res://res/crypt_level/misc.png" id="2_xgyc2"]
+[ext_resource type="Script" uid="uid://b4i7u1dbrlk0m" path="res://scripts/fire.gd" id="3_xgyc2"]
+
+[sub_resource type="Gradient" id="Gradient_0f84o"]
+offsets = PackedFloat32Array(0, 0.183575, 0.42029, 1)
+colors = PackedColorArray(0.984314, 0.984314, 0.839216, 1, 0.996078, 0.996078, 0.8, 1, 0.992157, 0.992157, 0.34902, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xgyc2"]
+gradient = SubResource("Gradient_0f84o")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.1)
+metadata/_snap_enabled = true
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0f84o"]
+height = 38.8859
+
+[node name="Candle" type="Area2D"]
+y_sort_enabled = true
+script = ExtResource("1_0f84o")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture = ExtResource("2_xgyc2")
+offset = Vector2(0, -32)
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 64)
+
+[node name="Light" type="PointLight2D" parent="Sprite"]
+texture = SubResource("GradientTexture2D_xgyc2")
+script = ExtResource("3_xgyc2")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(0, -19.0988)
+shape = SubResource("CapsuleShape2D_0f84o")

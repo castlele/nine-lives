@@ -217,6 +217,7 @@ editor_draw_limits = true
 position = Vector2(541, 575)
 
 [node name="PostProcessingLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="PostProcessingLayer"]
 material = SubResource("ShaderMaterial_2bsxj")
@@ -225,3 +226,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="DarknessLighting" type="DirectionalLight2D" parent="."]
+position = Vector2(588, 106)
+color = Color(0.238986, 0.315995, 0.419457, 1)
+energy = 0.65
+blend_mode = 2

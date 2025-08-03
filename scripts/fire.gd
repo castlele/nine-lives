@@ -1,6 +1,7 @@
 extends PointLight2D
 
 @export var animation_duration = 0.2
+@export var max_energy = 1.0
 
 
 func _ready() -> void:
@@ -8,7 +9,7 @@ func _ready() -> void:
 
 
 func burn() -> void:
-	energy = randf() * 0.1 + 1.0
+	energy = randf() * 0.1 + max_energy
 	scale = Vector2(1, 1) * energy
 
 	await get_tree().create_timer(animation_duration).timeout
