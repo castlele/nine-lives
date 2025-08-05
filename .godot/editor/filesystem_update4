@@ -1,6 +1,10 @@
 res://scenes/grave_yard/grave_yard.tscn
 res://res/shaders/grave_yard.gdshader
+res://nodes/message_box.tscn
 res://scenes/crypt/crypt.tscn
 res://scenes/grave_yard/owners_grave_stone.tscn
 res://scenes/main.tscn
-res://scenes/start_button.gd
+res://scenes/grave_yard/grave_yard.gd
+res://nodes/camera.tscn
+res://nodes/message_box.gd
+res://scripts/blocking_timer.gd

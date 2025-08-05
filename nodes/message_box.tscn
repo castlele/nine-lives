@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1nks20sofne3"]
+
+[ext_resource type="Script" uid="uid://bihxv0uysj1u6" path="res://nodes/message_box.gd" id="1_ncwr0"]
+
+[node name="MessageBox" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+script = ExtResource("1_ncwr0")
+
+[node name="TextBox" type="RichTextLabel" parent="."]
+layout_mode = 2
+size_flags_vertical = 8
+text = "
+
+
+"
+fit_content = true
+scroll_active = false
+
+[connection signal="gui_input" from="." to="." method="_show_message"]
