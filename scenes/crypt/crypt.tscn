@@ -200,7 +200,8 @@ limit_right = 680
 limit_bottom = 503
 editor_draw_limits = true
 
-[node name="player" parent="." instance=ExtResource("3_sjwtx")]
+[node name="Player" parent="." instance=ExtResource("3_sjwtx")]
+unique_name_in_owner = true
 position = Vector2(252.047, 456.834)
 
 [node name="DarknessLighting" type="DirectionalLight2D" parent="."]

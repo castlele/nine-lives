@@ -1,8 +1,9 @@
-RichTextLabel
+CanvasLayer
 Button
 MarginContainer
-CanvasLayer
 Control
+Node2D
+RichTextLabel
 VBoxContainer
 CollisionShape2D
 Sprite2D
@@ -11,4 +12,3 @@ PointLight2D
 Area2D
 TileMapLayer
 DirectionalLight2D
-AnimatedSprite2D

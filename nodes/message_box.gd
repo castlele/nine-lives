@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 
 func _listen_input_events() -> void:
 	if Input.is_action_just_pressed("ui_accept"):
-		_timer.runOnce(_show_message)
+		_timer.run_once(_show_message)
 
 
 func _show_message(event: InputEvent = null) -> void:

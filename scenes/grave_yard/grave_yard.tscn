@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://cyhrkdl02efed"]
+[gd_scene load_steps=35 format=4 uid="uid://cyhrkdl02efed"]
 
 [ext_resource type="Script" uid="uid://ds5nm7xjrc8e3" path="res://scenes/grave_yard/grave_yard.gd" id="1_2bsxj"]
 [ext_resource type="Texture2D" uid="uid://ds1prft0icy2q" path="res://res/grave_level/level_1.png" id="1_sqdge"]
@@ -16,8 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://dctgopfwlq56u" path="res://res/grave_level/rocks.png" id="10_tsp4h"]
 [ext_resource type="Texture2D" uid="uid://p4j7nbmqj4s3" path="res://res/grave_level/bush.png" id="11_l32oj"]
 [ext_resource type="PackedScene" uid="uid://7us30kguw5pb" path="res://nodes/grave/tomb.tscn" id="12_i47d0"]
-[ext_resource type="Shader" uid="uid://b0pexsc4hhj6u" path="res://res/shaders/grave_yard.gdshader" id="14_smeyj"]
-[ext_resource type="PackedScene" uid="uid://c1nks20sofne3" path="res://nodes/message_box.tscn" id="18_gn66a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x42e6"]
 texture = ExtResource("1_sqdge")
@@ -125,9 +123,6 @@ sources/0 = SubResource("TileSetAtlasSource_oc4kc")
 sources/1 = SubResource("TileSetAtlasSource_s8va5")
 sources/2 = SubResource("TileSetAtlasSource_smeyj")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2bsxj"]
-shader = ExtResource("14_smeyj")
-
 [node name="grave_yard" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_2bsxj")
@@ -225,23 +220,8 @@ editor_draw_limits = true
 unique_name_in_owner = true
 position = Vector2(541, 575)
 
-[node name="PostProcessingLayer" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="PostProcessingLayer"]
-material = SubResource("ShaderMaterial_2bsxj")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="DarknessLighting" type="DirectionalLight2D" parent="."]
 position = Vector2(581, 104)
 color = Color(0.238986, 0.315995, 0.419457, 1)
 energy = 0.6
 blend_mode = 2
-
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="MessageBox" parent="UI" instance=ExtResource("18_gn66a")]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://kfrb2dnqx1e0"]
 
-[ext_resource type="Script" uid="uid://c4mvecwuiep8" path="res://scenes/start_button.gd" id="1_0wfyh"]
-[ext_resource type="Script" uid="uid://45fakg2s42af" path="res://scenes/exit_button.gd" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://caoy7fijmyje2" path="res://scenes/main.gd" id="1_sugp2"]
+[ext_resource type="PackedScene" uid="uid://dl45ptc3pxei3" path="res://scenes/hud.tscn" id="2_0wfyh"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -10,8 +10,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_sugp2")
 
-[node name="VStack" type="VBoxContainer" parent="."]
+[node name="MainMenu" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -26,15 +27,21 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="StartButton" type="Button" parent="VStack"]
+[node name="StartButton" type="Button" parent="MainMenu"]
 layout_mode = 2
 text = "Start Game"
-script = ExtResource("1_0wfyh")
 
-[node name="ExitButton" type="Button" parent="VStack"]
+[node name="ExitButton" type="Button" parent="MainMenu"]
 layout_mode = 2
 text = "Quit"
-script = ExtResource("1_o5qli")
 
-[connection signal="pressed" from="VStack/StartButton" to="VStack/StartButton" method="_on_pressed"]
-[connection signal="pressed" from="VStack/ExitButton" to="VStack/ExitButton" method="_on_pressed"]
+[node name="RootGameScene" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="HUDCanvas" type="CanvasLayer" parent="RootGameScene"]
+
+[node name="HUD" parent="RootGameScene/HUDCanvas" instance=ExtResource("2_0wfyh")]
+unique_name_in_owner = true
+
+[connection signal="pressed" from="MainMenu/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MainMenu/ExitButton" to="." method="_on_exit_button_pressed"]

@@ -2,8 +2,6 @@ extends StaticBody2D
 
 @export var is_door_opened = false
 
-signal enter_tomb
-
 @onready var open_door_area = $OpenDoor
 @onready var open_door_sprite = $OpenDoor/Sprite
 
@@ -27,7 +25,7 @@ func _on_open_door_body_entered(body: Node2D) -> void:
 		return
 
 	if body is Player:
-		enter_tomb.emit()
+		LevelStateMachine.load_scene(LevelStateMachine.Scene.CRYPT)
 
 
 func open_door() -> void:
