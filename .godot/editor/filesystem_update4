@@ -8,3 +8,8 @@ res://scenes/grave_yard/grave_yard.gd
 res://nodes/camera.tscn
 res://nodes/message_box.gd
 res://scripts/blocking_timer.gd
+res://nodes/camera.gd
+res://nodes/player.tscn
+res://nodes/grave/pica_boo_ghost_area.gd
+res://nodes/grave/tomb.tscn
+res://nodes/grave/pica_boo_ghost.tscn

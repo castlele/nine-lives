@@ -24,10 +24,10 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.name == "player":
+	if body is Player:
 		ghost_hidden = true
 
 
 func _on_body_exited(body: Node2D) -> void:
-	if body.name == "player":
+	if body is Player:
 		ghost_hidden = false

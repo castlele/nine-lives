@@ -156,7 +156,7 @@ size = Vector2(49, 36.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6iamk"]
 size = Vector2(19, 34)
 
-[node name="player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_bms3g")
 

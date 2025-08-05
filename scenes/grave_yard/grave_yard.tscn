@@ -221,7 +221,8 @@ limit_right = 1180
 limit_bottom = 650
 editor_draw_limits = true
 
-[node name="player" parent="." instance=ExtResource("5_3ty12")]
+[node name="Player" parent="." instance=ExtResource("5_3ty12")]
+unique_name_in_owner = true
 position = Vector2(541, 575)
 
 [node name="PostProcessingLayer" type="CanvasLayer" parent="."]

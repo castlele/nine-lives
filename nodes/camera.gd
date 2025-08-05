@@ -1,6 +1,6 @@
 extends Camera2D
 
-func _process(delta: float) -> void:
-	var player = get_parent().get_node("player")
+@onready var player = %Player
 
+func _process(delta: float) -> void:
 	position = position.lerp(player.position, delta * 3)
