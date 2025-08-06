@@ -15,13 +15,13 @@ func _ready() -> void:
 
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
-	if not _level_scene or not hud_ui.visible:
+	if not _level_scene:
 		return
 
-	var rect = _level_scene.get_viewport_rect()
-	hud_ui.size = rect.size
-	hud_ui.position = rect.position
-
+	if hud_ui.visible:
+		var rect = _level_scene.get_viewport_rect()
+		hud_ui.size = rect.size
+		hud_ui.position = rect.position
 
 
 func _on_start_button_pressed() -> void:

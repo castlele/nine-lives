@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dl45ptc3pxei3"]
+[gd_scene load_steps=3 format=3 uid="uid://dl45ptc3pxei3"]
 
 [ext_resource type="Script" uid="uid://s6psmdmysbj0" path="res://scenes/hud.gd" id="1_ahhtf"]
+[ext_resource type="PackedScene" uid="uid://c1nks20sofne3" path="res://nodes/message_box.tscn" id="2_oo0fn"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -28,5 +29,9 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "Pref"
+
+[node name="MessageBox" parent="." instance=ExtResource("2_oo0fn")]
+process_mode = 3
+layout_mode = 1
 
 [connection signal="pressed" from="MarginContainer/SettingsButton" to="." method="_on_settings_button"]

@@ -1,13 +1,9 @@
 class_name MessageBox extends MarginContainer
 
-@export var message_delay = 0.3
-
 @onready var text_box = $TextBox
-
 
 var _message_queue: Array[String] = []
 var _current_message = ""
-var _timer: BlockingTimer
 
 
 func set_queue(messages: Array[String]) -> void:
@@ -20,8 +16,7 @@ func is_empty() -> bool:
 
 
 func _ready() -> void:
-	_timer = BlockingTimer.new(message_delay)
-	add_child(_timer)
+	LevelStateMachine.message_queue.connect(set_queue)
 
 
 @warning_ignore("unused_parameter")
@@ -34,7 +29,7 @@ func _process(delta: float) -> void:
 
 func _listen_input_events() -> void:
 	if Input.is_action_just_pressed("ui_accept"):
-		_timer.run_once(_show_message)
+		_show_message()
 
 
 func _show_message(event: InputEvent = null) -> void:
@@ -53,6 +48,5 @@ func _dequeue() -> void:
 	else:
 		_current_message = ""
 
-	print("setting text: " + _current_message)
-
 	text_box.text = _current_message
+	LevelStateMachine.pause(not _current_message.is_empty())

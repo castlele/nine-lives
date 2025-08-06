@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://cyhrkdl02efed"]
+[gd_scene load_steps=36 format=4 uid="uid://cyhrkdl02efed"]
 
 [ext_resource type="Script" uid="uid://ds5nm7xjrc8e3" path="res://scenes/grave_yard/grave_yard.gd" id="1_2bsxj"]
 [ext_resource type="Texture2D" uid="uid://ds1prft0icy2q" path="res://res/grave_level/level_1.png" id="1_sqdge"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cky4kemafddga" path="res://nodes/grave/pica_boo_ghost.tscn" id="9_wbhjj"]
 [ext_resource type="Texture2D" uid="uid://dam33gwx7ybxg" path="res://res/grave_level/trees.png" id="10_hw23b"]
 [ext_resource type="Texture2D" uid="uid://dctgopfwlq56u" path="res://res/grave_level/rocks.png" id="10_tsp4h"]
+[ext_resource type="PackedScene" uid="uid://r35iwyrww8fm" path="res://nodes/interatable/interactable.tscn" id="11_7mn47"]
 [ext_resource type="Texture2D" uid="uid://p4j7nbmqj4s3" path="res://res/grave_level/bush.png" id="11_l32oj"]
 [ext_resource type="PackedScene" uid="uid://7us30kguw5pb" path="res://nodes/grave/tomb.tscn" id="12_i47d0"]
 
@@ -197,6 +198,9 @@ position = Vector2(888, 224)
 
 [node name="OwnersGraveStone" parent="graves" instance=ExtResource("9_3ty12")]
 position = Vector2(837, 464)
+
+[node name="Interactable" parent="graves" instance=ExtResource("11_7mn47")]
+position = Vector2(457, 435)
 
 [node name="plants" type="TileMapLayer" parent="."]
 y_sort_enabled = true

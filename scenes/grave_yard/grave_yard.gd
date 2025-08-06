@@ -1,7 +1,8 @@
 extends Node2D
 
 
-@onready var tomb = $tomb
-
 func _ready() -> void:
-	pass
+	LevelStateMachine.enqueue_messages([
+		"Hello",
+		"World",
+	])

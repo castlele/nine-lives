@@ -1,5 +1,6 @@
-res://scenes
+res://nodes/interatable/
 res://scripts
+res://scenes
 res://res/crypt_level
 res://res
 res://res/shaders

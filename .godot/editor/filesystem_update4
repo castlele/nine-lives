@@ -12,3 +12,9 @@ res://scripts/level_config.gd
 res://scenes/hud.gd
 res://nodes/message_box.gd
 res://scripts/blocking_timer.gd
+res://nodes/message_box.tscn
+res://nodes/interatable/interactable.tscn
+res://nodes/interatable/interactable.gd
+res://nodes/interatable/interactable_pref.tres
+res://scenes/grave_yard/grave_yard.tscn
+res://nodes/interatable/message_interactable.tscn

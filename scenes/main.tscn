@@ -39,6 +39,7 @@ text = "Quit"
 unique_name_in_owner = true
 
 [node name="HUDCanvas" type="CanvasLayer" parent="RootGameScene"]
+process_mode = 3
 
 [node name="HUD" parent="RootGameScene/HUDCanvas" instance=ExtResource("2_0wfyh")]
 unique_name_in_owner = true

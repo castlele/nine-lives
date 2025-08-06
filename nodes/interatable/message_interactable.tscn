@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1o0pcsplx7vk"]
+
+[ext_resource type="PackedScene" uid="uid://r35iwyrww8fm" path="res://nodes/interatable/interactable.tscn" id="1_soo71"]
+
+[node name="MessageInteractable" type="Node2D"]
+
+[node name="Interactable" parent="." instance=ExtResource("1_soo71")]
