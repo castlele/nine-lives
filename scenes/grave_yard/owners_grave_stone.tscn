@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cb8on06sqpfl8"]
+[gd_scene load_steps=5 format=3 uid="uid://cb8on06sqpfl8"]
 
+[ext_resource type="Script" uid="uid://coeo0kl77gyui" path="res://scenes/grave_yard/owners_grave_stone.gd" id="1_6sx7g"]
 [ext_resource type="Texture2D" uid="uid://dv0sao131t3jq" path="res://res/grave_level/owners_grave_stone.png" id="1_nnt8h"]
+[ext_resource type="PackedScene" uid="uid://r35iwyrww8fm" path="res://nodes/interatable/interactable.tscn" id="3_il8e3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b5loh"]
 size = Vector2(59, 26)
 
 [node name="OwnersGraveStone" type="StaticBody2D"]
+script = ExtResource("1_6sx7g")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
@@ -15,3 +18,6 @@ offset = Vector2(0, -27)
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -13)
 shape = SubResource("RectangleShape2D_b5loh")
+
+[node name="Interactable" parent="." instance=ExtResource("3_il8e3")]
+position = Vector2(0, -12)

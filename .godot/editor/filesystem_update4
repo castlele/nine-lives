@@ -11,3 +11,7 @@ res://scenes/grave_yard/resources/flowered_grave_interactable_pref.tres
 res://scenes/grave_yard/resources/abandoned_grave_interactable_pref.tres
 res://nodes/player.gd
 res://scripts/level_state_machine.gd
+res://scenes/grave_yard/owners_grave_stone.tscn
+res://scenes/grave_yard/resources/owner_grave_interactable_pref.tres
+res://scenes/grave_yard/owners_grave_stone.gd
+res://scenes/grave_yard/owners_grave_state_machine.gd

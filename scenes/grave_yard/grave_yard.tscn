@@ -220,7 +220,7 @@ position = Vector2(584, 255)
 
 [node name="camera" parent="." instance=ExtResource("4_2bsxj")]
 position = Vector2(545, 576)
-zoom = Vector2(2, 2)
+zoom = Vector2(1.5, 1.5)
 limit_left = 0
 limit_top = -1140
 limit_right = 1180
