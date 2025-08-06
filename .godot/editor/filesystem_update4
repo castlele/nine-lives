@@ -15,3 +15,9 @@ res://scenes/grave_yard/owners_grave_stone.tscn
 res://scenes/grave_yard/resources/owner_grave_interactable_pref.tres
 res://scenes/grave_yard/owners_grave_stone.gd
 res://scenes/grave_yard/owners_grave_state_machine.gd
+res://scenes/hud.tscn
+res://scenes/main.tscn
+res://scenes/Inventory.tscn
+res://scenes/inventory.gd
+res://scenes/inventory_cell.tscn
+res://scenes/inventory.tscn

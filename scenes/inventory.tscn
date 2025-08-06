@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd6f3pmg8eypy"]
+
+[ext_resource type="Script" uid="uid://dqfc4oxqhcmcr" path="res://scenes/inventory.gd" id="1_hj2ta"]
+
+[node name="Inventory" type="HBoxContainer"]
+size_flags_horizontal = 8
+size_flags_vertical = 0
+alignment = 1
+script = ExtResource("1_hj2ta")

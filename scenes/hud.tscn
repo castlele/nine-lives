@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dl45ptc3pxei3"]
+[gd_scene load_steps=4 format=3 uid="uid://dl45ptc3pxei3"]
 
 [ext_resource type="Script" uid="uid://s6psmdmysbj0" path="res://scenes/hud.gd" id="1_ahhtf"]
+[ext_resource type="PackedScene" uid="uid://cd6f3pmg8eypy" path="res://scenes/inventory.tscn" id="2_5ysmq"]
 [ext_resource type="PackedScene" uid="uid://c1nks20sofne3" path="res://nodes/message_box.tscn" id="2_oo0fn"]
 
 [node name="HUD" type="Control"]
@@ -29,6 +30,9 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "Pref"
+
+[node name="Inventory" parent="MarginContainer" instance=ExtResource("2_5ysmq")]
+layout_mode = 2
 
 [node name="MessageBox" parent="." instance=ExtResource("2_oo0fn")]
 process_mode = 3
