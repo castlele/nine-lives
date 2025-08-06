@@ -6,8 +6,10 @@ enum Scene {
 	CRYPT,
 }
 
+
 signal current_level(level)
 signal message_queue(queue)
+signal message_visible(visible)
 
 var _paused = false
 var _config = LevelConfig.new()

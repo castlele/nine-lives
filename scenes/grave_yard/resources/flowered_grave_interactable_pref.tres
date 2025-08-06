@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MessageInteractablePref" load_steps=3 format=3 uid="uid://bvool26k8im6p"]
+
+[ext_resource type="Shape2D" uid="uid://gbu7v06y0crk" path="res://nodes/interatable/interactable_pref.tres" id="1_5ka43"]
+[ext_resource type="Script" uid="uid://brtbtt1kty8ft" path="res://nodes/interatable/message_interactable_pref.gd" id="2_bh7yg"]
+
+[resource]
+script = ExtResource("2_bh7yg")
+messages = Array[String](["Mr. Dunkens"])
+interactable_prefs = ExtResource("1_5ka43")

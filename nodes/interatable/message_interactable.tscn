@@ -1,7 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1o0pcsplx7vk"]
+[gd_scene load_steps=6 format=3 uid="uid://c1o0pcsplx7vk"]
 
+[ext_resource type="Script" uid="uid://bkitkpcu50yjg" path="res://nodes/interatable/message_interactable.gd" id="1_c1qmy"]
 [ext_resource type="PackedScene" uid="uid://r35iwyrww8fm" path="res://nodes/interatable/interactable.tscn" id="1_soo71"]
+[ext_resource type="Shape2D" uid="uid://gbu7v06y0crk" path="res://nodes/interatable/interactable_pref.tres" id="2_o5840"]
+[ext_resource type="Script" uid="uid://brtbtt1kty8ft" path="res://nodes/interatable/message_interactable_pref.gd" id="3_7awki"]
+
+[sub_resource type="Resource" id="Resource_j1y07"]
+script = ExtResource("3_7awki")
+messages = Array[String]([])
+interactable_prefs = ExtResource("2_o5840")
 
 [node name="MessageInteractable" type="Node2D"]
+script = ExtResource("1_c1qmy")
+prefs = SubResource("Resource_j1y07")
 
 [node name="Interactable" parent="." instance=ExtResource("1_soo71")]

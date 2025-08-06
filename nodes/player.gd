@@ -16,19 +16,33 @@ enum Direction {
 
 var _currentState = State.STAND
 var _currentDirection = Direction.RIGHT
+var _still = false
+
+
+func _ready() -> void:
+	LevelStateMachine.message_visible.connect(_set_still_state)
+
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float):
 	get_input()
 	move_and_slide()
 
+
 func get_input():
-	var input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var input_direction
+
+	if _still:
+		input_direction = Vector2(0, 0)
+	else:
+		input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+
 	velocity = input_direction * speed
 
 	updatePlayerState()
 	updatePlayerAnimationState()
 	updatePlayerCollider()
+
 
 func updatePlayerState():
 	match [velocity.x, velocity.y]:
@@ -47,6 +61,7 @@ func updatePlayerState():
 			_currentState = State.MOVE
 			_currentDirection = Direction.TOP
 
+
 func updatePlayerAnimationState():
 	var action = State.keys()[_currentState].to_lower()
 	var direction: String
@@ -60,6 +75,7 @@ func updatePlayerAnimationState():
 
 	var animationName = action + "_" + direction
 	animatedSprite.play(animationName)
+
 
 func updatePlayerCollider():
 	if _currentDirection == Direction.RIGHT:
@@ -75,3 +91,7 @@ func updatePlayerCollider():
 		Direction.TOP, Direction.BOTTOM:
 			horizontalCollider.disabled = true
 			verticalCollider.disabled = false
+
+
+func _set_still_state(message_visible):
+	_still = message_visible

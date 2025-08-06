@@ -1,1 +1,2 @@
+Resource
 CircleShape2D

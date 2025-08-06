@@ -1,5 +1,6 @@
 class_name Interactable extends Area2D
 
+
 @export var prefs = preload("res://nodes/interatable/interactable_pref.tres")
 
 @onready var collider = $Collider
@@ -17,3 +18,8 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		is_player_around = true
+
+
+func _on_body_exited(body: Node2D) -> void:
+	if body is Player:
+		is_player_around = false

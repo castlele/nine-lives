@@ -49,4 +49,4 @@ func _dequeue() -> void:
 		_current_message = ""
 
 	text_box.text = _current_message
-	LevelStateMachine.pause(not _current_message.is_empty())
+	LevelStateMachine.message_visible.emit(not _current_message.is_empty())
