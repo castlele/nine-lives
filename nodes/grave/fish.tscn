@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://btsnirsva3gtt"]
+
+[ext_resource type="Script" uid="uid://brg264oftreao" path="res://scripts/collectable.gd" id="1_5u1a7"]
+[ext_resource type="Texture2D" uid="uid://dvfadw1bv2j43" path="res://res/grave_level/fish.png" id="1_mq8yc"]
+[ext_resource type="Script" uid="uid://dnvkpimbnvak" path="res://scripts/collectable_data.gd" id="3_5i2of"]
+
+[sub_resource type="Resource" id="Resource_cqabs"]
+script = ExtResource("3_5i2of")
+name = "fish"
+image = ExtResource("1_mq8yc")
+metadata/_custom_type_script = "uid://dnvkpimbnvak"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mujuj"]
+radius = 8.0
+
+[node name="Fish" type="Area2D"]
+script = ExtResource("1_5u1a7")
+data = SubResource("Resource_cqabs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mq8yc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_mujuj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

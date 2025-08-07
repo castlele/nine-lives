@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://di77natkgbhab"]
+[gd_scene load_steps=2 format=3 uid="uid://di77natkgbhab"]
+
+[ext_resource type="Script" uid="uid://dhsljyqlxkrfu" path="res://scenes/inventory_cell.gd" id="1_qspu0"]
 
 [node name="InventoryCell" type="Control"]
 custom_minimum_size = Vector2(50, 50)
@@ -14,8 +16,9 @@ offset_right = 25.0
 offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_qspu0")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Cell" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 1
 anchors_preset = 8
@@ -30,3 +33,5 @@ offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.219608, 0.152941, 0.0980392, 0.686275)
+
+[node name="Item" type="Sprite2D" parent="Cell"]

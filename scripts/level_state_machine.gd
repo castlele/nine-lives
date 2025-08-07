@@ -1,5 +1,6 @@
 extends Node
 
+
 enum Scene {
 	MAIN,
 	GRAVE_YARD,
@@ -7,12 +8,27 @@ enum Scene {
 }
 
 
+const INVENTORY_CAPACITY = 4
+
 signal current_level(level)
 signal message_queue(queue)
 signal message_visible(visible)
+signal inventory_update(items)
 
 var _paused = false
 var _config = LevelConfig.new()
+var _inventory_items: Array[CollectableData] = []
+
+
+func add_inventory_item(item: CollectableData) -> bool:
+	if len(_inventory_items) == INVENTORY_CAPACITY:
+		return false
+
+	_inventory_items.append(item)
+
+	inventory_update.emit(_inventory_items)
+
+	return true
 
 
 func enqueue_messages(messages: Array[String]) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://cyhrkdl02efed"]
+[gd_scene load_steps=39 format=4 uid="uid://cyhrkdl02efed"]
 
 [ext_resource type="Script" uid="uid://ds5nm7xjrc8e3" path="res://scenes/grave_yard/grave_yard.gd" id="1_2bsxj"]
 [ext_resource type="Texture2D" uid="uid://ds1prft0icy2q" path="res://res/grave_level/level_1.png" id="1_sqdge"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://7us30kguw5pb" path="res://nodes/grave/tomb.tscn" id="12_i47d0"]
 [ext_resource type="Resource" uid="uid://bvool26k8im6p" path="res://scenes/grave_yard/resources/flowered_grave_interactable_pref.tres" id="12_pu05h"]
 [ext_resource type="Resource" uid="uid://eu6igh45on6h" path="res://scenes/grave_yard/resources/abandoned_grave_interactable_pref.tres" id="13_wbhjj"]
+[ext_resource type="PackedScene" uid="uid://btsnirsva3gtt" path="res://nodes/grave/fish.tscn" id="20_wbhjj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x42e6"]
 texture = ExtResource("1_sqdge")
@@ -236,3 +237,6 @@ position = Vector2(581, 104)
 color = Color(0.238986, 0.315995, 0.419457, 1)
 energy = 0.6
 blend_mode = 2
+
+[node name="Fish" parent="." instance=ExtResource("20_wbhjj")]
+position = Vector2(210, 140)
