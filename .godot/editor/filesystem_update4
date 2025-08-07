@@ -8,3 +8,7 @@ res://scenes/inventory_cell.tscn
 res://scenes/inventory.tscn
 res://scenes/inventory_cell.gd
 res://scenes/inventory.gd
+res://nodes/crypt/candle.gd
+res://scripts/fire.gd
+res://nodes/crypt/candle.tscn
+res://scenes/crypt/crypt.tscn

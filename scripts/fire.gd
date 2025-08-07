@@ -1,3 +1,4 @@
+@tool
 extends PointLight2D
 
 @export var animation_duration = 0.2
