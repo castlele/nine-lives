@@ -27,13 +27,17 @@ script = ExtResource("1_0f84o")
 [node name="Sprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
 texture = ExtResource("2_xgyc2")
-offset = Vector2(0, -32)
+offset = Vector2(0, -31)
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 64)
 
 [node name="Light" type="PointLight2D" parent="Sprite"]
+position = Vector2(0, -64)
+scale = Vector2(0.604931, 0.604931)
+energy = 0.604931
 texture = SubResource("GradientTexture2D_xgyc2")
 script = ExtResource("3_xgyc2")
+max_energy = 0.55
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2(0, -19.0988)

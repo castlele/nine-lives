@@ -24,7 +24,33 @@ func add_inventory_item(item: CollectableData) -> bool:
 	if len(_inventory_items) == INVENTORY_CAPACITY:
 		return false
 
-	_inventory_items.append(item)
+	var added = false
+
+	for i in range(len(_inventory_items)):
+		if _inventory_items[i]:
+			continue
+
+		_inventory_items[i] = item
+		added = true
+
+	if not added:
+		_inventory_items.append(item)
+
+	inventory_update.emit(_inventory_items)
+
+	return true
+
+
+func clear_inventory() -> void:
+	for i in range(len(_inventory_items)):
+		remove_inventory_item(i)
+
+
+func remove_inventory_item(index: int) -> bool:
+	if index < 0 || index > len(_inventory_items) - 1:
+		return false
+
+	_inventory_items[index] = null
 
 	inventory_update.emit(_inventory_items)
 
@@ -39,6 +65,10 @@ func load_scene(level: Scene) -> void:
 	_update_level_config(level)
 
 	current_level.emit(_config)
+
+
+func get_current_level_config() -> LevelConfig:
+	return _config
 
 
 func is_paused() -> bool:

@@ -15,11 +15,12 @@ func _ready() -> void:
 
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
-	if not _level_scene:
-		return
+	if OS.is_debug_build():
+		_listen_debug_events()
 
-	if hud_ui.visible:
+	if _level_scene and hud_ui.visible:
 		var rect = _level_scene.get_viewport_rect()
+
 		hud_ui.size = rect.size
 		hud_ui.position = rect.position
 
@@ -61,3 +62,9 @@ func _free_level() -> void:
 	if _level_scene:
 		_level_scene.queue_free()
 		_level_scene = null
+
+
+func _listen_debug_events() -> void:
+	if Input.is_action_just_pressed("debug_reload") and _level_scene:
+		LevelStateMachine.clear_inventory()
+		_load_level(LevelStateMachine.get_current_level_config())
