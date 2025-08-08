@@ -20,6 +20,10 @@ var _config = LevelConfig.new()
 var _inventory_items: Array[CollectableData] = []
 
 
+func get_inventory() -> Array[CollectableData]:
+	return _inventory_items.duplicate()
+
+
 func add_inventory_item(item: CollectableData) -> bool:
 	if len(_inventory_items) == INVENTORY_CAPACITY:
 		return false

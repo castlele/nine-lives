@@ -1,11 +1,11 @@
-extends Area2D
+class_name Collectable extends Area2D
 
 
 @export var data: CollectableData = null
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is Player:
+	if body is Player and data.interactable:
 		_collect()
 
 

@@ -9,3 +9,9 @@ res://scenes/crypt/crypt.tscn
 res://scripts/level_state_machine.gd
 res://scenes/inventory.gd
 res://scenes/inventory_cell.gd
+res://scenes/grave_yard/owners_grave_state_machine.gd
+res://scenes/grave_yard/owners_grave_stone.gd
+res://scripts/collectable.gd
+res://scripts/collectable_data.gd
+res://scenes/grave_yard/owners_grave_stone.tscn
+res://nodes/interatable/interactable.gd

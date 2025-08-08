@@ -8,19 +8,25 @@
 script = ExtResource("3_5i2of")
 name = "fish"
 image = ExtResource("1_mq8yc")
+interactable = true
 metadata/_custom_type_script = "uid://dnvkpimbnvak"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mujuj"]
 radius = 8.0
 
 [node name="Fish" type="Area2D"]
+y_sort_enabled = true
 script = ExtResource("1_5u1a7")
 data = SubResource("Resource_cqabs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
 texture = ExtResource("1_mq8yc")
+offset = Vector2(0, -7)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -7)
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_mujuj")
 
