@@ -1,10 +1,13 @@
-[gd_scene load_steps=39 format=4 uid="uid://cyhrkdl02efed"]
+[gd_scene load_steps=43 format=4 uid="uid://cyhrkdl02efed"]
 
 [ext_resource type="Script" uid="uid://ds5nm7xjrc8e3" path="res://scenes/grave_yard/grave_yard.gd" id="1_2bsxj"]
 [ext_resource type="Texture2D" uid="uid://ds1prft0icy2q" path="res://res/grave_level/level_1.png" id="1_sqdge"]
+[ext_resource type="Script" uid="uid://b0y1i0txpal1h" path="res://scripts/state_machine/state_machine.gd" id="2_i47d0"]
 [ext_resource type="Texture2D" uid="uid://bpqrw7f4phnso" path="res://res/grave_level/water.png" id="2_tsp4h"]
 [ext_resource type="Texture2D" uid="uid://ble84ts2un6eg" path="res://res/grave_level/fence.png" id="3_smeyj"]
+[ext_resource type="Script" uid="uid://cwfurwr7i4p3l" path="res://scenes/grave_yard/states/enter_scene_state.gd" id="3_v1cv4"]
 [ext_resource type="PackedScene" uid="uid://drj6jlpknjh0s" path="res://nodes/camera.tscn" id="4_2bsxj"]
+[ext_resource type="Script" uid="uid://co8t364dhlxe" path="res://scenes/grave_yard/states/game_state.gd" id="4_a78i7"]
 [ext_resource type="PackedScene" uid="uid://ddvlhivvfu47e" path="res://nodes/player.tscn" id="5_3ty12"]
 [ext_resource type="Texture2D" uid="uid://ddu1ocno7o6hi" path="res://res/grave_level/graves.png" id="6_7mn47"]
 [ext_resource type="Texture2D" uid="uid://noo74276m4qe" path="res://res/grave_level/cross.png" id="7_gn66a"]
@@ -127,9 +130,28 @@ sources/0 = SubResource("TileSetAtlasSource_oc4kc")
 sources/1 = SubResource("TileSetAtlasSource_s8va5")
 sources/2 = SubResource("TileSetAtlasSource_smeyj")
 
+[sub_resource type="Curve2D" id="Curve2D_i47d0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 550, 722, 0, 0, 0, 0, 550, 550)
+}
+point_count = 2
+
 [node name="grave_yard" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_2bsxj")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_i47d0")
+initial_state = NodePath("EnterSceneState")
+
+[node name="EnterSceneState" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "path", "mock_node")]
+script = ExtResource("3_v1cv4")
+player = NodePath("../../Player")
+path = NodePath("../../EnterScenePath/FollowPath")
+mock_node = NodePath("../../EnterScenePath/FollowPath/MockNode")
+
+[node name="GameState" type="Node" parent="StateMachine"]
+script = ExtResource("4_a78i7")
 
 [node name="terrain" type="TileMapLayer" parent="."]
 y_sort_enabled = true
@@ -184,17 +206,17 @@ position = Vector2(363, 57)
 
 [node name="left_light" type="PointLight2D" parent="graves"]
 position = Vector2(192, 107)
-scale = Vector2(1.00231, 1.00231)
+scale = Vector2(1.00525, 1.00525)
 color = Color(0.678431, 0.654902, 0.427451, 1)
-energy = 1.00231
+energy = 1.00525
 texture = SubResource("GradientTexture2D_hcevp")
 script = ExtResource("8_7mn47")
 
 [node name="right_light" type="PointLight2D" parent="graves"]
 position = Vector2(243, 112)
-scale = Vector2(1.02576, 1.02576)
+scale = Vector2(1.08845, 1.08845)
 color = Color(0.678431, 0.654902, 0.427451, 1)
-energy = 1.02576
+energy = 1.08845
 texture = SubResource("GradientTexture2D_hcevp")
 script = ExtResource("8_7mn47")
 
@@ -244,3 +266,13 @@ blend_mode = 2
 
 [node name="Fish" parent="." instance=ExtResource("20_wbhjj")]
 position = Vector2(579, 340)
+
+[node name="EnterScenePath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_i47d0")
+
+[node name="FollowPath" type="PathFollow2D" parent="EnterScenePath"]
+position = Vector2(550, 722)
+rotation = -1.5708
+loop = false
+
+[node name="MockNode" type="Node2D" parent="EnterScenePath/FollowPath"]

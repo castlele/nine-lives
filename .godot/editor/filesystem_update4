@@ -1,3 +1,8 @@
 res://scenes/grave_yard/grave_yard.tscn
 res://scripts/state_machine/state_node.gd
 res://scripts/state_machine/state_machine.gd
+res://scenes/grave_yard/owners_grave_stone.tscn
+res://nodes/grave/fish.tscn
+res://nodes/camera.tscn
+res://scenes/grave_yard/states/enter_scene_state.gd
+res://nodes/player.tscn

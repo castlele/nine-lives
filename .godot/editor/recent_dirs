@@ -1,3 +1,5 @@
+res://scripts/state_machine
+res://scenes/grave_yard/states
 res://scenes/grave_yard/resources/
 res://nodes/interatable/
 res://scripts
