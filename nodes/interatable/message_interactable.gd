@@ -12,8 +12,9 @@ func _ready() -> void:
 
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
-	if interactable.is_player_around:
-		_listen_events()
+	pass
+	#if interactable.is_player_around:
+		#_listen_events()
 
 
 func _listen_events() -> void:

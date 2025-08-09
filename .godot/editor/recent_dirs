@@ -1,7 +1,8 @@
+res://nodes/interatable/
+res://scenes/grave_yard
 res://scripts/state_machine
 res://scenes/grave_yard/states
 res://scenes/grave_yard/resources/
-res://nodes/interatable/
 res://scripts
 res://scenes
 res://res/crypt_level

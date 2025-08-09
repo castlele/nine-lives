@@ -164,7 +164,7 @@ script = ExtResource("1_bms3g")
 y_sort_enabled = true
 position = Vector2(54, 36)
 sprite_frames = SubResource("SpriteFrames_iwr0g")
-animation = &"move_right"
+animation = &"move_bottom"
 offset = Vector2(0, -25)
 
 [node name="HorizontalCollider" type="CollisionShape2D" parent="."]

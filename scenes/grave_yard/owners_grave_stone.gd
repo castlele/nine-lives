@@ -1,6 +1,8 @@
 extends StaticBody2D
 
 
+@export var player: Player = null
+
 @onready var interactable: Interactable = $Interactable
 @onready var fish_anchor: Node2D = $FishAnchor
 
@@ -9,18 +11,9 @@ var _sm := OwnersGraveStateMachine.new()
 
 
 func _ready() -> void:
+	interactable.sm = _sm
+	interactable.player = player
 	_sm.player_bring_fish.connect(_place_fish)
-
-
-@warning_ignore("unused_parameter")
-func _process(delta: float) -> void:
-	if interactable.is_player_around:
-		_listen_events()
-
-
-func _listen_events() -> void:
-	if Input.is_action_just_pressed("interaction"):
-		_sm.make_interaction()
 
 
 func _place_fish(collectable: CollectableData) -> void:

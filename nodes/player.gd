@@ -14,8 +14,10 @@ enum Direction {
 @onready var horizontalCollider = $HorizontalCollider
 @onready var verticalCollider = $VerticalCollider
 
-var _currentState = State.STAND
-var _currentDirection = Direction.RIGHT
+var current_state = State.STAND
+var current_direction = Direction.RIGHT
+var is_player_controlling = true
+
 var _still = false
 
 
@@ -25,7 +27,13 @@ func _ready() -> void:
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float):
-	get_input()
+	if is_player_controlling:
+		get_input()
+	else:
+		updatePlayerState()
+		updatePlayerAnimationState()
+		updatePlayerCollider()
+
 	move_and_slide()
 
 
@@ -47,30 +55,30 @@ func get_input():
 func updatePlayerState():
 	match [velocity.x, velocity.y]:
 		[var x, var y] when x == y && x == 0:
-			_currentState = State.STAND
+			current_state = State.STAND
 		[var x, _] when x > 0:
-			_currentState = State.MOVE
-			_currentDirection = Direction.RIGHT
+			current_state = State.MOVE
+			current_direction = Direction.RIGHT
 		[var x, _] when x < 0:
-			_currentState = State.MOVE
-			_currentDirection = Direction.LEFT
+			current_state = State.MOVE
+			current_direction = Direction.LEFT
 		[_, var y] when y > 0:
-			_currentState = State.MOVE
-			_currentDirection = Direction.BOTTOM
+			current_state = State.MOVE
+			current_direction = Direction.BOTTOM
 		[_, var y] when y < 0:
-			_currentState = State.MOVE
-			_currentDirection = Direction.TOP
+			current_state = State.MOVE
+			current_direction = Direction.TOP
 
 
 func updatePlayerAnimationState():
-	var action = State.keys()[_currentState].to_lower()
+	var action = State.keys()[current_state].to_lower()
 	var direction: String
 
-	if _currentDirection == Direction.LEFT:
+	if current_direction == Direction.LEFT:
 		direction = Direction.keys()[Direction.RIGHT].to_lower()
 		animatedSprite.flip_h = true
 	else:
-		direction = Direction.keys()[_currentDirection].to_lower()
+		direction = Direction.keys()[current_direction].to_lower()
 		animatedSprite.flip_h = false
 
 	var animationName = action + "_" + direction
@@ -78,13 +86,13 @@ func updatePlayerAnimationState():
 
 
 func updatePlayerCollider():
-	if _currentDirection == Direction.RIGHT:
+	if current_direction == Direction.RIGHT:
 		horizontalCollider.position.x = 64
 
-	if _currentDirection == Direction.LEFT:
+	if current_direction == Direction.LEFT:
 		horizontalCollider.position.x = 45
 
-	match _currentDirection:
+	match current_direction:
 		Direction.LEFT, Direction.RIGHT:
 			horizontalCollider.disabled = false
 			verticalCollider.disabled = true

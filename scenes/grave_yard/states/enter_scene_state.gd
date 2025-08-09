@@ -14,7 +14,11 @@ var _entered_into_scene: bool:
 func enter() -> void:
 	super.enter()
 
+	player.is_player_controlling = false
 	player.global_position = mock_node.global_position
+	player.current_state = Player.State.MOVE
+	player.current_direction = Player.Direction.TOP
+	player.velocity.y = -1
 
 
 func process(delta: float) -> void:
@@ -26,3 +30,7 @@ func process(delta: float) -> void:
 
 	path.progress += speed * delta
 	player.global_position = mock_node.global_position
+
+func exit() -> void:
+	player.velocity.x = 0
+	player.is_player_controlling = true
