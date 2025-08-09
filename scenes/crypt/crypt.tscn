@@ -190,7 +190,7 @@ candle_type = 3
 position = Vector2(194.116, 381.709)
 candle_type = 4
 
-[node name="camera" parent="." instance=ExtResource("3_c2wqy")]
+[node name="camera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_c2wqy")]
 position = Vector2(252.046, 456.834)
 scale = Vector2(0.980101, 1.16574)
 zoom = Vector2(1.5, 1.5)
@@ -199,6 +199,7 @@ limit_top = -295
 limit_right = 680
 limit_bottom = 503
 editor_draw_limits = true
+target = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("3_sjwtx")]
 unique_name_in_owner = true

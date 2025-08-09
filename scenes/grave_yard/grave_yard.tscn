@@ -184,17 +184,17 @@ position = Vector2(363, 57)
 
 [node name="left_light" type="PointLight2D" parent="graves"]
 position = Vector2(192, 107)
-scale = Vector2(1.08044, 1.08044)
+scale = Vector2(1.05463, 1.05463)
 color = Color(0.678431, 0.654902, 0.427451, 1)
-energy = 1.08044
+energy = 1.05463
 texture = SubResource("GradientTexture2D_hcevp")
 script = ExtResource("8_7mn47")
 
 [node name="right_light" type="PointLight2D" parent="graves"]
 position = Vector2(243, 112)
-scale = Vector2(1.04325, 1.04325)
+scale = Vector2(1.06549, 1.06549)
 color = Color(0.678431, 0.654902, 0.427451, 1)
-energy = 1.04325
+energy = 1.06549
 texture = SubResource("GradientTexture2D_hcevp")
 script = ExtResource("8_7mn47")
 
@@ -222,7 +222,7 @@ tile_set = SubResource("TileSet_dga24")
 y_sort_enabled = true
 position = Vector2(584, 255)
 
-[node name="camera" parent="." instance=ExtResource("4_2bsxj")]
+[node name="camera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_2bsxj")]
 position = Vector2(545, 576)
 zoom = Vector2(1.5, 1.5)
 limit_left = 0
@@ -230,6 +230,7 @@ limit_top = -1140
 limit_right = 1180
 limit_bottom = 650
 editor_draw_limits = true
+target = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("5_3ty12")]
 unique_name_in_owner = true

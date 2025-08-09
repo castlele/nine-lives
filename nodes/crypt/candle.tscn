@@ -33,8 +33,8 @@ region_rect = Rect2(0, 0, 32, 64)
 
 [node name="Light" type="PointLight2D" parent="Sprite"]
 position = Vector2(0, -64)
-scale = Vector2(0.604931, 0.604931)
-energy = 0.604931
+scale = Vector2(0.566208, 0.566208)
+energy = 0.566208
 texture = SubResource("GradientTexture2D_xgyc2")
 script = ExtResource("3_xgyc2")
 max_energy = 0.55

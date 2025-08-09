@@ -1,6 +1,7 @@
 extends Camera2D
 
-@onready var player = %Player
+@export var target: Node2D = null
 
 func _process(delta: float) -> void:
-	position = position.lerp(player.position, delta * 3)
+	if target:
+		position = position.lerp(target.position, delta * 3)
