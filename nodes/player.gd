@@ -1,7 +1,7 @@
 class_name Player extends CharacterBody2D
 
 enum State {
-	STAND, MOVE,
+	STAND, MOVE, LIE,
 }
 
 enum Direction {
@@ -9,10 +9,12 @@ enum Direction {
 }
 
 @export var speed = 400
+@export var is_ghost = false
 
 @onready var animatedSprite = $AnimatedSprite2D
 @onready var horizontalCollider = $HorizontalCollider
 @onready var verticalCollider = $VerticalCollider
+@onready var ghost_light: PointLight2D = $AnimatedSprite2D/GhostLight
 
 var current_state = State.STAND
 var current_direction = Direction.RIGHT
@@ -27,17 +29,19 @@ func _ready() -> void:
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float):
+	_update_ghost_state()
+
 	if is_player_controlling:
-		get_input()
+		_get_input()
 	else:
-		updatePlayerState()
-		updatePlayerAnimationState()
-		updatePlayerCollider()
+		_update_player_state()
+		_update_player_animation_state()
+		_update_player_collider()
 
 	move_and_slide()
 
 
-func get_input():
+func _get_input():
 	var input_direction
 
 	if _still:
@@ -47,15 +51,18 @@ func get_input():
 
 	velocity = input_direction * speed
 
-	updatePlayerState()
-	updatePlayerAnimationState()
-	updatePlayerCollider()
+	_update_player_state()
+	_update_player_animation_state()
+	_update_player_collider()
 
 
-func updatePlayerState():
+func _update_player_state():
 	match [velocity.x, velocity.y]:
 		[var x, var y] when x == y && x == 0:
-			current_state = State.STAND
+			if current_state != State.LIE:
+				current_state = State.STAND
+			else:
+				current_direction = Direction.BOTTOM
 		[var x, _] when x > 0:
 			current_state = State.MOVE
 			current_direction = Direction.RIGHT
@@ -70,7 +77,7 @@ func updatePlayerState():
 			current_direction = Direction.TOP
 
 
-func updatePlayerAnimationState():
+func _update_player_animation_state():
 	var action = State.keys()[current_state].to_lower()
 	var direction: String
 
@@ -85,7 +92,7 @@ func updatePlayerAnimationState():
 	animatedSprite.play(animationName)
 
 
-func updatePlayerCollider():
+func _update_player_collider():
 	if current_direction == Direction.RIGHT:
 		horizontalCollider.position.x = 64
 
@@ -99,7 +106,17 @@ func updatePlayerCollider():
 		Direction.TOP, Direction.BOTTOM:
 			horizontalCollider.disabled = true
 			verticalCollider.disabled = false
+		_:
+			horizontalCollider.disabled = true
+			verticalCollider.disabled = true
 
 
 func _set_still_state(message_visible):
 	_still = message_visible
+
+
+func _update_ghost_state():
+	animatedSprite.use_parent_material = not is_ghost
+
+	if is_ghost:
+		pass
