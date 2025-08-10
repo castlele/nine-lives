@@ -8,7 +8,6 @@ extends "res://scripts/state_machine/state_node.gd"
 func enter() -> void:
 	super.enter()
 
-	player.current_state = Player.State.LIE
 	player.is_player_controlling = false
 	animation_player.play("blinking")
 
@@ -20,6 +19,4 @@ func process(delta: float) -> void:
 
 
 func exit() -> void:
-	player.current_state = Player.State.STAND
-	player.current_direction = Player.Direction.LEFT
 	player.is_player_controlling = true

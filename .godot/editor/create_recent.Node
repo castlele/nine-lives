@@ -1,3 +1,4 @@
+AudioStreamPlayer
 PointLight2D
 AnimationPlayer
 Node
@@ -12,4 +13,3 @@ HBoxContainer
 CharacterBody2D
 CanvasLayer
 Button
-MarginContainer

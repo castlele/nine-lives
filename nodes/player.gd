@@ -10,16 +10,15 @@ enum Direction {
 
 @export var speed = 400
 @export var is_ghost = false
+@export var current_state = State.STAND
+@export var current_direction = Direction.RIGHT
 
 @onready var animatedSprite = $AnimatedSprite2D
 @onready var horizontalCollider = $HorizontalCollider
 @onready var verticalCollider = $VerticalCollider
 @onready var ghost_light: PointLight2D = $AnimatedSprite2D/GhostLight
 
-var current_state = State.STAND
-var current_direction = Direction.RIGHT
 var is_player_controlling = true
-
 var _still = false
 
 
@@ -117,6 +116,4 @@ func _set_still_state(message_visible):
 
 func _update_ghost_state():
 	animatedSprite.use_parent_material = not is_ghost
-
-	if is_ghost:
-		pass
+	ghost_light.visible = is_ghost

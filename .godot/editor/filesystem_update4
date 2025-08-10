@@ -11,3 +11,5 @@ res://nodes/player.gd
 res://res/shaders/ghost.gdshader
 res://nodes/grave/fire_ghost.tscn
 res://nodes/grave/pica_boo_ghost.tscn
+res://nodes/grave/tomb.tscn
+res://nodes/grave/tomb.gd

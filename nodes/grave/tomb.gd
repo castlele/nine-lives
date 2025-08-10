@@ -4,9 +4,15 @@ extends StaticBody2D
 
 @onready var open_door_area = $OpenDoor
 @onready var open_door_sprite = $OpenDoor/Sprite
+@onready var door_open_audio: AudioStreamPlayer = $DoorOpenAudio
 
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
+	if not open_door_area.visible and is_door_opened:
+		door_open_audio.play()
+		await get_tree().create_timer(0.5).timeout
+		Input.start_joy_vibration(0, 0.5, 0.5, 0.5)
+
 	update_door_state()
 
 
@@ -26,10 +32,6 @@ func _on_open_door_body_entered(body: Node2D) -> void:
 
 	if body is Player:
 		LevelStateMachine.load_scene(LevelStateMachine.Scene.CRYPT)
-
-
-func open_door() -> void:
-	is_door_opened = true
 
 
 func update_door_state() -> void:
