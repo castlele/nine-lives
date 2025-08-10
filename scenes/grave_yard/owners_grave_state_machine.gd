@@ -14,26 +14,27 @@ var _current_stage := Stage.FIRST
 
 
 func make_interaction():
+	# TODO: Show text?
 	match _current_stage:
 		Stage.FIRST:
 			_current_stage = Stage.FIRST_HINT
-			LevelStateMachine.enqueue_messages([
-				"\"bla bla bla\""
-			])
+			# LevelStateMachine.enqueue_messages([
+			# 	"\"bla bla bla\""
+			# ])
 		Stage.FIRST_HINT:
 			if _is_giving_fish():
 				_current_stage = Stage.SLEEPING
 				_place_fish()
-				LevelStateMachine.enqueue_messages([
-					"\"I love you so much, my friend\"",
-					"\"You are not my friend, you are my brother my friend\"",
-				])
+				# LevelStateMachine.enqueue_messages([
+				# 	"\"I love you so much, my friend\"",
+				# 	"\"You are not my friend, you are my brother my friend\"",
+				# ])
 				return
 
-			LevelStateMachine.enqueue_messages([
-				"\"I think, he would be happy to have a fresh fish for dinner!\"",
-				"\"I remember somewhere here was a path to the lake\"",
-			])
+			# LevelStateMachine.enqueue_messages([
+			# 	"\"I think, he would be happy to have a fresh fish for dinner!\"",
+			# 	"\"I remember somewhere here was a path to the lake\"",
+			# ])
 
 
 func _is_giving_fish() -> bool:

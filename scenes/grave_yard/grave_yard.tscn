@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://cyhrkdl02efed"]
+[gd_scene load_steps=47 format=4 uid="uid://cyhrkdl02efed"]
 
 [ext_resource type="Script" uid="uid://ds5nm7xjrc8e3" path="res://scenes/grave_yard/grave_yard.gd" id="1_2bsxj"]
 [ext_resource type="Texture2D" uid="uid://ds1prft0icy2q" path="res://res/grave_level/level_1.png" id="1_sqdge"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://drj6jlpknjh0s" path="res://nodes/camera.tscn" id="4_2bsxj"]
 [ext_resource type="Script" uid="uid://co8t364dhlxe" path="res://scenes/grave_yard/states/game_state.gd" id="4_a78i7"]
 [ext_resource type="PackedScene" uid="uid://ddvlhivvfu47e" path="res://nodes/player.tscn" id="5_3ty12"]
-[ext_resource type="Script" uid="uid://hllfql2de3nq" path="res://scenes/grave_yard/states/owners_grave_state.gd" id="5_v1cv4"]
+[ext_resource type="Script" uid="uid://cksdyy3detr0h" path="res://scenes/grave_yard/states/sleep_state.gd" id="5_v1cv4"]
 [ext_resource type="Texture2D" uid="uid://ddu1ocno7o6hi" path="res://res/grave_level/graves.png" id="6_7mn47"]
 [ext_resource type="Texture2D" uid="uid://noo74276m4qe" path="res://res/grave_level/cross.png" id="7_gn66a"]
 [ext_resource type="Script" uid="uid://b4i7u1dbrlk0m" path="res://scripts/fire.gd" id="8_7mn47"]
@@ -137,6 +137,67 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="Animation" id="Animation_a78i7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DarknessLighting:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("camera:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.5, 1.5)]
+}
+
+[sub_resource type="Animation" id="Animation_v1cv4"]
+resource_name = "blinking"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DarknessLighting:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2.53333, 2.96667),
+"transitions": PackedFloat32Array(1, 1, 1, 0.0525566),
+"update": 0,
+"values": [0.6, 0.8, 4.0, 0.6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("camera:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2.53333, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 46.8509),
+"update": 0,
+"values": [Vector2(1.5, 1.5), Vector2(2, 2), Vector2(2, 2), Vector2(1.5, 1.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k0q7i"]
+_data = {
+&"RESET": SubResource("Animation_a78i7"),
+&"blinking": SubResource("Animation_v1cv4")
+}
+
 [node name="grave_yard" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_2bsxj")
@@ -154,8 +215,10 @@ mock_node = NodePath("../../EnterScenePath/FollowPath/MockNode")
 [node name="GameState" type="Node" parent="StateMachine"]
 script = ExtResource("4_a78i7")
 
-[node name="OwnersGraveState" type="Node" parent="StateMachine"]
+[node name="SleepState" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animation_player")]
 script = ExtResource("5_v1cv4")
+player = NodePath("../../Player")
+animation_player = NodePath("../../BlilnkingAnimation")
 
 [node name="terrain" type="TileMapLayer" parent="."]
 y_sort_enabled = true
@@ -210,27 +273,28 @@ position = Vector2(363, 57)
 
 [node name="left_light" type="PointLight2D" parent="graves"]
 position = Vector2(192, 107)
-scale = Vector2(1.0945, 1.0945)
+scale = Vector2(1.06212, 1.06212)
 color = Color(0.678431, 0.654902, 0.427451, 1)
-energy = 1.0945
+energy = 1.06212
 texture = SubResource("GradientTexture2D_hcevp")
 script = ExtResource("8_7mn47")
 
 [node name="right_light" type="PointLight2D" parent="graves"]
 position = Vector2(243, 112)
-scale = Vector2(1.0043, 1.0043)
+scale = Vector2(1.03832, 1.03832)
 color = Color(0.678431, 0.654902, 0.427451, 1)
-energy = 1.0043
+energy = 1.03832
 texture = SubResource("GradientTexture2D_hcevp")
 script = ExtResource("8_7mn47")
 
 [node name="pica_boo_ghost" parent="graves" instance=ExtResource("9_wbhjj")]
 position = Vector2(888, 224)
 
-[node name="OwnersGraveStone" parent="graves" node_paths=PackedStringArray("player") instance=ExtResource("9_3ty12")]
+[node name="OwnersGraveStone" parent="graves" node_paths=PackedStringArray("player", "game_state") instance=ExtResource("9_3ty12")]
 y_sort_enabled = true
 position = Vector2(837, 463)
 player = NodePath("../../Player")
+game_state = NodePath("../../StateMachine/GameState")
 
 [node name="FloweredGraveInteractable" parent="graves" instance=ExtResource("11_7mn47")]
 position = Vector2(458, 443)
@@ -281,3 +345,8 @@ rotation = -1.5708
 loop = false
 
 [node name="MockNode" type="Node2D" parent="EnterScenePath/FollowPath"]
+
+[node name="BlilnkingAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_k0q7i")
+}

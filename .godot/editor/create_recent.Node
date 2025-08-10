@@ -1,5 +1,6 @@
-Node
+PointLight2D
 AnimationPlayer
+Node
 Node2D
 PathFollow2D
 Path2D
