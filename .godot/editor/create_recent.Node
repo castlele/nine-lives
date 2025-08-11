@@ -1,3 +1,5 @@
+NavigationAgent2D
+NavigationRegion2D
 AudioStreamPlayer
 PointLight2D
 AnimationPlayer
@@ -11,5 +13,3 @@ Area2D
 ColorRect
 HBoxContainer
 CharacterBody2D
-CanvasLayer
-Button

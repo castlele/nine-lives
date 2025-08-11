@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://cyhrkdl02efed"]
+[gd_scene load_steps=48 format=4 uid="uid://cyhrkdl02efed"]
 
 [ext_resource type="Script" uid="uid://ds5nm7xjrc8e3" path="res://scenes/grave_yard/grave_yard.gd" id="1_2bsxj"]
 [ext_resource type="Texture2D" uid="uid://ds1prft0icy2q" path="res://res/grave_level/level_1.png" id="1_sqdge"]
@@ -136,6 +136,13 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 520, 722, 0, 0, 0, 0, 520, 550)
 }
 point_count = 2
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_v1cv4"]
+vertices = PackedVector2Array(875, 473, 959.219, 533.039, 736.789, 533.953, 796, 473, 746.25, 410.133, 796, 427, 939.477, 412.883, 875, 427)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5), PackedInt32Array(5, 4, 6, 7), PackedInt32Array(6, 1, 0, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(737, 400, 948, 403, 971, 543, 726, 544)])
+source_geometry_mode = 1
+source_geometry_group_name = &"navigation"
 
 [sub_resource type="Animation" id="Animation_a78i7"]
 length = 0.001
@@ -311,9 +318,10 @@ mock_node = NodePath("../../EnterScenePath/FollowPath/MockNode")
 [node name="GameState" type="Node" parent="StateMachine"]
 script = ExtResource("4_a78i7")
 
-[node name="SleepState" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animation_player")]
+[node name="SleepState" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "player_target_node", "animation_player")]
 script = ExtResource("5_v1cv4")
 player = NodePath("../../Player")
+player_target_node = NodePath("../../graves/OwnersGraveStone/PlayerAnchor")
 animation_player = NodePath("../../BlilnkingAnimation")
 
 [node name="terrain" type="TileMapLayer" parent="."]
@@ -358,7 +366,7 @@ position = Vector2(1180, 0)
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_2bsxj")
 
-[node name="graves" type="TileMapLayer" parent="."]
+[node name="graves" type="TileMapLayer" parent="." groups=["navigation"]]
 y_sort_enabled = true
 position = Vector2(-1, 0)
 tile_map_data = PackedByteArray("AAAWAAMAAwAAAAAAAAARAA0AAwAAAAAAAAAWACIAAwAAAAAAAAA1AAIAAwAAAAAAAAAqACMAAAAAAAIAAAA2ACMAAAAAAAIAAAAPABoAAAAAAAAAAAANAAQAAAAAAAEAAAAcABsAAAAAAAMAAAA=")
@@ -369,17 +377,17 @@ position = Vector2(363, 57)
 
 [node name="left_light" type="PointLight2D" parent="graves"]
 position = Vector2(192, 107)
-scale = Vector2(1.05613, 1.05613)
+scale = Vector2(1.08567, 1.08567)
 color = Color(0.678431, 0.654902, 0.427451, 1)
-energy = 1.05613
+energy = 1.08567
 texture = SubResource("GradientTexture2D_hcevp")
 script = ExtResource("8_7mn47")
 
 [node name="right_light" type="PointLight2D" parent="graves"]
 position = Vector2(243, 112)
-scale = Vector2(1.00874, 1.00874)
+scale = Vector2(1.00954, 1.00954)
 color = Color(0.678431, 0.654902, 0.427451, 1)
-energy = 1.00874
+energy = 1.00954
 texture = SubResource("GradientTexture2D_hcevp")
 script = ExtResource("8_7mn47")
 
@@ -391,6 +399,9 @@ y_sort_enabled = true
 position = Vector2(837, 463)
 player = NodePath("../../Player")
 game_state = NodePath("../../StateMachine/GameState")
+
+[node name="PlayerAnchor" type="Node2D" parent="graves/OwnersGraveStone"]
+position = Vector2(25, 12)
 
 [node name="FloweredGraveInteractable" parent="graves" instance=ExtResource("11_7mn47")]
 position = Vector2(458, 443)
@@ -419,9 +430,10 @@ limit_bottom = 650
 editor_draw_limits = true
 target = NodePath("../Player")
 
-[node name="Player" parent="." instance=ExtResource("5_3ty12")]
+[node name="Player" parent="." node_paths=PackedStringArray("nav_agent") instance=ExtResource("5_3ty12")]
 unique_name_in_owner = true
 position = Vector2(541, 575)
+nav_agent = NodePath("../NavRegion/NavAgent")
 
 [node name="DarknessLighting" type="DirectionalLight2D" parent="."]
 position = Vector2(581, 104)
@@ -441,6 +453,13 @@ rotation = -1.5708
 loop = false
 
 [node name="MockNode" type="Node2D" parent="EnterScenePath/FollowPath"]
+
+[node name="NavRegion" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_v1cv4")
+
+[node name="NavAgent" type="NavigationAgent2D" parent="NavRegion"]
+avoidance_enabled = true
+debug_enabled = true
 
 [node name="BlilnkingAnimation" type="AnimationPlayer" parent="."]
 libraries = {

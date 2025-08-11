@@ -12,6 +12,7 @@ enum Direction {
 @export var is_ghost = false
 @export var current_state = State.STAND
 @export var current_direction = Direction.RIGHT
+@export var nav_agent: NavigationAgent2D = null
 
 @onready var animatedSprite = $AnimatedSprite2D
 @onready var horizontalCollider = $HorizontalCollider
@@ -33,6 +34,7 @@ func _physics_process(delta: float):
 	if is_player_controlling:
 		_get_input()
 	else:
+		_follow_path()
 		_update_player_state()
 		_update_player_animation_state()
 		_update_player_collider()
@@ -108,6 +110,15 @@ func _update_player_collider():
 		_:
 			horizontalCollider.disabled = true
 			verticalCollider.disabled = true
+
+
+func _follow_path() -> void:
+	if not nav_agent.is_target_reachable() and nav_agent.is_target_reached():
+		return
+
+	var next_path_pos := nav_agent.get_next_path_position()
+	var direction := global_position.direction_to(next_path_pos)
+	velocity = direction * speed
 
 
 func _set_still_state(message_visible):

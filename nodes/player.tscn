@@ -187,13 +187,15 @@ size = Vector2(19, 34)
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_bms3g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_2wrp4")
 use_parent_material = true
-position = Vector2(54, 36)
+position = Vector2(7, -2.175)
 sprite_frames = SubResource("SpriteFrames_iwr0g")
 animation = &"lie_bottom"
 offset = Vector2(0, -16.825)
@@ -205,10 +207,10 @@ energy = 0.49
 texture = SubResource("GradientTexture2D_7lbay")
 
 [node name="HorizontalCollider" type="CollisionShape2D" parent="."]
-position = Vector2(45, 20)
+position = Vector2(-2, -18.175)
 shape = SubResource("RectangleShape2D_bahl2")
 
 [node name="VerticalCollider" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
-position = Vector2(59, 18)
+position = Vector2(12, -20.175)
 shape = SubResource("RectangleShape2D_6iamk")

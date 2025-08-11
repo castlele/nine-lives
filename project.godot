@@ -24,6 +24,10 @@ LevelStateMachine="*res://scripts/level_state_machine.gd"
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
+[global_group]
+
+obstacle=""
+
 [input]
 
 interaction={
