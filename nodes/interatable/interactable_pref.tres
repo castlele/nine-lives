@@ -1,4 +1,9 @@
-[gd_resource type="CircleShape2D" format=3 uid="uid://gbu7v06y0crk"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://udra7xwrk4jw"]
+
+[ext_resource type="Script" uid="uid://q0rhjf8q82f7" path="res://nodes/interatable/interactable_pref.gd" id="1_157i1"]
 
 [resource]
-radius = 90.0
+script = ExtResource("1_157i1")
+rotation_angle = 0.0
+radius = 10.0
+height = 30.0

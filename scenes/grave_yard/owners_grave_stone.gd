@@ -4,7 +4,7 @@ extends StaticBody2D
 @export var player: Player = null
 @export var game_state: StateNode = null
 
-@onready var interactable: Interactable = $Interactable
+@onready var interactable: Interactable = $InteractableGrave
 @onready var fish_anchor: Node2D = $FishAnchor
 
 var _fish_node = preload("res://nodes/grave/fish.tscn")

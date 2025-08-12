@@ -377,17 +377,17 @@ position = Vector2(363, 57)
 
 [node name="left_light" type="PointLight2D" parent="graves"]
 position = Vector2(192, 107)
-scale = Vector2(1.06007, 1.06007)
+scale = Vector2(1.08951, 1.08951)
 color = Color(0.678431, 0.654902, 0.427451, 1)
-energy = 1.06007
+energy = 1.08951
 texture = SubResource("GradientTexture2D_hcevp")
 script = ExtResource("8_7mn47")
 
 [node name="right_light" type="PointLight2D" parent="graves"]
 position = Vector2(243, 112)
-scale = Vector2(1.07014, 1.07014)
+scale = Vector2(1.08133, 1.08133)
 color = Color(0.678431, 0.654902, 0.427451, 1)
-energy = 1.07014
+energy = 1.08133
 texture = SubResource("GradientTexture2D_hcevp")
 script = ExtResource("8_7mn47")
 

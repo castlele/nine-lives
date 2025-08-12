@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="MessageInteractablePref" load_steps=2 format=3 uid="uid://beofagxysmeck"]
+
+[ext_resource type="Script" uid="uid://ti0xyupvbyx7" path="res://nodes/interatable/message_interactable_pref.gd" id="2_c3uk8"]
+
+[resource]
+script = ExtResource("2_c3uk8")
+messages = Array[String]([])
