@@ -138,9 +138,9 @@ _data = {
 point_count = 2
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_v1cv4"]
-vertices = PackedVector2Array(875, 473, 959.219, 533.039, 736.789, 533.953, 796, 473, 746.25, 410.133, 796, 427, 939.477, 412.883, 875, 427)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5), PackedInt32Array(5, 4, 6, 7), PackedInt32Array(6, 1, 0, 7)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(737, 400, 948, 403, 971, 543, 726, 544)])
+vertices = PackedVector2Array(404.727, 625.039, 416.898, 454.609, 417.281, 479.391, 1116.92, 290.688, 1150.93, 627.953, 912.102, 578.992, 875, 473, 875, 427, 430.281, 267.312, 796, 427, 418.156, 437.031, 492.359, 436.797, 493.531, 479.859, 796, 473, 720.102, 578.992, 639.18, 578.992, 831.18, 578.992, 832.031, 622.852, 721.82, 622.242, 913.82, 622.242, 640.031, 622.852)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5, 6, 7), PackedInt32Array(8, 3, 7, 9), PackedInt32Array(10, 8, 9, 11), PackedInt32Array(12, 11, 9, 13, 14, 15), PackedInt32Array(16, 17, 18, 14, 13), PackedInt32Array(4, 19, 5), PackedInt32Array(6, 5, 16, 13), PackedInt32Array(0, 2, 12, 15, 20), PackedInt32Array(4, 0, 20, 18, 17), PackedInt32Array(4, 17, 19)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(421, 257, 1126, 281, 1162, 638, 394, 635)])
 source_geometry_mode = 1
 source_geometry_group_name = &"navigation"
 
@@ -377,17 +377,17 @@ position = Vector2(363, 57)
 
 [node name="left_light" type="PointLight2D" parent="graves"]
 position = Vector2(192, 107)
-scale = Vector2(1.08567, 1.08567)
+scale = Vector2(1.06007, 1.06007)
 color = Color(0.678431, 0.654902, 0.427451, 1)
-energy = 1.08567
+energy = 1.06007
 texture = SubResource("GradientTexture2D_hcevp")
 script = ExtResource("8_7mn47")
 
 [node name="right_light" type="PointLight2D" parent="graves"]
 position = Vector2(243, 112)
-scale = Vector2(1.00954, 1.00954)
+scale = Vector2(1.07014, 1.07014)
 color = Color(0.678431, 0.654902, 0.427451, 1)
-energy = 1.00954
+energy = 1.07014
 texture = SubResource("GradientTexture2D_hcevp")
 script = ExtResource("8_7mn47")
 
@@ -430,10 +430,9 @@ limit_bottom = 650
 editor_draw_limits = true
 target = NodePath("../Player")
 
-[node name="Player" parent="." node_paths=PackedStringArray("nav_agent") instance=ExtResource("5_3ty12")]
+[node name="Player" parent="." instance=ExtResource("5_3ty12")]
 unique_name_in_owner = true
 position = Vector2(541, 575)
-nav_agent = NodePath("../NavRegion/NavAgent")
 
 [node name="DarknessLighting" type="DirectionalLight2D" parent="."]
 position = Vector2(581, 104)
@@ -456,10 +455,6 @@ loop = false
 
 [node name="NavRegion" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_v1cv4")
-
-[node name="NavAgent" type="NavigationAgent2D" parent="NavRegion"]
-avoidance_enabled = true
-debug_enabled = true
 
 [node name="BlilnkingAnimation" type="AnimationPlayer" parent="."]
 libraries = {

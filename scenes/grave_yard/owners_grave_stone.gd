@@ -19,6 +19,11 @@ func _ready() -> void:
 	interactable.player = player
 	_sm.player_bring_fish.connect(_place_fish)
 
+func _input(event: InputEvent) -> void:
+	if OS.is_debug_build():
+		if event is InputEventMouseButton and event.is_pressed():
+			game_state.finished.emit("SleepState")
+
 
 func _place_fish(collectable: CollectableData) -> void:
 	var fish: Collectable = _fish_node.instantiate()
@@ -28,8 +33,5 @@ func _place_fish(collectable: CollectableData) -> void:
 	fish.data = collectable
 
 	fish_anchor.call_deferred("add_child", fish)
-
-	# if not player.on_the_grave():
-	# 	move_player_in_front_of_grave()
 
 	game_state.finished.emit("SleepState")

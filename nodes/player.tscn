@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://qht4w7fjeg0l" path="res://nodes/player.gd" id="1_bms3g"]
 [ext_resource type="Shader" uid="uid://bdlwivqwlr1wn" path="res://res/shaders/ghost.gdshader" id="2_7lbay"]
 [ext_resource type="Texture2D" uid="uid://d2n6touh04gxt" path="res://res/grave_level/cat_sleeping.png" id="2_hqdnm"]
-[ext_resource type="Texture2D" uid="uid://djgcfrm6n62i4" path="res://res/cat.png" id="2_me0cc"]
+[ext_resource type="Texture2D" uid="uid://3o514d1kxmnv" path="res://res/cat.png" id="2_me0cc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2wrp4"]
 shader = ExtResource("2_7lbay")
@@ -179,11 +179,13 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.888889, 0.132479)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bahl2"]
-size = Vector2(49, 36.5)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hqdnm"]
+radius = 9.0
+height = 26.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6iamk"]
-size = Vector2(19, 34)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7lbay"]
+radius = 9.0
+height = 18.0
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -197,7 +199,7 @@ material = SubResource("ShaderMaterial_2wrp4")
 use_parent_material = true
 position = Vector2(7, -2.175)
 sprite_frames = SubResource("SpriteFrames_iwr0g")
-animation = &"lie_bottom"
+animation = &"move_top"
 offset = Vector2(0, -16.825)
 
 [node name="GhostLight" type="PointLight2D" parent="AnimatedSprite2D"]
@@ -207,10 +209,16 @@ energy = 0.49
 texture = SubResource("GradientTexture2D_7lbay")
 
 [node name="HorizontalCollider" type="CollisionShape2D" parent="."]
-position = Vector2(-2, -18.175)
-shape = SubResource("RectangleShape2D_bahl2")
+position = Vector2(12, -20)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_hqdnm")
 
 [node name="VerticalCollider" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
-position = Vector2(12, -20.175)
-shape = SubResource("RectangleShape2D_6iamk")
+position = Vector2(11, -16)
+shape = SubResource("CapsuleShape2D_7lbay")
+
+[node name="NavAgent" type="NavigationAgent2D" parent="."]
+path_desired_distance = 40.0
+path_postprocessing = 1
+debug_enabled = true

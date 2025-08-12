@@ -1,11 +1,9 @@
 res://scenes/grave_yard/grave_yard.tscn
 res://res/shaders/ghost.gdshader
 res://scenes/grave_yard/owners_grave_stone.tscn
-res://nodes/grave/fish.tscn
-res://nodes/camera.tscn
-res://nodes/grave/tomb.tscn
-res://nodes/player.gd
 res://nodes/player.tscn
+res://nodes/player.gd
+res://scenes/grave_yard/owners_grave_stone.gd
+res://nodes/grave/tomb.gd
+res://nodes/grave/tomb.tscn
 res://scenes/grave_yard/states/sleep_state.gd
-res://nodes/message_box.gd
-res://nodes/interatable/interactable_pref.tres

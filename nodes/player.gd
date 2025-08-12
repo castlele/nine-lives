@@ -12,12 +12,12 @@ enum Direction {
 @export var is_ghost = false
 @export var current_state = State.STAND
 @export var current_direction = Direction.RIGHT
-@export var nav_agent: NavigationAgent2D = null
 
 @onready var animatedSprite = $AnimatedSprite2D
 @onready var horizontalCollider = $HorizontalCollider
 @onready var verticalCollider = $VerticalCollider
 @onready var ghost_light: PointLight2D = $AnimatedSprite2D/GhostLight
+@onready var nav_agent: NavigationAgent2D = $NavAgent
 
 var is_player_controlling = true
 var _still = false
@@ -94,12 +94,6 @@ func _update_player_animation_state():
 
 
 func _update_player_collider():
-	if current_direction == Direction.RIGHT:
-		horizontalCollider.position.x = 64
-
-	if current_direction == Direction.LEFT:
-		horizontalCollider.position.x = 45
-
 	match current_direction:
 		Direction.LEFT, Direction.RIGHT:
 			horizontalCollider.disabled = false
@@ -113,7 +107,9 @@ func _update_player_collider():
 
 
 func _follow_path() -> void:
-	if not nav_agent.is_target_reachable() and nav_agent.is_target_reached():
+	if not nav_agent.is_target_reachable() or nav_agent.is_target_reached():
+		velocity.x = 0
+		velocity.y = 0
 		return
 
 	var next_path_pos := nav_agent.get_next_path_position()
