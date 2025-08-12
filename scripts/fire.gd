@@ -1,11 +1,15 @@
 @tool
 extends PointLight2D
 
+
 @export var animation_duration = 0.2
 @export var max_energy = 1.0
 
 
 func _ready() -> void:
+	if not get_tree():
+		return
+
 	burn()
 
 

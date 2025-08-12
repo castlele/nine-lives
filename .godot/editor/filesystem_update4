@@ -1,12 +1,4 @@
-res://nodes/interatable/message_interactable.tscn
-res://res/shaders/ghost.gdshader
-res://scenes/grave_yard/resources/flowered_grave_interactable_pref.tres
-res://scenes/grave_yard/resources/abandoned_grave_interactable_pref.tres
-res://scenes/grave_yard/grave_yard.tscn
-res://scenes/grave_yard/owners_grave_stone.tscn
+res://scripts/fire.gd
 res://nodes/player.tscn
-res://nodes/grave/tomb.tscn
-res://scenes/grave_yard/resources/owners_grave_interactable_pref.tres
-res://nodes/interatable/interactable.gd
-res://scenes/grave_yard/owners_grave_stone.gd
-res://nodes/interatable/interactable.tscn
+res://res/shaders/ghost.gdshader
+res://nodes/player.gd

@@ -13,10 +13,11 @@ enum Direction {
 @export var current_state = State.STAND
 @export var current_direction = Direction.RIGHT
 
-@onready var animatedSprite = $AnimatedSprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var horizontalCollider = $HorizontalCollider
 @onready var verticalCollider = $VerticalCollider
-@onready var ghost_light: PointLight2D = $AnimatedSprite2D/GhostLight
+@onready var ghost_light: PointLight2D = $GhostLight
 @onready var nav_agent: NavigationAgent2D = $NavAgent
 
 var is_player_controlling = true
@@ -37,7 +38,6 @@ func _physics_process(delta: float):
 		_follow_path()
 		_update_player_state()
 		_update_player_animation_state()
-		_update_player_collider()
 
 	move_and_slide()
 
@@ -54,7 +54,6 @@ func _get_input():
 
 	_update_player_state()
 	_update_player_animation_state()
-	_update_player_collider()
 
 
 func _update_player_state():
@@ -84,26 +83,13 @@ func _update_player_animation_state():
 
 	if current_direction == Direction.LEFT:
 		direction = Direction.keys()[Direction.RIGHT].to_lower()
-		animatedSprite.flip_h = true
+		# animatedSprite.flip_h = true
 	else:
 		direction = Direction.keys()[current_direction].to_lower()
-		animatedSprite.flip_h = false
+		# animatedSprite.flip_h = false
 
 	var animationName = action + "_" + direction
-	animatedSprite.play(animationName)
-
-
-func _update_player_collider():
-	match current_direction:
-		Direction.LEFT, Direction.RIGHT:
-			horizontalCollider.disabled = false
-			verticalCollider.disabled = true
-		Direction.TOP, Direction.BOTTOM:
-			horizontalCollider.disabled = true
-			verticalCollider.disabled = false
-		_:
-			horizontalCollider.disabled = true
-			verticalCollider.disabled = true
+	animation_player.play(animationName)
 
 
 func _follow_path() -> void:
@@ -122,5 +108,5 @@ func _set_still_state(message_visible):
 
 
 func _update_ghost_state():
-	animatedSprite.use_parent_material = not is_ghost
+	animated_sprite.use_parent_material = not is_ghost
 	ghost_light.visible = is_ghost

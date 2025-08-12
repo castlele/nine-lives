@@ -1,9 +1,22 @@
-[gd_scene load_steps=26 format=3 uid="uid://ddvlhivvfu47e"]
+[gd_scene load_steps=38 format=3 uid="uid://ddvlhivvfu47e"]
 
 [ext_resource type="Script" uid="uid://qht4w7fjeg0l" path="res://nodes/player.gd" id="1_bms3g"]
 [ext_resource type="Shader" uid="uid://bdlwivqwlr1wn" path="res://res/shaders/ghost.gdshader" id="2_7lbay"]
 [ext_resource type="Texture2D" uid="uid://d2n6touh04gxt" path="res://res/grave_level/cat_sleeping.png" id="2_hqdnm"]
 [ext_resource type="Texture2D" uid="uid://3o514d1kxmnv" path="res://res/cat.png" id="2_me0cc"]
+[ext_resource type="Texture2D" uid="uid://clhberatoa240" path="res://res/tail.png" id="5_7lbay"]
+
+[sub_resource type="Gradient" id="Gradient_hqdnm"]
+offsets = PackedFloat32Array(0.00516796, 0.219638, 0.992248)
+colors = PackedColorArray(1, 1, 1, 1, 0.913613, 0.913613, 0.913613, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7lbay"]
+gradient = SubResource("Gradient_hqdnm")
+width = 96
+height = 96
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.888889, 0.132479)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2wrp4"]
 shader = ExtResource("2_7lbay")
@@ -167,18 +180,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_hqdnm"]
-offsets = PackedFloat32Array(0.00516796, 0.219638, 0.992248)
-colors = PackedColorArray(1, 1, 1, 1, 0.913613, 0.913613, 0.913613, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_7lbay"]
-gradient = SubResource("Gradient_hqdnm")
-width = 96
-height = 96
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.888889, 0.132479)
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hqdnm"]
 radius = 9.0
 height = 26.0
@@ -187,11 +188,386 @@ height = 26.0
 radius = 9.0
 height = 18.0
 
+[sub_resource type="Animation" id="Animation_7lbay"]
+resource_name = "stand_left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"stand_left"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TailMarker/TailSprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TailMarker/TailSprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(63, 2)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VerticalCollider:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HorizontalCollider:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(11, -20)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HorizontalCollider:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_2wrp4"]
+resource_name = "stand_right"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"stand_right"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TailMarker:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-17, -27)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VerticalCollider:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HorizontalCollider:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HorizontalCollider:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, -20)]
+}
+
+[sub_resource type="Animation" id="Animation_46y3y"]
+resource_name = "stand_top"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"move_top"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HorizontalCollider:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VerticalCollider:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TailMarker:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ejohg"]
+resource_name = "stand_bottom"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TailMarker:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VerticalCollider:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HorizontalCollider:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"stand_bottom"]
+}
+
+[sub_resource type="Animation" id="Animation_qbdof"]
+resource_name = "lie_bottom"
+
+[sub_resource type="Animation" id="Animation_hg0js"]
+resource_name = "move_right"
+
+[sub_resource type="Animation" id="Animation_4n5g4"]
+resource_name = "move_left"
+
+[sub_resource type="Animation" id="Animation_5m3aa"]
+resource_name = "move_top"
+
+[sub_resource type="Animation" id="Animation_gggum"]
+resource_name = "move_bottom"
+
+[sub_resource type="Animation" id="Animation_k5sjp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"move_bottom"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TailMarker:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-17, -27)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TailMarker/TailSprite:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TailMarker/TailSprite:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(63, 2)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("VerticalCollider:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HorizontalCollider:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HorizontalCollider:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, -20)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TailMarker:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ea43s"]
+_data = {
+&"RESET": SubResource("Animation_k5sjp"),
+&"lie_bottom": SubResource("Animation_qbdof"),
+&"move_bottom": SubResource("Animation_gggum"),
+&"move_left": SubResource("Animation_4n5g4"),
+&"move_right": SubResource("Animation_hg0js"),
+&"move_top": SubResource("Animation_5m3aa"),
+&"stand_bottom": SubResource("Animation_ejohg"),
+&"stand_left": SubResource("Animation_7lbay"),
+&"stand_right": SubResource("Animation_2wrp4"),
+&"stand_top": SubResource("Animation_46y3y")
+}
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_bms3g")
+
+[node name="GhostLight" type="PointLight2D" parent="."]
+position = Vector2(-5, -20.175)
+color = Color(0.529412, 0.756863, 0.905882, 1)
+energy = 0.49
+texture = SubResource("GradientTexture2D_7lbay")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
@@ -199,17 +575,12 @@ material = SubResource("ShaderMaterial_2wrp4")
 use_parent_material = true
 position = Vector2(7, -2.175)
 sprite_frames = SubResource("SpriteFrames_iwr0g")
-animation = &"move_top"
+animation = &"move_bottom"
 offset = Vector2(0, -16.825)
 
-[node name="GhostLight" type="PointLight2D" parent="AnimatedSprite2D"]
-position = Vector2(-12, -18)
-color = Color(0.529412, 0.756863, 0.905882, 1)
-energy = 0.49
-texture = SubResource("GradientTexture2D_7lbay")
-
 [node name="HorizontalCollider" type="CollisionShape2D" parent="."]
-position = Vector2(12, -20)
+z_index = 1
+position = Vector2(3, -20)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_hqdnm")
 
@@ -217,8 +588,23 @@ shape = SubResource("CapsuleShape2D_hqdnm")
 y_sort_enabled = true
 position = Vector2(11, -16)
 shape = SubResource("CapsuleShape2D_7lbay")
+disabled = true
 
 [node name="NavAgent" type="NavigationAgent2D" parent="."]
 path_desired_distance = 60.0
 path_postprocessing = 1
 debug_enabled = true
+
+[node name="TailMarker" type="Marker2D" parent="."]
+visible = false
+position = Vector2(-17, -27)
+
+[node name="TailSprite" type="Sprite2D" parent="TailMarker"]
+position = Vector2(63, 2)
+texture = ExtResource("5_7lbay")
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ea43s")
+}
