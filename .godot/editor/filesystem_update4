@@ -1,4 +1,5 @@
-res://scripts/fire.gd
 res://nodes/player.tscn
 res://res/shaders/ghost.gdshader
+res://scenes/grave_yard/resources/abandoned_grave_interactable_pref.tres
+res://scenes/grave_yard/grave_yard.tscn
 res://nodes/player.gd

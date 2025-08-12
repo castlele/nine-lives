@@ -8,6 +8,7 @@ enum Direction {
 	LEFT, RIGHT, TOP, BOTTOM,
 }
 
+
 @export var speed = 400
 @export var is_ghost = false
 @export var current_state = State.STAND
@@ -15,6 +16,7 @@ enum Direction {
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var tail_sprite: Sprite2D = $TailMarker/TailSprite
 @onready var horizontalCollider = $HorizontalCollider
 @onready var verticalCollider = $VerticalCollider
 @onready var ghost_light: PointLight2D = $GhostLight
@@ -81,12 +83,7 @@ func _update_player_animation_state():
 	var action = State.keys()[current_state].to_lower()
 	var direction: String
 
-	if current_direction == Direction.LEFT:
-		direction = Direction.keys()[Direction.RIGHT].to_lower()
-		# animatedSprite.flip_h = true
-	else:
-		direction = Direction.keys()[current_direction].to_lower()
-		# animatedSprite.flip_h = false
+	direction = Direction.keys()[current_direction].to_lower()
 
 	var animationName = action + "_" + direction
 	animation_player.play(animationName)
@@ -109,4 +106,5 @@ func _set_still_state(message_visible):
 
 func _update_ghost_state():
 	animated_sprite.use_parent_material = not is_ghost
+	tail_sprite.use_parent_material = not is_ghost
 	ghost_light.visible = is_ghost
