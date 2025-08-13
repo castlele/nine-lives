@@ -3,20 +3,22 @@ class_name Interactable extends Area2D
 
 
 @export var prefs: InteractablePref
-@export var player: Player = null
 
 @onready var collider: CollisionShape2D = $Collider
+
+signal player_around_changed(is_around: bool)
+signal player_interacted
 
 var _is_player_around = false
 
 
 func _ready() -> void:
 	var capsule = CapsuleShape2D.new()
-	
+
 	capsule.radius = prefs.radius
 	capsule.height = prefs.height
 	collider.shape = capsule
-	
+
 	collider.rotation_degrees = prefs.rotation_angle
 
 
@@ -30,13 +32,18 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
-		_is_player_around = true
+		_update_player_around_value(true)
 
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is Player:
-		_is_player_around = false
+		_update_player_around_value(false)
 
 
 func _interact_with_player() -> void:
-	pass
+	player_interacted.emit()
+
+
+func _update_player_around_value(is_around: bool) -> void:
+	_is_player_around = is_around
+	player_around_changed.emit(is_around)

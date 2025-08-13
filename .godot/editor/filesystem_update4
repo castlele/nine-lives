@@ -1,5 +1,12 @@
-res://nodes/player.tscn
+res://scripts/fire.gd
+res://scenes/crypt/crypt.tscn
 res://res/shaders/ghost.gdshader
 res://scenes/grave_yard/resources/abandoned_grave_interactable_pref.tres
+res://nodes/player.tscn
 res://scenes/grave_yard/grave_yard.tscn
-res://nodes/player.gd
+res://scenes/crypt/rope.tscn
+res://scenes/crypt/rope_puzzle.tscn
+res://scenes/crypt/rope_interactable.tscn
+res://nodes/interatable/interactable.gd
+res://scenes/crypt/rope_puzzle.gd
+res://nodes/interatable/interactable.tscn

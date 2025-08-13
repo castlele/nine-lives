@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://cf347e73phjah"]
+
+[ext_resource type="PackedScene" uid="uid://88xvo2v0q44x" path="res://scenes/crypt/rope.tscn" id="1_jpd0y"]
+[ext_resource type="Script" uid="uid://coyd6i2qiqce5" path="res://scenes/crypt/rope_puzzle.gd" id="1_tknxq"]
+[ext_resource type="PackedScene" uid="uid://crutpemv4oewm" path="res://scenes/crypt/rope_interactable.tscn" id="2_nof8l"]
+[ext_resource type="Script" uid="uid://q0rhjf8q82f7" path="res://nodes/interatable/interactable_pref.gd" id="3_tknxq"]
+
+[sub_resource type="Resource" id="Resource_r4kqm"]
+script = ExtResource("3_tknxq")
+rotation_angle = 0.0
+radius = 50.0
+height = 50.0
+metadata/_custom_type_script = "uid://q0rhjf8q82f7"
+
+[node name="RopePuzzle" type="Node2D"]
+script = ExtResource("1_tknxq")
+
+[node name="RopeLhs" parent="." instance=ExtResource("1_jpd0y")]
+unique_name_in_owner = true
+position = Vector2(0, -144)
+
+[node name="RopeMid" parent="." instance=ExtResource("1_jpd0y")]
+unique_name_in_owner = true
+position = Vector2(160, -192)
+
+[node name="RopeRhs" parent="." instance=ExtResource("1_jpd0y")]
+unique_name_in_owner = true
+position = Vector2(320, -256)
+
+[node name="ShadowLhs" parent="." instance=ExtResource("2_nof8l")]
+position = Vector2(0, 560)
+prefs = SubResource("Resource_r4kqm")
+
+[node name="ShadowMid" parent="." instance=ExtResource("2_nof8l")]
+position = Vector2(160, 560)
+prefs = SubResource("Resource_r4kqm")
+
+[node name="ShadowRhs" parent="." instance=ExtResource("2_nof8l")]
+position = Vector2(320, 560)
+prefs = SubResource("Resource_r4kqm")
+
+[node name="Low" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -144)
+target_position = Vector2(320, 0)
+
+[node name="Mid" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -192)
+target_position = Vector2(320, 0)
+
+[node name="Upper" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -256)
+target_position = Vector2(320, 0)
+
+[connection signal="player_interacted" from="ShadowLhs" to="." method="_change_lhs_state"]
+[connection signal="player_interacted" from="ShadowMid" to="." method="_change_mid_state"]
+[connection signal="player_interacted" from="ShadowRhs" to="." method="_change_rhs_state"]

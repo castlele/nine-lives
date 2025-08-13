@@ -7,13 +7,13 @@ extends PointLight2D
 
 
 func _ready() -> void:
-	if not get_tree():
-		return
-
 	burn()
 
 
 func burn() -> void:
+	if not get_tree():
+		return
+
 	energy = randf() * 0.1 + max_energy
 	scale = Vector2(1, 1) * energy
 
