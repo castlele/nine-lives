@@ -6,15 +6,20 @@ enum State {
 }
 
 
-@onready var lhs = %RopeLhs
-@onready var mid = %RopeMid
-@onready var rhs = %RopeRhs
+@export var expected_lhs := State.MID
+@export var expected_mid := State.UPPER
+@export var expected_rhs := State.LOWER
+@export var game_state: StateNode = null
+
+@onready var lhs: Rope = %RopeLhs
+@onready var mid: Rope = %RopeMid
+@onready var rhs: Rope = %RopeRhs
 
 @onready var lower_ray = %Low
 @onready var mid_ray = %Mid
 @onready var upper_ray = %Upper
 
-var states: Dictionary[Node2D, State] = {}
+var states: Dictionary[Rope, State] = {}
 
 
 func _ready() -> void:
@@ -27,17 +32,22 @@ func _ready() -> void:
 
 func _change_lhs_state() -> void:
 	_next_state(lhs)
+	_check_winning_combination()
 
 
 func _change_mid_state() -> void:
 	_next_state(mid)
+	_check_winning_combination()
 
 
 func _change_rhs_state() -> void:
 	_next_state(rhs)
+	_check_winning_combination()
 
 
-func _next_state(rope: Node2D) -> void:
+func _next_state(rope: Rope) -> void:
+	rope.play_audio()
+
 	match states[rope]:
 		State.LOWER:
 			states[rope] = State.MID
@@ -48,3 +58,19 @@ func _next_state(rope: Node2D) -> void:
 		State.UPPER:
 			states[rope] = State.LOWER
 			rope.global_position.y = lower_ray.global_position.y
+
+
+func _check_winning_combination() -> void:
+	if states[lhs] != expected_lhs:
+		return
+
+	if states[mid] != expected_mid:
+		return
+
+	if states[rhs] != expected_rhs:
+		return
+
+	game_state.finished.emit(
+		"SolvedPuzzleState",
+		Consts.Crypt.Puzzle.ROPES
+	)

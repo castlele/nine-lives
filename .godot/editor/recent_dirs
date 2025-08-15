@@ -1,11 +1,11 @@
+res://scripts
+res://scripts/state_machine
 res://res/shaders
 res://res/grave_level
 res://scenes/grave_yard/states
-res://scripts/state_machine
 res://nodes/interatable/
 res://scenes/grave_yard
 res://scenes/grave_yard/resources/
-res://scripts
 res://scenes
 res://res/crypt_level
 res://res

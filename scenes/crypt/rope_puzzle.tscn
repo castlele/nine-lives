@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cf347e73phjah"]
+[gd_scene load_steps=9 format=3 uid="uid://cf347e73phjah"]
 
 [ext_resource type="PackedScene" uid="uid://88xvo2v0q44x" path="res://scenes/crypt/rope.tscn" id="1_jpd0y"]
 [ext_resource type="Script" uid="uid://coyd6i2qiqce5" path="res://scenes/crypt/rope_puzzle.gd" id="1_tknxq"]
 [ext_resource type="PackedScene" uid="uid://crutpemv4oewm" path="res://scenes/crypt/rope_interactable.tscn" id="2_nof8l"]
+[ext_resource type="AudioStream" uid="uid://pnbdmsrqmpx2" path="res://res/sounds/large_bell.mp3" id="3_7yonx"]
 [ext_resource type="Script" uid="uid://q0rhjf8q82f7" path="res://nodes/interatable/interactable_pref.gd" id="3_tknxq"]
+[ext_resource type="AudioStream" uid="uid://s8ux40ds602b" path="res://res/sounds/medium_bell.mp3" id="4_upp4l"]
+[ext_resource type="AudioStream" uid="uid://c8hmnvs6d7air" path="res://res/sounds/small_bell.wav" id="5_318yi"]
 
 [sub_resource type="Resource" id="Resource_r4kqm"]
 script = ExtResource("3_tknxq")
@@ -18,14 +21,17 @@ script = ExtResource("1_tknxq")
 [node name="RopeLhs" parent="." instance=ExtResource("1_jpd0y")]
 unique_name_in_owner = true
 position = Vector2(0, -144)
+audio = ExtResource("3_7yonx")
 
 [node name="RopeMid" parent="." instance=ExtResource("1_jpd0y")]
 unique_name_in_owner = true
 position = Vector2(160, -192)
+audio = ExtResource("4_upp4l")
 
 [node name="RopeRhs" parent="." instance=ExtResource("1_jpd0y")]
 unique_name_in_owner = true
 position = Vector2(320, -256)
+audio = ExtResource("5_318yi")
 
 [node name="ShadowLhs" parent="." instance=ExtResource("2_nof8l")]
 position = Vector2(0, 560)

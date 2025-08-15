@@ -30,14 +30,14 @@ func _process(delta: float) -> void:
 		_current_state.process(delta)
 
 
-func change_state(state: Variant) -> void:
+func change_state(state: Variant, args: Variant = null) -> void:
 	match typeof(state):
 		TYPE_NIL:
 			to_back_state()
 		TYPE_STRING:
-			_change_state(_states[state])
+			_change_state(_states[state], args)
 		_:
-			_change_state(state)
+			_change_state(state, args)
 
 
 func to_back_state() -> void:
@@ -59,10 +59,10 @@ func _initialize() -> void:
 	pass
 
 
-func _change_state(state: StateNode) -> void:
+func _change_state(state: StateNode, args: Variant = null) -> void:
 	assert(state)
 	assert(state is StateNode)
-	print_debug("changing state to: %s::%s" % [state.name, state])
+	print_debug("changing state to: %s::%s with args: %s" % [state.name, state, args])
 
 	if _current_state:
 		_history_stack.append(_current_state)
@@ -70,4 +70,4 @@ func _change_state(state: StateNode) -> void:
 
 	_current_state = state
 	state_changed.emit(_current_state)
-	_current_state.enter()
+	_current_state.enter(args)

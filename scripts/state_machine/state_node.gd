@@ -2,10 +2,11 @@ class_name StateNode extends Node
 
 
 @warning_ignore("unused_signal")
-signal finished(new_state: StateNode)
+signal finished(new_state: StateNode, args: Variant)
 
 
-func enter() -> void:
+@warning_ignore("unused_parameter")
+func enter(args: Variant = null) -> void:
 	pass
 
 

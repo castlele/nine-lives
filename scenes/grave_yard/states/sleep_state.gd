@@ -8,8 +8,8 @@ extends "res://scripts/state_machine/state_node.gd"
 var _animation_started := false
 
 
-func enter() -> void:
-	super.enter()
+func enter(args: Variant = null) -> void:
+	super.enter(args)
 
 	player.is_player_controlling = false
 	player.nav_agent.target_position = player_target_node.global_position

@@ -11,8 +11,8 @@ var _entered_into_scene: bool:
 		return path.progress_ratio >= 1
 
 
-func enter() -> void:
-	super.enter()
+func enter(args: Variant = null) -> void:
+	super.enter(args)
 
 	player.is_player_controlling = false
 	player.global_position = mock_node.global_position

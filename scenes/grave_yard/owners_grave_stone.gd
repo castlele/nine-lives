@@ -1,7 +1,6 @@
 extends StaticBody2D
 
 
-@export var player: Player = null
 @export var game_state: StateNode = null
 
 @onready var interactable: Interactable = $InteractableGrave
@@ -12,11 +11,9 @@ var _sm := OwnersGraveStateMachine.new()
 
 
 func _ready() -> void:
-	assert(player)
 	assert(game_state)
 
 	interactable.sm = _sm
-	interactable.player = player
 	_sm.player_bring_fish.connect(_place_fish)
 
 func _input(event: InputEvent) -> void:
