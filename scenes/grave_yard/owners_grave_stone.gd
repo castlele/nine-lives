@@ -19,7 +19,12 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if OS.is_debug_build():
 		if event is InputEventMouseButton and event.is_pressed():
-			game_state.finished.emit("SleepState")
+			var pos = get_global_mouse_position()
+			var local_pos = to_local(pos)
+			var rect = $Sprite.get_rect()
+
+			if rect.has_point(local_pos):
+				game_state.finished.emit("SleepState")
 
 
 func _place_fish(collectable: CollectableData) -> void:

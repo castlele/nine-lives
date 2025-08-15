@@ -7,7 +7,7 @@
 script = ExtResource("2_dj5cb")
 rotation_angle = 0.0
 radius = 70.0
-height = 80.0
+height = 70.0
 metadata/_custom_type_script = "uid://q0rhjf8q82f7"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gicn8"]

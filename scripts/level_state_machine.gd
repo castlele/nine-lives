@@ -20,6 +20,34 @@ var _config = LevelConfig.new()
 var _inventory_items: Array[CollectableData] = []
 
 
+func is_in_inventory(item_name: String) -> bool:
+	for item in _inventory_items:
+		if not item:
+			continue
+
+		if item.name == item_name:
+			return true
+
+	return false
+
+
+func get_inventory_item(item_name: String) -> CollectableData:
+	for index in range(len(_inventory_items)):
+		var item = _inventory_items[index]
+
+		if not item:
+			continue
+
+		if item.name != item_name:
+			continue
+
+		remove_inventory_item(index)
+
+		return item
+
+	return null
+
+
 func get_inventory() -> Array[CollectableData]:
 	return _inventory_items.duplicate()
 

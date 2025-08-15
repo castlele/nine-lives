@@ -1,6 +1,8 @@
 extends "res://scripts/state_machine/state_node.gd"
 
 
+@onready var mirror = %Mirror
+
 var puzzle_type: Consts.Crypt.Puzzle
 
 
@@ -33,4 +35,4 @@ func _parse_args(args: Variant) -> void:
 
 
 func _finish_ropes_puzzle() -> void:
-	print("Dropping mirror")
+	mirror.visible = true

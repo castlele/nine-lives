@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://chdw61qr16oqi"]
+[gd_scene load_steps=9 format=3 uid="uid://chdw61qr16oqi"]
 
 [ext_resource type="Texture2D" uid="uid://cuotc442pvwrv" path="res://res/crypt_level/misc.png" id="1_urd36"]
 [ext_resource type="Script" uid="uid://b4i7u1dbrlk0m" path="res://scripts/fire.gd" id="2_0magp"]
+[ext_resource type="Script" uid="uid://da8dpaf2rgwx2" path="res://nodes/crypt/torch.gd" id="2_r6t62"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0magp"]
 atlas = ExtResource("1_urd36")
@@ -44,10 +45,12 @@ sprite_frames = SubResource("SpriteFrames_ljixl")
 animation = &"burn"
 autoplay = "burn"
 frame_progress = 0.61632
+script = ExtResource("2_r6t62")
 
 [node name="Light" type="PointLight2D" parent="."]
 position = Vector2(0, -9)
-scale = Vector2(3.96875, 3.96875)
+scale = Vector2(1.01112, 1.01112)
+energy = 1.01112
 texture = SubResource("GradientTexture2D_1mne8")
 texture_scale = 0.9
 script = ExtResource("2_0magp")

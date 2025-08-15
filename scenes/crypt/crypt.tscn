@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://bfi8cwc1bxmy5"]
+[gd_scene load_steps=28 format=4 uid="uid://bfi8cwc1bxmy5"]
 
 [ext_resource type="Texture2D" uid="uid://rw76kp0l1csd" path="res://res/crypt_level/floor.png" id="1_febxp"]
 [ext_resource type="Script" uid="uid://b0y1i0txpal1h" path="res://scripts/state_machine/state_machine.gd" id="1_s7xc8"]
@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://lfitv8oudn8r" path="res://res/crypt_level/stair.png" id="8_x6d4k"]
 [ext_resource type="PackedScene" uid="uid://8mrbkspwqtjb" path="res://nodes/crypt/candle.tscn" id="9_grda1"]
 [ext_resource type="PackedScene" uid="uid://cf347e73phjah" path="res://scenes/crypt/rope_puzzle.tscn" id="12_lm1b5"]
+[ext_resource type="PackedScene" uid="uid://dfkd5xa77l51v" path="res://res/crypt_level/mirror_stand.tscn" id="16_onypn"]
+[ext_resource type="PackedScene" uid="uid://d4dmrqh2xd4wt" path="res://scenes/crypt/mirror.tscn" id="16_ye0c1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c2wqy"]
 texture = ExtResource("1_febxp")
@@ -60,7 +62,7 @@ texture_region_size = Vector2i(64, 32)
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-31.9226, 15.9751, -32.0433, -16.1096, 31.988, -16.0751, 31.9501, 15.9579)
 
 [sub_resource type="TileSet" id="TileSet_nq3ho"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 2
 sources/0 = SubResource("TileSetAtlasSource_c2wqy")
 sources/1 = SubResource("TileSetAtlasSource_4oj2b")
 
@@ -123,7 +125,7 @@ texture_region_size = Vector2i(32, 32)
 5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 12, -16, 16, 16, -16, 16)
 
 [sub_resource type="TileSet" id="TileSet_ll55m"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 2
 sources/0 = SubResource("TileSetAtlasSource_2a84w")
 sources/1 = SubResource("TileSetAtlasSource_ye0c1")
 sources/2 = SubResource("TileSetAtlasSource_onypn")
@@ -249,3 +251,12 @@ blend_mode = 2
 [node name="RopePuzzle" parent="." node_paths=PackedStringArray("game_state") instance=ExtResource("12_lm1b5")]
 position = Vector2(862, -459)
 game_state = NodePath("../StateMachine/GameState")
+
+[node name="MirrorStand" parent="." instance=ExtResource("16_onypn")]
+position = Vector2(295, 378)
+
+[node name="Mirror" parent="." instance=ExtResource("16_ye0c1")]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+position = Vector2(1026, 289)

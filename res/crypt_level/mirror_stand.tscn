@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfkd5xa77l51v"]
+
+[ext_resource type="Script" uid="uid://fg50chmnwyj0" path="res://res/crypt_level/mirror_stand.gd" id="1_itav3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_23wr6"]
+radius = 35.0
+
+[node name="MirrorStand" type="Node2D"]
+script = ExtResource("1_itav3")
+
+[node name="Area" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="MirrorSprite" type="Sprite2D" parent="Area"]
+
+[node name="Collider" type="CollisionShape2D" parent="Area"]
+shape = SubResource("CircleShape2D_23wr6")
+
+[connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]
+[connection signal="body_exited" from="Area" to="." method="_on_area_body_exited"]

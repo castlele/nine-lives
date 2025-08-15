@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4dmrqh2xd4wt"]
+
+[ext_resource type="Script" uid="uid://brg264oftreao" path="res://scripts/collectable.gd" id="1_8d7hy"]
+[ext_resource type="Script" uid="uid://dnvkpimbnvak" path="res://scripts/collectable_data.gd" id="2_6dbfn"]
+[ext_resource type="Texture2D" uid="uid://c4pvs6cojras2" path="res://res/crypt_level/windowpane.png" id="2_v6voa"]
+
+[sub_resource type="Resource" id="Resource_35d2p"]
+script = ExtResource("2_6dbfn")
+name = "mirror"
+image = ExtResource("2_v6voa")
+interactable = true
+metadata/_custom_type_script = "uid://dnvkpimbnvak"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6dbfn"]
+size = Vector2(51.115, 51.1506)
+
+[node name="Mirror" type="Area2D"]
+script = ExtResource("1_8d7hy")
+data = SubResource("Resource_35d2p")
+metadata/_custom_type_script = "uid://brg264oftreao"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(-0.0461693, -0.0769234)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_v6voa")
+offset = Vector2(0, -512)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+position = Vector2(-0.0229855, -25.6947)
+rotation = -1.57079
+shape = SubResource("RectangleShape2D_6dbfn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

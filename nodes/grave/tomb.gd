@@ -20,10 +20,10 @@ func _input(event: InputEvent) -> void:
 	if OS.is_debug_build():
 		if event is InputEventMouseButton and event.is_pressed():
 			var pos = get_global_mouse_position()
-			var localPos = open_door_sprite.to_local(pos)
+			var local_pos = open_door_sprite.to_local(pos)
 			var rect = open_door_sprite.get_rect()
 
-			is_door_opened = rect.has_point(localPos)
+			is_door_opened = rect.has_point(local_pos)
 
 
 func _on_open_door_body_entered(body: Node2D) -> void:

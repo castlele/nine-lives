@@ -4,3 +4,15 @@ res://scenes/crypt/rope_puzzle.tscn
 res://scenes/crypt/rope.tscn
 res://scenes/crypt/rope_interactable.tscn
 res://nodes/interatable/interactable.tscn
+res://nodes/grave/tomb.gd
+res://scenes/grave_yard/owners_grave_stone.gd
+res://scenes/crypt/mirror.tscn
+res://scenes/crypt/mirror.gd
+res://scenes/crypt/solved_puzzle_state.gd
+res://nodes/grave/fish.tscn
+res://res/crypt_level/mirror_stand.tscn
+res://nodes/player.tscn
+res://res/crypt_level/mirror_stand.gd
+res://scripts/level_state_machine.gd
+res://nodes/crypt/torch.tscn
+res://nodes/crypt/torch.gd
