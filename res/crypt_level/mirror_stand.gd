@@ -1,6 +1,8 @@
 extends Node2D
 
 
+@export var game_state: StateNode
+
 var _mirror := preload("res://scenes/crypt/mirror.tscn")
 
 var _is_player_around = false
@@ -17,6 +19,10 @@ func _input(event: InputEvent) -> void:
 
 		add_child(mirror_node)
 		mirror_node.visible = true
+		game_state.finished.emit(
+			"SolvedPuzzleState",
+			Consts.Crypt.Puzzle.MIRROR_STAND
+		)
 
 
 func _on_area_body_entered(body: Node2D) -> void:

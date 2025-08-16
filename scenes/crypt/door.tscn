@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfr733au8nwoj"]
+
+[ext_resource type="Script" uid="uid://wrq1g70xwwkq" path="res://scenes/crypt/door.gd" id="1_x0lxc"]
+[ext_resource type="Texture2D" uid="uid://c4bt8c0jq3rrq" path="res://res/crypt_level/arch.png" id="1_yv7b6"]
+[ext_resource type="Shape2D" uid="uid://cmucbfaejx1dl" path="res://scenes/crypt/door_collider.tres" id="3_osxb1"]
+[ext_resource type="Script" uid="uid://bxlf1grl430pb" path="res://scripts/next_level_area2d.gd" id="4_kvprm"]
+
+[node name="Door" type="StaticBody2D"]
+collision_layer = 2
+script = ExtResource("1_x0lxc")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_yv7b6")
+offset = Vector2(0, -112)
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(0.479755, -49.25)
+shape = ExtResource("3_osxb1")
+
+[node name="NextLevelEntrence" type="Area2D" parent="."]
+position = Vector2(-0.5, 1)
+collision_layer = 2
+script = ExtResource("4_kvprm")
+current_level = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NextLevelEntrence"]
+position = Vector2(0.98, -50.1944)
+shape = ExtResource("3_osxb1")
+
+[connection signal="body_entered" from="NextLevelEntrence" to="NextLevelEntrence" method="on_player_entered"]

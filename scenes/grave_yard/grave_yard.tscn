@@ -377,27 +377,26 @@ position = Vector2(363, 57)
 
 [node name="left_light" type="PointLight2D" parent="graves"]
 position = Vector2(192, 107)
-scale = Vector2(1.00369, 1.00369)
+scale = Vector2(1.05185, 1.05185)
 color = Color(0.678431, 0.654902, 0.427451, 1)
-energy = 1.00369
+energy = 1.05185
 texture = SubResource("GradientTexture2D_hcevp")
 script = ExtResource("8_7mn47")
 
 [node name="right_light" type="PointLight2D" parent="graves"]
 position = Vector2(243, 112)
-scale = Vector2(1.09199, 1.09199)
+scale = Vector2(1.09976, 1.09976)
 color = Color(0.678431, 0.654902, 0.427451, 1)
-energy = 1.09199
+energy = 1.09976
 texture = SubResource("GradientTexture2D_hcevp")
 script = ExtResource("8_7mn47")
 
 [node name="pica_boo_ghost" parent="graves" instance=ExtResource("9_wbhjj")]
 position = Vector2(888, 224)
 
-[node name="OwnersGraveStone" parent="graves" node_paths=PackedStringArray("player", "game_state") instance=ExtResource("9_3ty12")]
+[node name="OwnersGraveStone" parent="graves" node_paths=PackedStringArray("game_state") instance=ExtResource("9_3ty12")]
 y_sort_enabled = true
 position = Vector2(837, 463)
-player = NodePath("../../Player")
 game_state = NodePath("../../StateMachine/GameState")
 
 [node name="PlayerAnchor" type="Node2D" parent="graves/OwnersGraveStone"]

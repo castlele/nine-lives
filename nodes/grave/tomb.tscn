@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://7us30kguw5pb"]
+[gd_scene load_steps=10 format=3 uid="uid://7us30kguw5pb"]
 
 [ext_resource type="Texture2D" uid="uid://bd0w6budspdy4" path="res://res/grave_level/tomb.png" id="1_2kp48"]
 [ext_resource type="Script" uid="uid://7k8qcmta1wl2" path="res://nodes/grave/tomb.gd" id="1_vy2fw"]
 [ext_resource type="Texture2D" uid="uid://p4j7nbmqj4s3" path="res://res/grave_level/bush.png" id="2_biadf"]
 [ext_resource type="Texture2D" uid="uid://krg22vadlcc2" path="res://res/grave_level/open_door.png" id="3_kch7u"]
+[ext_resource type="Script" uid="uid://bxlf1grl430pb" path="res://scripts/next_level_area2d.gd" id="4_g5q2u"]
 [ext_resource type="AudioStream" uid="uid://cym6jkjjfr3pm" path="res://res/sounds/door_open.wav" id="5_x31lm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2kp48"]
@@ -50,6 +51,9 @@ shape = SubResource("CircleShape2D_kch7u")
 
 [node name="OpenDoor" type="Area2D" parent="."]
 position = Vector2(-6, 1)
+collision_layer = 2
+script = ExtResource("4_g5q2u")
+current_level = 1
 
 [node name="Sprite" type="Sprite2D" parent="OpenDoor"]
 texture = ExtResource("3_kch7u")

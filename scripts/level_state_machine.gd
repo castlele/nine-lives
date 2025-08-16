@@ -5,6 +5,7 @@ enum Scene {
 	MAIN,
 	GRAVE_YARD,
 	CRYPT,
+	CAVE,
 }
 
 
@@ -124,7 +125,13 @@ func _update_level_config(level: Scene):
 			_config.path = "res://scenes/grave_yard/grave_yard.tscn"
 			_config.hud_hidden = false
 			_config.main_hidden = true
+
 		Scene.CRYPT:
 			_config.path = "res://scenes/crypt/crypt.tscn"
+			_config.hud_hidden = false
+			_config.main_hidden = true
+
+		Scene.CAVE:
+			_config.path = "res://scenes/cave/cave.tscn"
 			_config.hud_hidden = false
 			_config.main_hidden = true

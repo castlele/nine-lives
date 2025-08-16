@@ -5,6 +5,7 @@ class Crypt:
 	enum Puzzle {
 		NONE,
 		ROPES,
+		MIRROR_STAND,
 	}
 
 

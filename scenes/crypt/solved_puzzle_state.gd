@@ -1,6 +1,9 @@
 extends "res://scripts/state_machine/state_node.gd"
 
 
+@export var reflexion_light: PointLight2D
+@export var next_level_door: CryptDoor = null
+
 @onready var mirror = %Mirror
 
 var puzzle_type: Consts.Crypt.Puzzle
@@ -21,6 +24,8 @@ func _finish_puzzle() -> void:
 			return
 		Consts.Crypt.Puzzle.ROPES:
 			_finish_ropes_puzzle()
+		Consts.Crypt.Puzzle.MIRROR_STAND:
+			_mirror_placed_on_stand()
 
 
 func _parse_args(args: Variant) -> void:
@@ -36,3 +41,8 @@ func _parse_args(args: Variant) -> void:
 
 func _finish_ropes_puzzle() -> void:
 	mirror.visible = true
+
+
+func _mirror_placed_on_stand() -> void:
+	reflexion_light.enabled = not reflexion_light.enabled
+	next_level_door.is_door_opened = true

@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 		await get_tree().create_timer(0.5).timeout
 		Input.start_joy_vibration(0, 0.5, 0.5, 0.5)
 
-	update_door_state()
+	_update_door_state()
 
 
 func _input(event: InputEvent) -> void:
@@ -30,9 +30,8 @@ func _on_open_door_body_entered(body: Node2D) -> void:
 	if not is_door_opened:
 		return
 
-	if body is Player:
-		LevelStateMachine.load_scene(LevelStateMachine.Scene.CRYPT)
+	open_door_area.on_player_entered(body)
 
 
-func update_door_state() -> void:
+func _update_door_state() -> void:
 	open_door_area.visible = is_door_opened

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://bfi8cwc1bxmy5"]
+[gd_scene load_steps=29 format=4 uid="uid://bfi8cwc1bxmy5"]
 
 [ext_resource type="Texture2D" uid="uid://rw76kp0l1csd" path="res://res/crypt_level/floor.png" id="1_febxp"]
 [ext_resource type="Script" uid="uid://b0y1i0txpal1h" path="res://scripts/state_machine/state_machine.gd" id="1_s7xc8"]
@@ -8,10 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://b84hvo2m2qdp" path="res://res/crypt_level/column.png" id="3_4oj2b"]
 [ext_resource type="PackedScene" uid="uid://drj6jlpknjh0s" path="res://nodes/camera.tscn" id="3_c2wqy"]
 [ext_resource type="PackedScene" uid="uid://ddvlhivvfu47e" path="res://nodes/player.tscn" id="3_sjwtx"]
-[ext_resource type="Texture2D" uid="uid://c4bt8c0jq3rrq" path="res://res/crypt_level/arch.png" id="4_gdx2p"]
 [ext_resource type="Texture2D" uid="uid://dflvpib8muei1" path="res://res/crypt_level/main_coffin.png" id="6_grda1"]
 [ext_resource type="PackedScene" uid="uid://chdw61qr16oqi" path="res://nodes/crypt/torch.tscn" id="6_nq3ho"]
 [ext_resource type="Texture2D" uid="uid://doietqrelp1jy" path="res://res/crypt_level/other_coffin.png" id="7_lm1b5"]
+[ext_resource type="PackedScene" uid="uid://bfr733au8nwoj" path="res://scenes/crypt/door.tscn" id="8_onypn"]
 [ext_resource type="Texture2D" uid="uid://lfitv8oudn8r" path="res://res/crypt_level/stair.png" id="8_x6d4k"]
 [ext_resource type="PackedScene" uid="uid://8mrbkspwqtjb" path="res://nodes/crypt/candle.tscn" id="9_grda1"]
 [ext_resource type="PackedScene" uid="uid://cf347e73phjah" path="res://scenes/crypt/rope_puzzle.tscn" id="12_lm1b5"]
@@ -78,15 +78,8 @@ texture_region_size = Vector2i(64, 64)
 0:3/0 = 0
 0:3/0/y_sort_origin = 31
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s7xc8"]
-texture = ExtResource("4_gdx2p")
-texture_region_size = Vector2i(160, 224)
-0:0/0 = 0
-0:0/0/y_sort_origin = 111
-
 [sub_resource type="TileSet" id="TileSet_liaio"]
 sources/0 = SubResource("TileSetAtlasSource_nq3ho")
-sources/1 = SubResource("TileSetAtlasSource_s7xc8")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2a84w"]
 texture = ExtResource("6_grda1")
@@ -130,6 +123,14 @@ sources/0 = SubResource("TileSetAtlasSource_2a84w")
 sources/1 = SubResource("TileSetAtlasSource_ye0c1")
 sources/2 = SubResource("TileSetAtlasSource_onypn")
 
+[sub_resource type="Gradient" id="Gradient_onypn"]
+colors = PackedColorArray(0.50188, 0.50188, 0.50188, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ll55m"]
+gradient = SubResource("Gradient_onypn")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
+
 [node name="Crypt" type="Node2D"]
 y_sort_enabled = true
 
@@ -140,8 +141,10 @@ initial_state = NodePath("GameState")
 [node name="GameState" type="Node" parent="StateMachine"]
 script = ExtResource("2_2a84w")
 
-[node name="SolvedPuzzleState" type="Node" parent="StateMachine"]
+[node name="SolvedPuzzleState" type="Node" parent="StateMachine" node_paths=PackedStringArray("reflexion_light", "next_level_door")]
 script = ExtResource("3_2a84w")
+reflexion_light = NodePath("../../ReflexionLight")
+next_level_door = NodePath("../../WallObjects/Door")
 
 [node name="Floor" type="TileMapLayer" parent="."]
 z_index = -1
@@ -150,19 +153,32 @@ tile_set = SubResource("TileSet_nq3ho")
 
 [node name="WallObjects" type="TileMapLayer" parent="."]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAIAO//AAAAAAAAAAAIAPP/AAAAAAEAAAAIAPf/AAAAAAIAAAAIAP3/AAAAAAMAAAAIAPn/AAAAAAIAAAAIAPX/AAAAAAEAAAAcAO//AAAAAAAAAAAcAPP/AAAAAAEAAAAcAPX/AAAAAAEAAAAcAPf/AAAAAAIAAAAcAPn/AAAAAAIAAAAcAP3/AAAAAAMAAAASAPb/AQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAIAO//AAAAAAAAAAAIAPP/AAAAAAEAAAAIAPf/AAAAAAIAAAAIAP3/AAAAAAMAAAAIAPn/AAAAAAIAAAAIAPX/AAAAAAEAAAAcAO//AAAAAAAAAAAcAPP/AAAAAAEAAAAcAPX/AAAAAAEAAAAcAPf/AAAAAAIAAAAcAPn/AAAAAAIAAAAcAP3/AAAAAAMAAAA=")
 tile_set = SubResource("TileSet_liaio")
 
-[node name="TorchLeft" parent="WallObjects" instance=ExtResource("6_nq3ho")]
+[node name="TorchLeft" parent="WallObjects" node_paths=PackedStringArray("player_observer") instance=ExtResource("6_nq3ho")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(135.256, -115.218)
 frame_progress = 0.0
+player_observer = NodePath("PlayerObserver")
 
-[node name="TorchRight" parent="WallObjects" instance=ExtResource("6_nq3ho")]
+[node name="PlayerObserver" type="RayCast2D" parent="WallObjects/TorchLeft"]
+target_position = Vector2(-0.255997, 136.218)
+
+[node name="TorchRight" parent="WallObjects" node_paths=PackedStringArray("player_observer") instance=ExtResource("6_nq3ho")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(457.403, -115.218)
+player_observer = NodePath("PlayerObserver")
+
+[node name="PlayerObserver" type="RayCast2D" parent="WallObjects/TorchRight"]
+position = Vector2(0.352966, 0)
+target_position = Vector2(-0.255997, 136.218)
+
+[node name="Door" parent="WallObjects" instance=ExtResource("8_onypn")]
+position = Vector2(292, -38)
+is_door_opened = true
 
 [node name="Coffins" type="TileMapLayer" parent="."]
 y_sort_enabled = true
@@ -252,11 +268,29 @@ blend_mode = 2
 position = Vector2(862, -459)
 game_state = NodePath("../StateMachine/GameState")
 
-[node name="MirrorStand" parent="." instance=ExtResource("16_onypn")]
+[node name="MirrorStand" parent="." node_paths=PackedStringArray("game_state") instance=ExtResource("16_onypn")]
 position = Vector2(295, 378)
+game_state = NodePath("../StateMachine/GameState")
 
 [node name="Mirror" parent="." instance=ExtResource("16_ye0c1")]
 unique_name_in_owner = true
 visible = false
 z_index = 1
 position = Vector2(1026, 289)
+
+[node name="MoonLight" type="PointLight2D" parent="."]
+position = Vector2(473.668, 33.8507)
+rotation = 0.457823
+scale = Vector2(0.613907, 11.6828)
+color = Color(7.70092e-06, 0.971677, 0.971919, 1)
+energy = 0.61
+texture = SubResource("GradientTexture2D_ll55m")
+
+[node name="ReflexionLight" type="PointLight2D" parent="."]
+position = Vector2(293.826, 93.6254)
+rotation = 0.000433594
+scale = Vector2(0.613907, 8.77658)
+enabled = false
+color = Color(7.70092e-06, 0.971677, 0.971919, 1)
+energy = 0.61
+texture = SubResource("GradientTexture2D_ll55m")

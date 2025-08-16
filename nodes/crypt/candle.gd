@@ -17,16 +17,36 @@ enum CandleType {
 @onready var sprite: Sprite2D = $Sprite
 @onready var light: PointLight2D = $Sprite/Light
 
+var _is_player_around = false
+
 
 func _ready() -> void:
-	var rect = get_candle_region()
+	var rect = _get_candle_region()
 	sprite.region_rect = rect
 	sprite.offset.y = -1 * (rect.size.y/2 - 1)
-	light.position = get_light_pos()
-	light.max_energy = get_light_max_energy()
+	light.position = _get_light_pos()
+	light.max_energy = _get_light_max_energy()
 
 
-func get_candle_region() -> Rect2:
+func _unhandled_key_input(event: InputEvent) -> void:
+	if not _is_player_around:
+		return
+
+	if event is InputEventKey and event.is_action_pressed("interaction"):
+		light.enabled = not light.enabled
+
+
+func _on_body_entered(body: Node2D) -> void:
+	assert(body is Player)
+	_is_player_around = true
+
+
+func _on_body_exited(body: Node2D) -> void:
+	assert(body is Player)
+	_is_player_around = false
+
+
+func _get_candle_region() -> Rect2:
 	var rect: Rect2
 
 	match candle_type:
@@ -44,14 +64,14 @@ func get_candle_region() -> Rect2:
 	return rect
 
 
-func get_light_pos() -> Vector2:
-	var rect = get_candle_region()
+func _get_light_pos() -> Vector2:
+	var rect = _get_candle_region()
 
 	return Vector2(0, -rect.size.y)
 
 
-func get_light_max_energy() -> float:
-	var rect = get_candle_region()
+func _get_light_max_energy() -> float:
+	var rect = _get_candle_region()
 	var multiplier: float
 
 	match candle_type:

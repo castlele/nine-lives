@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh44g3ajdogix"]
+
+[ext_resource type="PackedScene" uid="uid://drj6jlpknjh0s" path="res://nodes/camera.tscn" id="1_cmxka"]
+[ext_resource type="PackedScene" uid="uid://ddvlhivvfu47e" path="res://nodes/player.tscn" id="2_egv8d"]
+
+[node name="Cave" type="Node2D"]
+
+[node name="camera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("1_cmxka")]
+target = NodePath("../Player")
+
+[node name="Player" parent="." instance=ExtResource("2_egv8d")]
