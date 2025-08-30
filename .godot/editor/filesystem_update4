@@ -19,3 +19,5 @@ res://scenes/crypt/door.gd
 res://scenes/cave/cave.tscn
 res://scenes/grave_yard/resources/abandoned_grave_interactable_pref.tres
 res://scenes/grave_yard/grave_yard.tscn
+res://scenes/debug_levels.gd
+res://scenes/main.tscn

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://kfrb2dnqx1e0"]
+[gd_scene load_steps=4 format=3 uid="uid://kfrb2dnqx1e0"]
 
 [ext_resource type="Script" uid="uid://caoy7fijmyje2" path="res://scenes/main.gd" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dl45ptc3pxei3" path="res://scenes/hud.tscn" id="2_0wfyh"]
+[ext_resource type="Script" uid="uid://c6kbbyld2s1gh" path="res://scenes/debug_levels.gd" id="2_sugp2"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -12,7 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sugp2")
 
-[node name="MainMenu" type="VBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -25,15 +26,22 @@ offset_right = 48.0
 offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="MainMenu" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
 alignment = 1
 
-[node name="StartButton" type="Button" parent="MainMenu"]
+[node name="StartButton" type="Button" parent="HBoxContainer/MainMenu"]
 layout_mode = 2
 text = "Start Game"
 
-[node name="ExitButton" type="Button" parent="MainMenu"]
+[node name="ExitButton" type="Button" parent="HBoxContainer/MainMenu"]
 layout_mode = 2
 text = "Quit"
+
+[node name="DebugLevels" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+script = ExtResource("2_sugp2")
 
 [node name="RootGameScene" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -44,5 +52,5 @@ process_mode = 3
 [node name="HUD" parent="RootGameScene/HUDCanvas" instance=ExtResource("2_0wfyh")]
 unique_name_in_owner = true
 
-[connection signal="pressed" from="MainMenu/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="MainMenu/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/MainMenu/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/MainMenu/ExitButton" to="." method="_on_exit_button_pressed"]
